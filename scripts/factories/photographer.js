@@ -19,7 +19,7 @@ function photographerFactory(data) {
         const priceTag = document.createElement( 'p' );
         priceTag.textContent = `${ price } €/jour `;
         const link = document.createElement('a');
-        link.setAttribute('href', '#');
+        link.setAttribute('href', 'photographer.html');
         link.setAttribute('tabindex', '0');
         article.appendChild(link);
         link.appendChild(img);
