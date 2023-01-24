@@ -1,22 +1,34 @@
 
+// async function getPhotographers() {
+//     let photographers = [];
+//     /* j'appelle la fonction fetch pour ajouter les données dans le fichier json*/
+//     await fetch('../../data/photographers.json')
+//         .then(response => {
+//             if (!response.ok) throw new Error("HTTP error " + response.status);
+//             return response.json()
+//         })
+//         .then(json => {
+//             this.datas = json;
+//             /*je pousse les données dans le tableau vide*/
+//             photographers.push(this.datas)
+//         })
+//         .catch( () => {
+//             this.dataError = true;
+//         })
+//             // et je retourne le tableau photographers seulement une fois récupéré
+//         return datas  
+// }
 async function getPhotographers() {
-    let photographers = [];
-    /* j'appelle la fonction fetch pour ajouter les données dans le fichier json*/
-    await fetch('../../data/photographers.json')
-        .then(response => {
-            if (!response.ok) throw new Error("HTTP error " + response.status);
-            return response.json()
-        })
-        .then(json => {
-            this.datas = json;
-            /*je pousse les données dans le tableau vide*/
-            photographers.push(this.datas)
-        })
-        .catch( () => {
-            this.dataError = true;
-        })
-            // et je retourne le tableau photographers seulement une fois récupéré
-        return datas  
+    try {
+        const response = await fetch('../../data/photographers.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error ${response.status}`);
+        }
+        const json = await response.json();
+        return json;
+    } catch (error) {
+        throw new Error(`Error fetching photographers: ${error.message}`);
+    }
 }
 
     async function displayData(photographers) {
