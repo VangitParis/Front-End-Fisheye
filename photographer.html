@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="./assets/images/logo.png" class="logo" />
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -24,8 +24,14 @@
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="firstname">Prénom</label>
+						<input id="firstname" type="text" name="firstname"/>
+						<label for="lastname">Nom</label>
+						<input id="lastname" type="text" name="lastname"/>
+						<label for="email">Email</label>
+						<input id="email" type="text" name="email"/>
+						<label for="message"> Votre Message</label>
+						<input id="message" type="text" name="message"/>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
