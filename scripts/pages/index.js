@@ -19,16 +19,24 @@
 //         return datas  
 // }
 async function getPhotographers() {
+    let photographers = [];
     try {
         const response = await fetch('../../data/photographers.json');
         if (!response.ok) {
             throw new Error(`HTTP error ${response.status}`);
         }
         const json = await response.json();
+        this.datas = json;
+        photographers.push(this.datas);
+        console.log(this.datas);
         return json;
+        
+      
     } catch (error) {
         throw new Error(`Error fetching photographers: ${error.message}`);
     }
+   
+    
 }
 
     async function displayData(photographers) {
