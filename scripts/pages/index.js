@@ -1,43 +1,24 @@
 
-// async function getPhotographers() {
-//     let photographers = [];
-//     /* j'appelle la fonction fetch pour ajouter les données dans le fichier json*/
-//     await fetch('../../data/photographers.json')
-//         .then(response => {
-//             if (!response.ok) throw new Error("HTTP error " + response.status);
-//             return response.json()
-//         })
-//         .then(json => {
-//             this.datas = json;
-//             /*je pousse les données dans le tableau vide*/
-//             photographers.push(this.datas)
-//         })
-//         .catch( () => {
-//             this.dataError = true;
-//         })
-//             // et je retourne le tableau photographers seulement une fois récupéré
-//         return datas  
-// }
 async function getPhotographers() {
     let photographers = [];
-    try {
-        const response = await fetch('../../data/photographers.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error ${response.status}`);
-        }
-        const json = await response.json();
-        this.datas = json;
-        photographers.push(this.datas);
-        console.log(this.datas);
-        return json;
-        
-      
-    } catch (error) {
-        throw new Error(`Error fetching photographers: ${error.message}`);
-    }
-   
-    
+    /* j'appelle la fonction fetch pour ajouter les données dans le fichier json*/
+    await fetch('../../data/photographers.json')
+        .then(response => {
+            if (!response.ok) throw new Error("HTTP error " + response.status);
+            return response.json()
+        })
+        .then(json => {
+            this.datas = json;
+            /*je pousse les données dans le tableau vide*/
+            photographers.push(this.datas)
+        })
+        .catch( () => {
+            this.dataError = true;
+        })
+            // et je retourne le tableau photographers seulement une fois récupéré
+        return datas  
 }
+
 
     async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");
