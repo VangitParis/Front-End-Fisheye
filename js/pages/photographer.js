@@ -4,7 +4,7 @@ async function getPhotographers() {
       "http://127.0.0.1:5500/data/photographers.json"
     );
     const data = await response.json();
-    //console.log(data.media);
+    
     return { photographers: data.photographers, medias: data.media };
   } catch (error) {
     console.error("Error:", error);
@@ -17,7 +17,6 @@ async function getPhotographersId(id) {
   const photographerFindProfil = photographers.find(
     (photographer) => photographer.id === id
   );
-  //console.log(photographerFindProfil);
 
   const photographerMedias = medias.filter(
     (media) => media.photographerId === id
@@ -62,7 +61,6 @@ async function displayPhotographerMedia(medias) {
 async function run() {
   const params = new URLSearchParams(location.search);
   const photographerId = parseInt(params.get("id"));
-  console.log(photographerId);
   const [photographerFindProfil, photographerMedias] = await getPhotographersId(
     photographerId
   );

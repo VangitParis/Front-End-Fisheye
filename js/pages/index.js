@@ -4,14 +4,7 @@ async function getPhotographers() {
       "http://127.0.0.1:5500/data/photographers.json"
     );
     const data = await response.json();
-    console.log(data.photographers);
-
-    //console.log(photographer);
-
-    // catch (error) {
-    //   console.error("Error", error);
-    // }
-
+    //console.log(data.photographers);
     return { photographers: data.photographers };
   } catch (error) {
     console.error("Error:", error);
