@@ -10,7 +10,7 @@ async function getPhotographers() {
     console.error("Error:", error);
   }
 }
-
+//* ID  */
 async function getPhotographersId(id) {
   const { photographers, medias } = await getPhotographers();
 
@@ -22,8 +22,8 @@ async function getPhotographersId(id) {
     (media) => media.photographerId === id
   );
 
-  const likesArray = photographerMedias.map((media) => media.likes);
-  const sumOfLikes = likesArray.reduce((a, b) => a + b, 0);
+  const likesFromArray = photographerMedias.map((media) => media.likes);
+  const sumOfLikes = likesFromArray.reduce((a, b) => a + b, 0);
 
   return [photographerFindProfil, photographerMedias, sumOfLikes];
 }
@@ -42,6 +42,7 @@ function displayPhotographerHeader(data) {
   divInsertLikesAndPriceIntoMain.appendChild(insertPrice);
 }
 
+//*MEDIAS ET LIKE dans l'encart */
 async function displayPhotographerMedia(medias) {
   //encart likes
   const insertMediaLikes = mediaFactory(medias);
@@ -57,7 +58,13 @@ async function displayPhotographerMedia(medias) {
   });
 }
 
-//Appel des fonctions du script
+//* LIKES DES ARTICLES MEDIAS*/
+async function addLike() {
+  let TotalLikes = parseInt(document.getElementById)
+  
+}
+
+//** Appel des fonctions du script */
 async function run() {
   const params = new URLSearchParams(location.search);
   const photographerId = parseInt(params.get("id"));

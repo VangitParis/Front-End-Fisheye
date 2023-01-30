@@ -1,7 +1,7 @@
 function mediaFactory(media) {
   let photographerMedia = media;
 
-  const picture = `/assets/images/${photographerMedia.image}`;
+  const picture = `assets/images/${photographerMedia.image}`;
   const video = `assets/images/${photographerMedia.video}`;
   const TotalLikes = photographerMedia.likes;
  
@@ -23,13 +23,13 @@ function mediaFactory(media) {
   }
 
   return {
-    /* Création du like du photographe dans l'encart fixe de la page photographer.html */
+    /* Création du LIKE du photographe dans l'encart fixe de la page photographer.html */
     getLikes: function () {
       const main = document.getElementById("main");
       const insertLikes = document.createElement("div");
       insertLikes.className = "insert-likes";
-
-      insertLikes.textContent = `${photographerMedia.TotalLikes}`;
+      const TotalLikes = document.getElementById("total_likes")
+      insertLikes.textContent = `${photographerMedia.likes}`;
       main.appendChild(insertLikes);
 
       return insertLikes;
