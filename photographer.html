@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="./css/style.css" rel="stylesheet" type="text/css" />
+    <link href="./css/photographer.css" rel="stylesheet" type="text/css" />
+
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -9,13 +11,66 @@
   </head>
   <body>
     <header>
-      <img src="./assets/images/logo.png" class="logo" />
+      <a href="index.html" aria-label=" lien vers la page d'accueil" tabindex="0">
+        <img src="./assets/images/logo.png" alt="Fisheye Home page" class="logo">
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header">
+        <!-- <div class="text_info">
+        <h1 class="name_photograph">name</h1>
+          <span class="city country">City, Country</span>
+          <p class="tagline">Phrase du photographe</p>
+        </div>
+        <img class="photographer-header" src="/assets/photographers/MimiKeel.jpg" alt=""> -->
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
+      <div class="photograph-sort">
+        <label class="select-label" for="sort-select">Trier par</label>
+        <select name="order by" id="sort-select">
+          <option class="select-option" id="popularitySort">Popularité</option>
+          <option class="select-option" id="dateSort">Date</option>
+          <option class="select-option" id="titleSort">Titre</option>
+        </select>
+      </div>
+
+      <div class="photograph-media"></div>
+
+      <!-- <article class="card_article">
+        <figure>
+          <a href="#lighbox">
+          <img class="card_img" src="/assets/images/Animals_Majesty.jpg" alt="image détaillée">
+        </a>
+          <figcaption>
+            <h2>Titre</h2>
+            <div class="figcaption_text">
+              <p>nb likes</p>
+              <i>♥️</i>
+            </div>
+          </figcaption>
+        </figure>
+      </article> -->
+
+
     </main>
+    <div
+      id="lightbox"
+      aria-label="image-closeup-view"
+      aria-hidden="true"
+      role="dialog"
+    >
+      <button class="lightbox-cross" onclick="closeLightbox()">
+        <img src="assets/icons/close-lightbox.svg" alt="Close dialog" />
+      </button>
+      <button class="lightbox-next">
+        <img src="assets/icons/arrow-left.svg" alt="" />
+      </button>
+      <button class="lightbox-prev">
+        <img src="assets/icons/arrow-right.svg" alt="" />
+      </button>
+      <div class="image-container"></div>
+    </div>
+    
     <div id="contact_modal">
 			<div class="modal">
 				<header>
@@ -37,7 +92,14 @@
 				</form>
 			</div>
 		</div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+  </main>
+   <!-- Factories -->
+   <script src="./scripts/factories/mediaFactory.js"></script>
+   <script src="./scripts/factories/photographerFactory.js"></script>
+    
+
+    <!-- Pages -->
+    <script src="./scripts/pages/photographer.js"></script>
+    <script src="./scripts/utils/contactForm.js"></script>
   </body>
 </html>

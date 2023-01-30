@@ -2,10 +2,45 @@
     display: none;
 }
 
+.main_likes-price{
+position: fixed;
+height: 89px;
+width: 376px;
+bottom: -20px;
+right: 40px;
+border-radius: 5px;
+background-color: #DB8876;
+display: flex;
+justify-content: space-around;
+align-items: center;
+flex-direction: row-reverse;
+font-size: 24px;
+}
+
 .photograph-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+}
+
+.photographer-header_img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    box-shadow: 0px 4px 12px rgb(0 0 0 / 25%);
+    object-fit: cover;
+}
+.name_photograph{
+    font-size: 64px;
+    color: #D3573C
+}
+.text-h2{
+    color: #901C1C;
+    font-size: 24px;
+
 }
 
 .contact_button {
@@ -19,6 +54,7 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 20%;
 }
 
 .modal {
@@ -73,4 +109,42 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+.card_article{
+     width: 100%;
+}
+
+  
+
+.card_img{
+background-color: #DB8876;
+height: 300px;
+width: 350px;
+object-fit: cover;
+border-radius: 5px;
+
+}
+figcaption{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.figcaption_text{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photograph-sort{
+    width: 100%;
+    margin: 3% 7%;
+}
+
+
+.photograph-media{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 4%;
 }
