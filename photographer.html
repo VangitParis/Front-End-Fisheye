@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/864947ab41.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -75,20 +76,22 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt="fermer la modal de contact" onclick="closeModal()" />
         </header>
 				<form>
-					<div>
-						<label for="firstname">Prénom</label>
-						<input id="firstname" type="text" name="firstname"/>
-						<label for="lastname">Nom</label>
-						<input id="lastname" type="text" name="lastname"/>
-						<label for="email">Email</label>
-						<input id="email" type="text" name="email"/>
-						<label for="message"> Votre Message</label>
-						<input id="message" type="text" name="message"/>
-					</div>
-          <button class="contact_button">Envoyer</button>
+					<fieldset>
+            <div>
+						<label class="hidden" for="firstname">Prénom</label>
+						<input id="firstname" type="text" name="firstname" required/>
+						<label class="hidden" for="lastname">Nom</label>
+						<input id="lastname" type="text" name="lastname" required/>
+						<label class="hidden" for="email">Email</label>
+						<input id="email" type="text" name="email" required/>
+						<label class="hidden" for="message"> Votre Message</label>
+						<textarea id="message" type="text" name="message" rows="12" cols="75" maxlength="150" required></textarea>
+          </div>
+					</fieldset>
+          <button class="contact_button" type="submit">Envoyer</button>
 				</form>
 			</div>
 		</div>

@@ -1,9 +1,9 @@
 function mediaFactory(media) {
   let photographerMedia = media;
 
-  const picture = `assets/images/${photographerMedia.image}`;
-  const video = `assets/images/${photographerMedia.video}`;
-  const TotalLikes = photographerMedia.likes;
+  let picture = `assets/images/${photographerMedia.image}`;
+  let video = `assets/images/${photographerMedia.video}`;
+  let totalLikes = `${ photographerMedia.likes }`;
  
 
   // gestion du cas où c'est une video ou une image
@@ -16,8 +16,9 @@ function mediaFactory(media) {
         img.setAttribute("src", picture));
 
     img.classList.add("card_img");
-    img.setAttribute("alt", `${photographerMedia.title}`);
-    img.setAttribute("tabindex", 0);
+    img.alt = `${ photographerMedia.title }`;
+ 
+    
 
     return { img };
   }
@@ -25,11 +26,11 @@ function mediaFactory(media) {
   return {
     /* Création du LIKE du photographe dans l'encart fixe de la page photographer.html */
     getLikes: function () {
-      const main = document.getElementById("main");
-      const insertLikes = document.createElement("div");
+      let main = document.getElementById("main");
+      let insertLikes = document.createElement("div");
       insertLikes.className = "insert-likes";
-      const TotalLikes = document.getElementById("total_likes")
-      insertLikes.textContent = `${photographerMedia.likes}`;
+      let totalOfLikes = document.getElementById("total_likes")
+      insertLikes.textContent = `${ totalLikes }`;
       main.appendChild(insertLikes);
 
       return insertLikes;
@@ -37,29 +38,46 @@ function mediaFactory(media) {
     /* Création des articles medias  */
     getMediaCardDOM: function () {
       isVideo();
-      const result = isVideo();
-      const myImg = result.img;
+      let result = isVideo();
+      let myImg = result.img;
 
-      const mediaSection = document.querySelector(".photograph-media");
-      const article = document.createElement("article");
+      let mediaSection = document.querySelector(".photograph-media");
+      let article = document.createElement("article");
+      article.title = `${ photographerMedia.title }`;
+  
 
-      const figure = document.createElement("figure");
+      let figure = document.createElement("figure");
+     
 
-      const imgLink = document.createElement("a");
-      imgLink.setAttribute("href", "#lightbox");
-
-      const titleArticle = document.createElement("h2");
+      let imgLink = document.createElement("a");
+      imgLink.href = "#";
+      imgLink.ariaLabel = `${ photographerMedia.title }, closeup view`;
+      imgLink.tabIndex = 0;
+      imgLink.role = "link";
+      
+      let titleArticle = document.createElement("h2");
       titleArticle.textContent = photographerMedia.title;
 
-      const figcaption = document.createElement("figcaption");
+      let figcaption = document.createElement("figcaption");
 
-      const textFigcaptionArticle = document.createElement("div");
+      let textFigcaptionArticle = document.createElement("div");
+      textFigcaptionArticle.className = "figcaption-likes-icon";
 
-      const text = document.createElement("p");
+
+      let text = document.createElement("p");
       text.textContent = photographerMedia.likes;
 
-      const icon = document.createElement("fa");
-      icon.setAttribute("src", "/assets/icons/icon-heart.svg");
+      let buttonLike = document.createElement("button");
+      buttonLike.className = "button-like";
+      buttonLike.ariaLabel = "pressez sur le bouton pour liker ou enlever le like";
+      buttonLike.ariaPressed = false;
+      buttonLike.tabIndex = 0;
+
+      let iconLike = document.createElement("i");
+      iconLike.className = "fa-solid fa-heart";
+      iconLike.ariaHidden = "true"
+      iconLike.ariaLabel = "likes";
+      
 
       /*Insertion des éléments */
       mediaSection.appendChild(article);
@@ -70,7 +88,8 @@ function mediaFactory(media) {
       figcaption.appendChild(titleArticle);
       figcaption.appendChild(textFigcaptionArticle);
       textFigcaptionArticle.appendChild(text);
-      textFigcaptionArticle.appendChild(icon);
+      textFigcaptionArticle.appendChild(buttonLike);
+      buttonLike.appendChild(iconLike);
 
       return article;
     },

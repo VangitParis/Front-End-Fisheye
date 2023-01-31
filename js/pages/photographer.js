@@ -21,46 +21,52 @@ async function getPhotographersId(id) {
   const photographerMedias = medias.filter(
     (media) => media.photographerId === id
   );
-
+  // TODO
   const likesFromArray = photographerMedias.map((media) => media.likes);
-  const sumOfLikes = likesFromArray.reduce((a, b) => a + b, 0);
 
-  return [photographerFindProfil, photographerMedias, sumOfLikes];
+
+  return [photographerFindProfil, photographerMedias];
 }
 //ajout d'une div dans le main pour l'encart contenant le prix et les likes
-const main = document.getElementById("main");
-const divInsertLikesAndPriceIntoMain = document.createElement("div");
+let main = document.getElementById("main");
+let divInsertLikesAndPriceIntoMain = document.createElement("div");
 divInsertLikesAndPriceIntoMain.className = "main_likes-price";
 main.appendChild(divInsertLikesAndPriceIntoMain);
 
 function displayPhotographerHeader(data) {
   // header main 
   const photographerModel = photographerFactory(data);
-  const headerUser = photographerModel.getHeaderUserDOM();
+  let headerUser = photographerModel.getHeaderUserDOM();
   // encart Price
-  const insertPrice = photographerModel.getPrice();
+  let insertPrice = photographerModel.getPrice();
   divInsertLikesAndPriceIntoMain.appendChild(insertPrice);
+  //contact modal name
+  let namePhotographerModal = photographerModel.getNameInContactModal();
+
 }
 
 //*MEDIAS ET LIKE dans l'encart */
 async function displayPhotographerMedia(medias) {
   //encart likes
   const insertMediaLikes = mediaFactory(medias);
-  const insertLikes = insertMediaLikes.getLikes();
+  let insertLikes = insertMediaLikes.getLikes();
   divInsertLikesAndPriceIntoMain.appendChild(insertLikes);
 
   //section media 
-  const mediaSection = document.querySelector(".photograph-media");
+  let mediaSection = document.querySelector(".photograph-media");
   medias.forEach((media) => {
-    const mediaModel = mediaFactory(media);
-    const mediaCardDOM = mediaModel.getMediaCardDOM();
+    let mediaModel = mediaFactory(media);
+    let mediaCardDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaCardDOM);
   });
 }
 
 //* LIKES DES ARTICLES MEDIAS*/
+
 async function addLike() {
-  let TotalLikes = parseInt(document.getElementById)
+  //TODO
+
+
   
 }
 
@@ -74,8 +80,6 @@ async function run() {
   displayPhotographerHeader(photographerFindProfil);
   displayPhotographerMedia(photographerMedias);
   //addLike();
-  // sortMedias(photographerMedias);
-  // globalLightboxListeners();
 }
 
 run();

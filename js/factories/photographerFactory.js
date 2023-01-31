@@ -2,32 +2,32 @@ function photographerFactory(data) {
   /* je génère tous les éléments nécessaires du DOM */
   let photographerData = data;
   
-  const picture = `assets/photographers/${ photographerData.portrait }`;
+  let picture = `assets/photographers/${ photographerData.portrait }`;
 
     return {
         /* Liste des cards des photographes dans la page index.html*/
         getCardUserDOM: function () {
       
-            const article = document.createElement("article");
-            const img = document.createElement("img");
+            let article = document.createElement("article");
+            let img = document.createElement("img");
             img.setAttribute("src", picture);
             img.setAttribute("alt", "");
 
-            const h2 = document.createElement("h2");
+            let h2 = document.createElement("h2");
             h2.textContent = photographerData.name;
 
-            const p = document.createElement("p");
+            let p = document.createElement("p");
             p.textContent = photographerData.tagline;
 
-            const span = document.createElement("span");
+            let span = document.createElement("span");
             span.textContent = `${ photographerData.city }, ${ photographerData.country }`;
 
-            const price = document.createElement("p");
+            let price = document.createElement("p");
             price.textContent = `${ photographerData.price } €/jour `;
 
-            const link = document.createElement("a");
+            let link = document.createElement("a");
             link.href = `photographer.html?id=${ photographerData.id }`;
-            link.setAttribute("tabindex", "0");
+            link.tabIndex = 0;
 
             //  photographersSection.appendChild(article);
             article.appendChild(link);
@@ -42,47 +42,69 @@ function photographerFactory(data) {
       
         /* Création du header de la page photographer.html */
         getHeaderUserDOM: function () {
-            //const main = document.getElementById("main");
-            const photographerHeader = document.querySelector(".photograph-header");
-            const contactButton = document.querySelector(".contact_button");
+            let photographerHeader = document.querySelector(".photograph-header");
 
-            const textInfo = document.createElement("div");
-            textInfo.setAttribute("class", "text_info");
+            let contactButton = document.querySelector(".contact_button");
+            let contactBox = document.createElement("div");
+            contactBox.className = 'contact-box';
 
-            const h1 = document.createElement("h1");
+
+            let textInfo = document.createElement("div");
+            textInfo.className ="text-header-info";
+
+            let h1 = document.createElement("h1");
             h1.textContent = photographerData.name;
             h1.className = "name_photograph";
 
-            const h2 = document.createElement("h2");
+            let h2 = document.createElement("h2");
             h2.textContent = `${ photographerData.city }, ${ photographerData.country }`;
             h2.classList.add("city", "country", "text-h2");
 
-            const p = document.createElement("p");
+            let p = document.createElement("p");
             p.textContent = photographerData.tagline;
             p.className = "tagline";
 
-            const img = document.createElement("img");
-            img.classList.add("photographer-header_img");
-            img.setAttribute("src", picture);
-            img.setAttribute("alt", "");
+            let portraitHeader = document.createElement("div");
+            portraitHeader.className = "img-header-box";
+            let portraitPhotographer = document.createElement("img");
+            portraitPhotographer.classList.add("photographer-header_img");
+            portraitPhotographer.setAttribute("src", picture);
+            portraitPhotographer.setAttribute("alt", "");
 
             photographerHeader.appendChild(textInfo);
-            photographerHeader.appendChild(contactButton);
-            photographerHeader.appendChild(img);
+            photographerHeader.appendChild(contactBox);
+            contactBox.appendChild(contactButton)
+
+            photographerHeader.appendChild(portraitHeader);
+            portraitHeader.appendChild(portraitPhotographer);
+
             textInfo.appendChild(h1);
             textInfo.appendChild(h2);
             textInfo.appendChild(p);
 
             return textInfo;
         },
-        /* Création du prix du photographe dans l'encart fixe de la page photographer.html */
+        /* Création du PRIX du photographe dans l'encart fixe de la page photographer.html */
         getPrice: function () {
           
-            const insertPrice = document.createElement("div");
-            insertPrice.textContent = `${ photographerData.price }`;
+            let insertPrice = document.createElement("div");
+            insertPrice.textContent = `${ photographerData.price } €/jour`;
             insertPrice.className = "insert-price";
          
             return insertPrice;
+        },
+
+        getNameInContactModal: function () {
+            let formModal = document.querySelector("form");
+
+            let fieldsetForm = document.querySelector("fieldset");
+            let titleFormModal = document.createElement("legend");
+            titleFormModal.textContent = photographerData.name;
+            titleFormModal.className = "name-photograph-form";
+
+            formModal.appendChild(fieldsetForm);
+            fieldsetForm.appendChild(titleFormModal);
+
         }
     };
     

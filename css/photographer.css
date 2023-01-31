@@ -1,43 +1,68 @@
 #contact_modal {
     display: none;
+    position: fixed;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: rgba(0, 0, 0, 0.4);
 }
 
-.main_likes-price{
-position: fixed;
-height: 89px;
-width: 376px;
-bottom: -20px;
-right: 40px;
-border-radius: 5px;
-background-color: #DB8876;
-display: flex;
-justify-content: space-around;
-align-items: center;
-flex-direction: row-reverse;
-font-size: 24px;
+.main_likes-price {
+    position: fixed;
+    height: 89px;
+    width: 376px;
+    bottom: -20px;
+    right: 40px;
+    border-radius: 5px;
+    background-color: #DB8876;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row-reverse;
+    font-size: 24px;
 }
 
 .photograph-header {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    position: relative;
+    display: grid;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
     align-items: center;
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    border-radius: 5px;
+}
+.text-header-info{
+    text-align: left;
+    margin-left: 12%;
+    width: 100%;
+}
+.contact-box{
+    text-align: center;
 }
 
+.img-header-box{
+    text-align: center;
+}
 .photographer-header_img {
     height: 200px;
     width: 200px;
     border-radius: 50%;
     box-shadow: 0px 4px 12px rgb(0 0 0 / 25%);
     object-fit: cover;
+    
 }
-.name_photograph{
+
+.name_photograph {
     font-size: 64px;
     color: #D3573C
 }
-.text-h2{
+
+.text-h2 {
     color: #901C1C;
     font-size: 24px;
 
@@ -54,7 +79,8 @@ font-size: 24px;
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 20%;
+    margin-right: 0;
+    text-align: center;
 }
 
 .modal {
@@ -67,11 +93,17 @@ font-size: 24px;
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    height: 900px;
+    width: 669px;
 }
 
 .modal header {
     justify-content: space-between;
     width: 100%;
+}
+
+.modal header h1 {
+    color: #312E2E;
 }
 
 .modal header img {
@@ -89,19 +121,33 @@ form {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
+    flex-direction: column-reverse;
 }
-
+form fieldset{
+    border-style: none;
+}
+form legend{
+    color: #000000;
+    font-size: 64px;
+    position: relative;
+    top: 0;
+    bottom: 0;
+}
 form label {
     color: #312E2E;
     font-size: 36px;
 }
 
+
 form div {
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    align-items: self-start;
     margin-bottom: 26px;
+    position: relative;
+    top: 20px;
+}
+textarea{
+    border-radius: 5px;
+    resize: none;
 }
 
 form input {
@@ -111,40 +157,58 @@ form input {
     border-radius: 5px;
 }
 
-.card_article{
-     width: 100%;
-}
-
-  
-
-.card_img{
-background-color: #DB8876;
-height: 300px;
-width: 350px;
-object-fit: cover;
-border-radius: 5px;
-
-}
-figcaption{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.figcaption_text{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.photograph-sort{
+.card_article {
     width: 100%;
+}
+
+
+
+.card_img {
+    background-color: #DB8876;
+    height: 300px;
+    width: 350px;
+    object-fit: cover;
+    border-radius: 5px;
+
+}
+
+figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+}
+
+.figcaption_text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photograph-sort {
     margin: 3% 7%;
 }
 
 
-.photograph-media{
+.photograph-media {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    margin: 4%;
+    gap: 90px;
+    margin: 4% 7%;
 }
+
+figcaption{
+    color: #901C1C;
+}
+.figcaption-likes-icon{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 12%;
+}
+.button-like{
+    background: transparent;
+    border: none;
+    color: #901C1C;
+}
+
