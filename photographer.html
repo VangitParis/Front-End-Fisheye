@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <link href="./css/style.css" rel="stylesheet" type="text/css" />
-    <link href="./css/photographer.css" rel="stylesheet" type="text/css" />
 
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/864947ab41.js" crossorigin="anonymous"></script>
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <a href="index.html" aria-label=" lien vers la page d'accueil" tabindex="0">
-        <img src="./assets/images/logo.png" alt="Fisheye Home page" class="logo">
-      </a>
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <!-- <div class="text_info">
+<head>
+  <link href="./css/style.css" rel="stylesheet" type="text/css" />
+  <link href="./css/photographer.css" rel="stylesheet" type="text/css" />
+
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/864947ab41.js" crossorigin="anonymous"></script>
+  <title>Fisheye - photographe </title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html" aria-label=" lien vers la page d'accueil" tabindex="0">
+      <img src="./assets/images/logo.png" alt="Fisheye Home page" class="logo">
+    </a>
+  </header>
+  <main id="main">
+    <div class="photograph-header">
+      <!-- <div class="text_info">
         <h1 class="name_photograph">name</h1>
           <span class="city country">City, Country</span>
           <p class="tagline">Phrase du photographe</p>
         </div>
         <img class="photographer-header" src="/assets/photographers/MimiKeel.jpg" alt=""> -->
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
-      <div class="photograph-sort">
-        <label class="select-label" for="sort-select">Trier par</label>
-        <select name="order by" id="sort-select">
-          <option class="select-option" id="popularitySort">Popularité</option>
-          <option class="select-option" id="dateSort">Date</option>
-          <option class="select-option" id="titleSort">Titre</option>
-        </select>
-      </div>
+      <button class="contact_button" onclick="displayModal()" type="button" aria-haspopup="dialog"
+        aria-controls="dialog">Contactez-moi</button>
+    </div>
+    <div class="photograph-sort">
+      <label class="select-label" for="sort-select">Trier par</label>
+      <select name="order by" id="sort-select">
+        <option class="select-option" id="popularitySort">Popularité</option>
+        <option class="select-option" id="dateSort">Date</option>
+        <option class="select-option" id="titleSort">Titre</option>
+      </select>
+    </div>
 
-      <div class="photograph-media"></div>
+    <div class="photograph-media"></div>
 
-      <!-- <article class="card_article">
+    <!-- <article class="card_article">
         <figure>
           <a href="#lighbox">
           <img class="card_img" src="/assets/images/Animals_Majesty.jpg" alt="image détaillée">
@@ -53,56 +56,51 @@
       </article> -->
 
 
-    </main>
-    <div
-      id="lightbox"
-      aria-label="image-closeup-view"
-      aria-hidden="true"
-      role="dialog"
-    >
-      <button class="lightbox-cross" onclick="closeLightbox()">
-        <img src="assets/icons/close-lightbox.svg" alt="Close dialog" />
-      </button>
-      <button class="lightbox-next">
-        <img src="assets/icons/arrow-left.svg" alt="" />
-      </button>
-      <button class="lightbox-prev">
-        <img src="assets/icons/arrow-right.svg" alt="" />
-      </button>
-      <div class="image-container"></div>
-    </div>
-    
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" alt="fermer la modal de contact" onclick="closeModal()" />
-        </header>
-				<form>
-					<fieldset>
-            <div>
-						<label class="hidden" for="firstname">Prénom</label>
-						<input id="firstname" type="text" name="firstname" required/>
-						<label class="hidden" for="lastname">Nom</label>
-						<input id="lastname" type="text" name="lastname" required/>
-						<label class="hidden" for="email">Email</label>
-						<input id="email" type="text" name="email" required/>
-						<label class="hidden" for="message"> Votre Message</label>
-						<textarea id="message" type="text" name="message" rows="12" cols="75" maxlength="150" required></textarea>
-          </div>
-					</fieldset>
-          <button class="contact_button" type="submit">Envoyer</button>
-				</form>
-			</div>
-		</div>
   </main>
-   <!-- Factories -->
-   <script src="./js/factories/mediaFactory.js"></script>
-   <script src="./js/factories/photographerFactory.js"></script>
-    
+  <div id="lightbox" aria-label="image-closeup-view" aria-hidden="true" role="dialog">
+    <button class="lightbox-cross" onclick="closeLightbox()">
+      <img src="assets/icons/close-lightbox.svg" alt="Close dialog" />
+    </button>
+    <button class="lightbox-next">
+      <img src="assets/icons/arrow-left.svg" alt="" />
+    </button>
+    <button class="lightbox-prev">
+      <img src="assets/icons/arrow-right.svg" alt="" />
+    </button>
+    <div class="image-container"></div>
+  </div>
 
-    <!-- Pages -->
-    <script src="./js/pages/photographer.js"></script>
-    <script src="./js/utils/contactForm.js"></script>
-  </body>
+  <div id="contact_modal" tabindex="-1">
+    <div class="modal">
+      <header>
+        <h2>Contactez-moi</h2>
+        <img src="assets/icons/close.svg" alt="fermer la modal de contact" onclick="closeModal()" />
+      </header>
+      <form>
+        <fieldset>
+          <div>
+            <label class="hidden" for="firstname">Prénom</label>
+            <input id="firstname" type="text" name="firstname" required />
+            <label class="hidden" for="lastname">Nom</label>
+            <input id="lastname" type="text" name="lastname" required />
+            <label class="hidden" for="email">Email</label>
+            <input id="email" type="text" name="email" required />
+            <label class="hidden" for="message"> Votre Message</label>
+            <textarea id="message" type="text" name="message" rows="12" cols="75" maxlength="150" required></textarea>
+          </div>
+        </fieldset>
+        <button class="contact_button" type="submit">Envoyer</button>
+      </form>
+    </div>
+  </div>
+  </main>
+  <!-- Factories -->
+  <script type="module" src="./js/factories/mediaFactory.js"></script>
+  <script type="module "src="./js/factories/photographerFactory.js"></script>
+
+  <!-- Pages -->
+  <script src="./js/pages/photographer.js" type="module"></script>
+  <script src="./js/utils/contactForm.js"></script>
+</body>
+
 </html>

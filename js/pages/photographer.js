@@ -1,16 +1,19 @@
+import { MediaFactory } from "../factories/mediaFactory.js";
+import { PhotographerFactory } from "../factories/PhotographerFactory.js";
+
 async function getPhotographers() {
   try {
     const response = await fetch(
       "http://127.0.0.1:5500/data/photographers.json"
     );
     const data = await response.json();
-    
+
     return { photographers: data.photographers, medias: data.media };
   } catch (error) {
     console.error("Error:", error);
   }
 }
-//* ID  */
+// ID
 async function getPhotographersId(id) {
   const { photographers, medias } = await getPhotographers();
 
@@ -21,65 +24,115 @@ async function getPhotographersId(id) {
   const photographerMedias = medias.filter(
     (media) => media.photographerId === id
   );
-  // TODO
-  const likesFromArray = photographerMedias.map((media) => media.likes);
 
+  const totalLikesArray = photographerMedias.map((media) => media.likes);
+  const totalLikes = totalLikesArray.reduce((a, b) => a + b, 0);
 
-  return [photographerFindProfil, photographerMedias];
+  return [photographerFindProfil, photographerMedias, totalLikes];
 }
-//ajout d'une div dans le main pour l'encart contenant le prix et les likes
-let main = document.getElementById("main");
-let divInsertLikesAndPriceIntoMain = document.createElement("div");
-divInsertLikesAndPriceIntoMain.className = "main_likes-price";
-main.appendChild(divInsertLikesAndPriceIntoMain);
+
 
 function displayPhotographerHeader(data) {
-  // header main 
-  const photographerModel = photographerFactory(data);
-  let headerUser = photographerModel.getHeaderUserDOM();
-  // encart Price
-  let insertPrice = photographerModel.getPrice();
-  divInsertLikesAndPriceIntoMain.appendChild(insertPrice);
-  //contact modal name
-  let namePhotographerModal = photographerModel.getNameInContactModal();
+  // header main
+  const photographerModel = new PhotographerFactory(data);
 
+  const headerUser = photographerModel.getHeaderUserDOM();
+
+  // contact modal name
+  const namePhotographerModal = photographerModel.getNameInContactModal();
 }
 
-//*MEDIAS ET LIKE dans l'encart */
+// MEDIAS
 async function displayPhotographerMedia(medias) {
-  //encart likes
-  const insertMediaLikes = mediaFactory(medias);
-  let insertLikes = insertMediaLikes.getLikes();
-  divInsertLikesAndPriceIntoMain.appendChild(insertLikes);
-
-  //section media 
-  let mediaSection = document.querySelector(".photograph-media");
+  //section media
+  const mediaSection = document.querySelector(".photograph-media");
   medias.forEach((media) => {
-    let mediaModel = mediaFactory(media);
-    let mediaCardDOM = mediaModel.getMediaCardDOM();
+    const mediaModel = new MediaFactory(media);
+    const mediaCardDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaCardDOM);
   });
 }
 
-//* LIKES DES ARTICLES MEDIAS*/
+//Creation Encart Like et Tarif photographer
+const main = document.getElementById("main");
+const divInsertLikesAndPriceIntoMain = document.createElement("div");
+divInsertLikesAndPriceIntoMain.className = "main_likes-price";
+main.appendChild(divInsertLikesAndPriceIntoMain);
 
-async function addLike() {
-  //TODO
+// PRIX ET LIKE dans l'encart Medias
+function displayInsert(data, medias, totalLikes) {
+  // encart Price
+  const photographerModel = new PhotographerFactory(data);
+  const insertPrice = photographerModel.getPrice();
 
+  divInsertLikesAndPriceIntoMain.appendChild(insertPrice);
 
-  
+  //encart Likes
+  const mediaModel = new MediaFactory(medias);
+  const insertLikes = mediaModel.getLikes();
+  insertLikes.innerHTML = totalLikes;
+
+  const iconLike = document.createElement("i");
+  iconLike.className = "fa-solid fa-heart";
+  iconLike.ariaHidden = "true";
+  iconLike.ariaLabel = "likes";
+
+  divInsertLikesAndPriceIntoMain.appendChild(iconLike);
+  divInsertLikesAndPriceIntoMain.appendChild(insertLikes);
 }
 
-//** Appel des fonctions du script */
+// AJOUT LIKES UTILISATEUR DES ARTICLES MEDIAS
+async function addLike() {
+ 
+  const buttonLike = document.querySelectorAll(".button-like");
+
+  for (let i = 0; i < buttonLike.length; i++) {
+    let liked = false;
+    buttonLike[i].addEventListener("click", (e) => {
+      e.preventDefault();
+      
+      const parent = e.target.closest(".figcaption-likes-icon");
+      const element = parent.querySelector(".likes");
+      const likes = parseInt(element.innerHTML);
+
+      let totalLikes = parseInt(document.getElementById("total_likes").innerHTML);
+
+      console.log(totalLikes);
+     
+      if (!liked) {
+        //console.log("test incrémentation");
+        alert("1 like")
+        const likedByUser = likes + 1;
+        element.innerHTML = likedByUser;
+        
+        document.getElementById("total_likes").innerText = `${ totalLikes + 1 }`;
+ 
+        return liked = true;
+      }
+      else if (liked) {
+        //console.log(liked);
+        alert("1 dislike")
+        const dislikedByUser = likes;
+        element.innerHTML = dislikedByUser - 1;
+      
+        document.getElementById("total_likes").innerText = `${ totalLikes - 1 }`;
+        return liked = false
+      }
+    })
+  }
+}
+
+
+// Appel des fonctions du script
 async function run() {
   const params = new URLSearchParams(location.search);
   const photographerId = parseInt(params.get("id"));
-  const [photographerFindProfil, photographerMedias] = await getPhotographersId(
-    photographerId
-  );
+  const [photographerFindProfil, photographerMedias, totalLikes] =
+    await getPhotographersId(photographerId);
   displayPhotographerHeader(photographerFindProfil);
   displayPhotographerMedia(photographerMedias);
-  //addLike();
+  displayInsert(photographerFindProfil, photographerMedias, totalLikes);
+  addLike();
 }
 
 run();
