@@ -1,5 +1,8 @@
 import { MediaFactory } from "../factories/mediaFactory.js";
 import { PhotographerFactory } from "../factories/PhotographerFactory.js";
+import LightboxTest from "../modules/lightboxTest.js";
+import Lightbox from "../modules/lightboxTest.js";
+
 
 async function getPhotographers() {
   try {
@@ -31,7 +34,6 @@ async function getPhotographersId(id) {
   return [photographerFindProfil, photographerMedias, totalLikes];
 }
 
-
 function displayPhotographerHeader(data) {
   // header main
   const photographerModel = new PhotographerFactory(data);
@@ -49,7 +51,7 @@ async function displayPhotographerMedia(medias) {
   medias.forEach((media) => {
     const mediaModel = new MediaFactory(media);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
-    mediaSection.appendChild(mediaCardDOM);
+    //mediaSection.appendChild(mediaCardDOM);
   });
 }
 
@@ -83,56 +85,65 @@ function displayInsert(data, medias, totalLikes) {
 
 // AJOUT LIKES UTILISATEUR DES ARTICLES MEDIAS
 async function addLike() {
- 
   const buttonLike = document.querySelectorAll(".button-like");
 
   for (let i = 0; i < buttonLike.length; i++) {
     let liked = false;
     buttonLike[i].addEventListener("click", (e) => {
       e.preventDefault();
-      
+
       const parent = e.target.closest(".figcaption-likes-icon");
       const element = parent.querySelector(".likes");
       const likes = parseInt(element.innerHTML);
 
-      let totalLikes = parseInt(document.getElementById("total_likes").innerHTML);
+      let totalLikes = parseInt(
+        document.getElementById("total_likes").innerHTML
+      );
 
       console.log(totalLikes);
-     
+
       if (!liked) {
         //console.log("test incrémentation");
-        alert("1 like")
+        alert("1 like");
         const likedByUser = likes + 1;
         element.innerHTML = likedByUser;
-        
-        document.getElementById("total_likes").innerText = `${ totalLikes + 1 }`;
- 
-        return liked = true;
-      }
-      else if (liked) {
+
+        document.getElementById("total_likes").innerText = `${totalLikes + 1}`;
+
+        return (liked = true);
+      } else if (liked) {
         //console.log(liked);
-        alert("1 dislike")
+        alert("1 dislike");
         const dislikedByUser = likes;
         element.innerHTML = dislikedByUser - 1;
-      
-        document.getElementById("total_likes").innerText = `${ totalLikes - 1 }`;
-        return liked = false
+
+        document.getElementById("total_likes").innerText = `${totalLikes - 1}`;
+        return (liked = false);
       }
-    })
+    });
   }
 }
 
+// fenêtre de la lightbox
+async function displayLightbox(media) {
+  const lightboxModel = new LightboxTest(media);
+  const lightboxSection = lightboxModel.getLightbox();
+  //const handleControlClick = lightboxModel.handleControlClick();
+  //const closeLightbox = lightboxModel.closeLightbox(lightboxSection);
+  //main.appendChild(lightboxSection);
+}
 
 // Appel des fonctions du script
 async function run() {
   const params = new URLSearchParams(location.search);
   const photographerId = parseInt(params.get("id"));
   const [photographerFindProfil, photographerMedias, totalLikes] =
-    await getPhotographersId(photographerId);
+  await getPhotographersId(photographerId);
   displayPhotographerHeader(photographerFindProfil);
   displayPhotographerMedia(photographerMedias);
   displayInsert(photographerFindProfil, photographerMedias, totalLikes);
   addLike();
+  displayLightbox(photographerMedias);
 }
 
 run();

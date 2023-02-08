@@ -12,7 +12,7 @@
   <title>Fisheye - photographe </title>
 </head>
 
-<body>
+<body id="body">
   <header>
     <a href="index.html" aria-label=" lien vers la page d'accueil" tabindex="0">
       <img src="./assets/images/logo.png" alt="Fisheye Home page" class="logo">
@@ -57,24 +57,16 @@
 
 
   </main>
-  <div id="lightbox" aria-label="image-closeup-view" aria-hidden="true" role="dialog">
-    <button class="lightbox-cross" onclick="closeLightbox()">
-      <img src="assets/icons/close-lightbox.svg" alt="Close dialog" />
-    </button>
-    <button class="lightbox-next">
-      <img src="assets/icons/arrow-left.svg" alt="" />
-    </button>
-    <button class="lightbox-prev">
-      <img src="assets/icons/arrow-right.svg" alt="" />
-    </button>
-    <div class="image-container"></div>
-  </div>
+ <section id="lightbox"></section>
 
-  <div id="contact_modal" tabindex="-1">
-    <div class="modal">
+
+  <div id="contact_modal" tabindex="0">
+    <div class="modal" aria-hidden="true" role="dialog" aria-describedby="modalTitle">
       <header>
         <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" alt="fermer la modal de contact" onclick="closeModal()" />
+        <button class="modal-close-btn" onclick="closeModal()">
+          <img src="assets/icons/close.svg" alt="fermer la modal de contact" />
+        </button>
       </header>
       <form>
         <fieldset>
@@ -93,14 +85,19 @@
       </form>
     </div>
   </div>
-  </main>
+
   <!-- Factories -->
   <script type="module" src="./js/factories/mediaFactory.js"></script>
-  <script type="module "src="./js/factories/photographerFactory.js"></script>
+  <script type="module " src="./js/factories/photographerFactory.js"></script>
 
   <!-- Pages -->
   <script src="./js/pages/photographer.js" type="module"></script>
+  <!--Utils-->
   <script src="./js/utils/contactForm.js"></script>
+  <!--Modules-->
+  <script type="module" src="./js/modules/lightboxTest.js"></script>
+  
+
 </body>
 
 </html>
