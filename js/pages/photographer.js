@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { MediaFactory } from "../factories/mediaFactory.js";
 import { PhotographerFactory } from "../factories/photographerFactory.js";
 import Lightbox from "../modules/lightbox.js";
@@ -64,7 +65,7 @@ async function displayPhotographerMedia(photographers, medias) {
   //section media
   const mediaSection = document.querySelector(".photograph-media");
   medias.forEach((media) => {
-    const imagesPath = `/assets/images/${displayName}`;
+    const imagesPath = `../../assets/images/${displayName}`;
     const mediaModel = new MediaFactory(media, imagesPath);
     const mediaCardDOM = mediaModel.createMediaCard(media, imagesPath);
   });
