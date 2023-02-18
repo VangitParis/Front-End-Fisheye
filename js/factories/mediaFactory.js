@@ -57,7 +57,6 @@ export class MediaFactory {
               <p class="likes">${this.photographerMedia.likes }</p>
               <i class="fa fa-heart" aria-hidden="true" aria-label="likes">
               </i>
-              <p class="date">${ this.photographerMedia.date}</p>
             </button>
           </div>
         </figcaption>

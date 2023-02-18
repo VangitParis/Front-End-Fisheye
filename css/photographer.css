@@ -180,7 +180,7 @@ form input {
     width: 350px;
     object-fit: cover;
     border-radius: 5px;
-
+    object-position: top;
 }
 
 figcaption {
@@ -221,8 +221,7 @@ figcaption{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
-    /* width: 10%; */
+    width: 10%;
 }
 .button-like{
     background: transparent;
