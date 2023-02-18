@@ -65,23 +65,14 @@ export default class List {
         // Parcourir tous les éléments likés et mettre à jour la propriété "likes" de chaque objet média
         userLikes.forEach((like, index) => {
           const articleProperties = this.mediaObjectsSorted[index].properties;
-
           articleProperties.likes = parseInt(like.innerHTML);
-
-          // Ajouter un événement "click" pour incrémenter le nombre de likes lorsqu'un utilisateur clique sur le bouton "Like"
-          like.addEventListener("click", () => {
-            articleProperties.likes += 1;
-            like.innerHTML = articleProperties.likes.toString();
-            this.updateMediaList();
           });
-        });
-      }
-
+        }
       // Trier les objets média en fonction du nombre de likes décroissant
       this.mediaObjectsSorted.sort(
         (a, b) => b.properties.likes - a.properties.likes
       );
-    } else if (this.select.value === "Date") {
+       } else if (this.select.value === "Date") {
       // Trier les objets média en fonction de la date décroissante
       this.mediaObjectsSorted.sort(
         (a, b) =>

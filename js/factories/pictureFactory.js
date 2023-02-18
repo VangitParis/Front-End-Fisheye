@@ -7,7 +7,6 @@
 export class PictureFactory {
   constructor(media, path) {
     this.path = path;
-    console.log(this.path);
     this.photographerMedia = media;
     this.mediaId = media.id;
     this.image = {
