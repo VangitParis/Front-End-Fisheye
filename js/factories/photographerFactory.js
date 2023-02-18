@@ -4,7 +4,7 @@
 export class PhotographerFactory {
   constructor(data) {
     this.photographerData = data;
-    this.picture = `assets/photographers/${ this.photographerData.portrait }`;
+    this.picture = `assets/photographers/${this.photographerData.portrait}`;
     this.getCardUserDOM();
   }
   /**

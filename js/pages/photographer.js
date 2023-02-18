@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import { MediaFactory } from "../factories/mediaFactory.js";
 import { PhotographerFactory } from "../factories/photographerFactory.js";
 import Lightbox from "../modules/lightbox.js";
@@ -109,8 +109,6 @@ async function sort(medias) {
   const list = new List(medias);
 }
 
-
-
 // fenêtre de la lightbox
 async function displayLightbox(media, photographers) {
   // récupère le nom du photographe des chemins absolus
@@ -127,7 +125,7 @@ async function displayLightbox(media, photographers) {
     displayName = `${firstName}`;
   }
 
-  const pathName = `/assets/images/${displayName}`;
+  const pathName = `assets/images/${displayName}`;
   const lightboxModel = new Lightbox(media, pathName);
   const lightboxDOM = lightboxModel.createLightboxDOM();
 }

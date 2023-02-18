@@ -7,14 +7,14 @@ import { VideoFactory } from "../factories/videoFactory.js";
 export default class Lightbox {
   /**
    *
-   * @param {string} ulr
+   * @param {string} url
    *
    */
-  constructor(ulr, pathName) {
+  constructor(url, pathName) {
     this.currentIndex = 0;
     this.path = pathName;
-    this.gallery = ulr;
-    this.id = ulr[this.currentIndex].id;
+    this.gallery = url;
+    this.id = url[this.currentIndex].id;
     this.lightbox = this.createLightboxDOM();
     this.onKeyUp = this.onKeyUp.bind(this);
     const main = document.getElementById("main");
@@ -108,16 +108,16 @@ export default class Lightbox {
     lightbox.innerHTML = `
         <div class="lightbox-content">
             <button class="lightbox-close">
-                <img src="/assets/icons/close-lightbox.svg"/>
+                <img src="assets/icons/close-lightbox.svg"/>
             </button>
             <div>
                 <button class="lightbox-next">
-                    <img src="/assets/icons/arrow-right.svg"/>
+                    <img src="assets/icons/arrow-right.svg"/>
                 </button>
                 <div class="lightbox-media-container"></div>
 
                 <button class="lightbox-prev">
-                    <img src="/assets/icons/arrow-left.svg"/>
+                    <img src="assets/icons/arrow-left.svg"/>
                 </button>
             </div>
         </div>   

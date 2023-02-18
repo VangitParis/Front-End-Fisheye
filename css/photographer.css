@@ -180,7 +180,7 @@ form input {
     width: 350px;
     object-fit: cover;
     border-radius: 5px;
-    object-position: top;
+    object-position: 50% 50%;
 }
 
 figcaption {
