@@ -20,15 +20,9 @@
   </header>
   <main id="main">
     <div class="photograph-header">
-      <!-- <div class="text_info">
-        <h1 class="name_photograph">name</h1>
-          <span class="city country">City, Country</span>
-          <p class="tagline">Phrase du photographe</p>
-        </div>
-        <img class="photographer-header" src="/assets/photographers/MimiKeel.jpg" alt=""> -->
-      <button class="contact_button" onclick="displayModal()" type="button" aria-haspopup="dialog"
-        aria-controls="dialog">Contactez-moi</button>
-    </div>
+      <!-- <button class="contact_button" onclick="displayModal()" type="button" aria-haspopup="dialog"
+        aria-controls="dialog">Contactez-moi</button> -->
+    </div> 
     <div class="photograph-sort">
       <label class="select-label" for="sort-select">Trier par</label>
       <select name="order by" id="sort-select">
@@ -37,29 +31,8 @@
         <option class="select-option" id="titleSort">Titre</option>
       </select>
     </div>
-
     <div class="photograph-media"></div>
-
-    <!-- <article class="card_article">
-        <figure>
-          <a href="#lighbox">
-          <img class="card_img" src="/assets/images/Animals_Majesty.jpg" alt="image détaillée">
-        </a>
-          <figcaption>
-            <h2>Titre</h2>
-            <div class="figcaption_text">
-              <p>nb likes</p>
-              <i>♥️</i>
-            </div>
-          </figcaption>
-        </figure>
-      </article> -->
-
-
   </main>
- <section id="lightbox"></section>
-
-
   <div id="contact_modal" tabindex="0">
     <div class="modal" aria-hidden="true" role="dialog" aria-describedby="modalTitle">
       <header>
@@ -95,7 +68,8 @@
   <!--Utils-->
   <script src="./js/utils/contactForm.js"></script>
   <!--Modules-->
-  <script type="module" src="./js/modules/lightboxTest.js"></script>
+  <script type="module" src="./js/modules/lightbox.js"></script>
+  <script type="module" src="./js/modules/likes.js"></script>
   
 
 </body>

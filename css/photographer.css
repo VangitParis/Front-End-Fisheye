@@ -174,7 +174,7 @@ form input {
 
 
 
-.card_img {
+.card_media {
     background-color: #DB8876;
     height: 300px;
     width: 350px;
@@ -221,7 +221,8 @@ figcaption{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 10%;
+    width: 90%;
+    /* width: 10%; */
 }
 .button-like{
     background: transparent;
@@ -243,10 +244,9 @@ figcaption{
     justify-content: center;
     background-color: #E5E5E5;
 }
-#lightbox > nav {
-   display: flex;
-
-  }
+#lightbox > nav{
+    display: flex;
+}
 .lightbox-prev{
     position: absolute;
     left: 9%;
@@ -280,9 +280,13 @@ object-position: 30% 30%;
 object-fit: cover;
 }
 
-.lightbox-close-button{
+.lightbox-close{
 position: absolute;
-top: 0;
+top: 30px;
 right: 9%;
 z-index: 10;
+}
+.date {
+    font-weight: bolder;
+    font-size: 46px;
 }

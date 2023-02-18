@@ -1,17 +1,27 @@
+/**
+ *  @property {string} id Identifiant du media
+ *  @property {string} photographerMedia Tableau des medias
+ *  @param {string} path chemin de l'image
+ *  @param {string[]} media Tableau des medias du fichier json
+ */
 export class PictureFactory {
-  constructor(media) {
+  constructor(media, path) {
+    this.path = path;
     this.photographerMedia = media;
-    //console.log( this.photographerMedia.title );
+    this.mediaId = media.id;
     this.image = {
-      src: `assets/images/${this.photographerMedia.image}`,
+      id: `${this.photographerMedia.id}`,
+      src: this.path + "/" + this.photographerMedia.image,
       title: `${this.photographerMedia.title}`,
     };
   }
-
-  createMedia() {
-    const image = `<img class="card_img" src= ${this.image.src}
-            alt= "${this.image.title}" controls ="false"</img>`;
-    //console.log(image);
+  /**
+   *
+   * @returns {HTMLImageElement} image
+   */
+  createImageElement() {
+    const image = `<id=${this.mediaId} src="${this.image.src}"
+    alt="${this.image.title}" />`;
     return image;
   }
 }

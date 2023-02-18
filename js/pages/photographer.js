@@ -1,8 +1,8 @@
 import { MediaFactory } from "../factories/mediaFactory.js";
-import { PhotographerFactory } from "../factories/PhotographerFactory.js";
-import LightboxTest from "../modules/lightboxTest.js";
-import Lightbox from "../modules/lightboxTest.js";
-
+import { PhotographerFactory } from "../factories/photographerFactory.js";
+import Lightbox from "../modules/lightbox.js";
+import Likes from "../modules/likes.js";
+import List from "../modules/sort.js";
 
 async function getPhotographers() {
   try {
@@ -45,13 +45,28 @@ function displayPhotographerHeader(data) {
 }
 
 // MEDIAS
-async function displayPhotographerMedia(medias) {
+async function displayPhotographerMedia(photographers, medias) {
+  // récupère le nom du photographe des chemins absolus
+
+  const namePhotographer = photographers.name;
+  const name = namePhotographer.replace(/-/g, " ");
+  const formattedName = name.split(" ");
+  const firstName = formattedName[0];
+  const composedFirstName = formattedName[1];
+  console.log();
+  let displayName;
+  if (formattedName.length > 2) {
+    displayName = `${firstName} ${composedFirstName}`;
+  } else {
+    displayName = `${firstName}`;
+  }
+
   //section media
   const mediaSection = document.querySelector(".photograph-media");
   medias.forEach((media) => {
-    const mediaModel = new MediaFactory(media);
-    const mediaCardDOM = mediaModel.getMediaCardDOM();
-    //mediaSection.appendChild(mediaCardDOM);
+    const imagesPath = `/assets/images/${displayName}`;
+    const mediaModel = new MediaFactory(media, imagesPath);
+    const mediaCardDOM = mediaModel.createMediaCard(media, imagesPath);
   });
 }
 
@@ -71,7 +86,7 @@ function displayInsert(data, medias, totalLikes) {
 
   //encart Likes
   const mediaModel = new MediaFactory(medias);
-  const insertLikes = mediaModel.getLikes();
+  const insertLikes = mediaModel.createTotalLikesElement();
   insertLikes.innerHTML = totalLikes;
 
   const iconLike = document.createElement("i");
@@ -85,52 +100,35 @@ function displayInsert(data, medias, totalLikes) {
 
 // AJOUT LIKES UTILISATEUR DES ARTICLES MEDIAS
 async function addLike() {
-  const buttonLike = document.querySelectorAll(".button-like");
-
-  for (let i = 0; i < buttonLike.length; i++) {
-    let liked = false;
-    buttonLike[i].addEventListener("click", (e) => {
-      e.preventDefault();
-
-      const parent = e.target.closest(".figcaption-likes-icon");
-      const element = parent.querySelector(".likes");
-      const likes = parseInt(element.innerHTML);
-
-      let totalLikes = parseInt(
-        document.getElementById("total_likes").innerHTML
-      );
-
-      console.log(totalLikes);
-
-      if (!liked) {
-        //console.log("test incrémentation");
-        alert("1 like");
-        const likedByUser = likes + 1;
-        element.innerHTML = likedByUser;
-
-        document.getElementById("total_likes").innerText = `${totalLikes + 1}`;
-
-        return (liked = true);
-      } else if (liked) {
-        //console.log(liked);
-        alert("1 dislike");
-        const dislikedByUser = likes;
-        element.innerHTML = dislikedByUser - 1;
-
-        document.getElementById("total_likes").innerText = `${totalLikes - 1}`;
-        return (liked = false);
-      }
-    });
-  }
+  const likes = new Likes();
 }
 
+//TRI DES MEDIAS
+async function sort(medias) {
+  const list = new List(medias);
+}
+
+
+
 // fenêtre de la lightbox
-async function displayLightbox(media) {
-  const lightboxModel = new LightboxTest(media);
-  const lightboxSection = lightboxModel.getLightbox();
-  //const handleControlClick = lightboxModel.handleControlClick();
-  //const closeLightbox = lightboxModel.closeLightbox(lightboxSection);
-  //main.appendChild(lightboxSection);
+async function displayLightbox(media, photographers) {
+  // récupère le nom du photographe des chemins absolus
+  const namePhotographer = photographers.name;
+  const name = namePhotographer.replace(/-/g, " ");
+  const formattedName = name.split(" ");
+  const firstName = formattedName[0];
+  const composedFirstName = formattedName[1];
+  console.log();
+  let displayName;
+  if (formattedName.length > 2) {
+    displayName = `${firstName} ${composedFirstName}`;
+  } else {
+    displayName = `${firstName}`;
+  }
+
+  const pathName = `/assets/images/${displayName}`;
+  const lightboxModel = new Lightbox(media, pathName);
+  const lightboxDOM = lightboxModel.createLightboxDOM();
 }
 
 // Appel des fonctions du script
@@ -138,12 +136,13 @@ async function run() {
   const params = new URLSearchParams(location.search);
   const photographerId = parseInt(params.get("id"));
   const [photographerFindProfil, photographerMedias, totalLikes] =
-  await getPhotographersId(photographerId);
+    await getPhotographersId(photographerId);
   displayPhotographerHeader(photographerFindProfil);
-  displayPhotographerMedia(photographerMedias);
+  displayPhotographerMedia(photographerFindProfil, photographerMedias);
   displayInsert(photographerFindProfil, photographerMedias, totalLikes);
   addLike();
-  displayLightbox(photographerMedias);
+  sort(photographerMedias);
+  displayLightbox(photographerMedias, photographerFindProfil);
 }
 
 run();
