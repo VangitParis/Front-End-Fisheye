@@ -51,6 +51,7 @@ export default class Lightbox {
 
   /**
    * Création de l'élément HTML pour une image
+   * @returns {HTMLImageElement}
    */
   createImageElement() {
     const path = this.path;
@@ -64,6 +65,7 @@ export default class Lightbox {
 
   /**
    * Création de l'élément HTML pour une vidéo
+   * @returns {HTMLVideoElement}
    */
   createVideoElement() {
     const path = this.path;
@@ -100,7 +102,7 @@ export default class Lightbox {
 
   /**
    * Création du squelette HTML de la lightbox
-   * @returns {HTMLElement} htmlElement
+   * @returns {HTMLElement} la lightbox
    */
   createLightboxDOM() {
     const lightbox = document.createElement("div");
@@ -148,7 +150,7 @@ export default class Lightbox {
   }
   /**
    *
-   * @param {MouseEvent/KeyboardEvent} e Ferme la lightbox au clique de la souris
+   * @param {MouseEvent/KeyboardEvent} e Ferme la lightbox
    */
   close(e) {
     e.preventDefault();

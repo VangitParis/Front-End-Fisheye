@@ -1,10 +1,10 @@
 /**
- * Classe List - permet de trier une liste d'objets média selon différents critères.
- *
+ * Classe sortMedias - permet de trier une liste d'objets média selon différents critères.
+ * 
  * @property {Array} mediasFromJson - un tableau d'objets média au format JSON
  * @property {HTMLElement} select - l'élément HTML correspondant à la liste déroulante de tri
  */
-export default class List {
+export default class sortMedias {
   /**
    *
    * @param {Array} mediasFromJson - un tableau d'objets média au format JSON
@@ -66,13 +66,13 @@ export default class List {
         userLikes.forEach((like, index) => {
           const articleProperties = this.mediaObjectsSorted[index].properties;
           articleProperties.likes = parseInt(like.innerHTML);
-          });
-        }
+        });
+      }
       // Trier les objets média en fonction du nombre de likes décroissant
       this.mediaObjectsSorted.sort(
         (a, b) => b.properties.likes - a.properties.likes
       );
-       } else if (this.select.value === "Date") {
+    } else if (this.select.value === "Date") {
       // Trier les objets média en fonction de la date décroissante
       this.mediaObjectsSorted.sort(
         (a, b) =>

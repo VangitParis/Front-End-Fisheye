@@ -1,15 +1,25 @@
 /**
- * @param {string[]} data Tableau du fichier json photographers
+ * La classe PhotographerFactory crée des objets photographe à partir des données du fichier JSON.
  */
 export class PhotographerFactory {
+  /**
+   * Crée une instance de la classe PhotographerFactory.
+   * @param {Object} data - Les données du photographe.
+   * @param {string} data.portrait - L'URL de l'image du photographe.
+   * @param {string} data.name - Le nom du photographe.
+   * @param {string} data.city - La ville du photographe.
+   * @param {string} data.country - Le pays du photographe.
+   * @param {string} data.tagline - La tagline du photographe.
+   * @param {number} data.price - Le prix par jour du photographe.
+   */
   constructor(data) {
     this.photographerData = data;
     this.picture = `assets/photographers/${this.photographerData.portrait}`;
     this.getCardUserDOM();
   }
   /**
-   *
-   * @returns {HTMLElement} article d'un photographe
+   * Renvoie le DOM d'un article pour le photographe.
+   * @returns {HTMLElement} - Le DOM de l'article.
    */
   getCardUserDOM() {
     const article = document.createElement("article");
@@ -26,7 +36,8 @@ export class PhotographerFactory {
   }
 
   /**
-   * Création du header de la page photographer.html
+   * Renvoie le DOM de la section d'en-tête pour le photographe.
+   * @returns {HTMLElement} - Le DOM de la section d'en-tête.
    */
   getHeaderUserDOM() {
     const photographerHeader = `
@@ -48,17 +59,20 @@ export class PhotographerFactory {
   }
 
   /**
-   * Création du PRIX du photographe dans l'encart fixe de la page photographer.html
-   * @returns HTMLDivElement Price
+   * Renvoie le DOM de l'encart de prix pour le photographe.
+   * @returns {HTMLElement} - Le DOM de l'encart de prix.
    */
   getPrice() {
     const insertPrice = document.createElement("div");
     insertPrice.textContent = `${this.photographerData.price} €/jour`;
     insertPrice.className = "insert-price";
-
     return insertPrice;
   }
 
+  /**
+   * Renvoie le nom du photographe pour la fenêtre modale de contact.
+   * @returns {string} - Le nom du photographe pour la fenêtre modale de contact.
+   */
   getNameInContactModal() {
     const formModal = document.querySelector("form");
     const fieldsetForm = document.querySelector("fieldset");

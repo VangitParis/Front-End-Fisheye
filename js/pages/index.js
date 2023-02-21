@@ -1,5 +1,8 @@
 import { PhotographerFactory } from "../factories/photographerFactory.js";
-
+/**
+ * Obtient les données des photographes via une requête fetch.
+ * @returns {Promise<Object>} - Un objet contenant les photographes.
+ */
 async function getPhotographers() {
   try {
     const response = await fetch(
@@ -11,7 +14,10 @@ async function getPhotographers() {
     console.error("Error:", error);
   }
 }
-
+/**
+ * Affiche les données des photographes dans le DOM.
+ * @param {Array<Object>} photographers - Un tableau contenant les données des photographes.
+ */
 async function displayData(photographers) {
   let photographersSection = document.querySelector(".photographer_section");
 
@@ -21,10 +27,14 @@ async function displayData(photographers) {
     photographersSection.appendChild(userCardDOM);
   });
 }
-
+/**
+ * Initialise l'application.
+ */
 async function init() {
-  // Récupère les datas des photographes
   const { photographers } = await getPhotographers();
   displayData(photographers);
 }
+// Appel la fonction d'initialisation
 init();
+
+

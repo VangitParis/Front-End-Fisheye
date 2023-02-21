@@ -6,7 +6,7 @@ import { VideoFactory } from "./videoFactory.js";
  * @property {string} photographerId Identifiant du photographe
  * @property {string} photographerMedia  un media du photographe
  * @param {string[]} media un media du photographe
- * @param {string} path chemin des images ou video
+ * @param {string} path chemin des images ou des videos
  */
 export class MediaFactory {
   constructor(media, imagePath) {

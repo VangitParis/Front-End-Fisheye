@@ -1,10 +1,13 @@
-
 import { MediaFactory } from "../factories/mediaFactory.js";
 import { PhotographerFactory } from "../factories/photographerFactory.js";
 import Lightbox from "../modules/lightbox.js";
 import Likes from "../modules/likes.js";
-import List from "../modules/sort.js";
+import sortMedias from "../modules/sort.js";
 
+/**
+ * Récupère les données des photographes et des médias à partir d'un fichier JSON
+ * @returns {Promise<Object>} Une promesse contenant un objet avec les propriétés "photographers" et "medias"
+ */
 async function getPhotographers() {
   try {
     const response = await fetch(
@@ -17,7 +20,11 @@ async function getPhotographers() {
     console.error("Error:", error);
   }
 }
-// ID
+/**
+ * Récupère les informations d'un photographe en fonction de son ID
+ * @param {number} id - L'ID du photographe à récupérer
+ * @returns {Promise<Array>} Une promesse contenant un tableau avec les données du photographe, ses médias et le total de likes de ses médias
+ */
 async function getPhotographersId(id) {
   const { photographers, medias } = await getPhotographers();
 
@@ -34,58 +41,65 @@ async function getPhotographersId(id) {
 
   return [photographerFindProfil, photographerMedias, totalLikes];
 }
-
+/**
+ * Affiche le header du photographe.
+ * @param {Object} data - Les données du photographe.
+ * @function
+ */
 function displayPhotographerHeader(data) {
-  // header main
+  // Instancie le modèle du photographe
   const photographerModel = new PhotographerFactory(data);
-
-  const headerUser = photographerModel.getHeaderUserDOM();
-
-  // contact modal name
-  const namePhotographerModal = photographerModel.getNameInContactModal();
+  // Récupère le DOM du header utilisateur
+  photographerModel.getHeaderUserDOM();
+  // Récupère le nom du photographe dans le modal de contact
+  photographerModel.getNameInContactModal();
 }
 
-// MEDIAS
-async function displayPhotographerMedia(photographers, medias) {
-  // récupère le nom du photographe des chemins absolus
-
-  const namePhotographer = photographers.name;
+/**
+ * Affiche les médias du photographe
+ * @param {Object} photographer - Les données du photographe
+ * @param {Array} medias - Les médias du photographe
+ * @function
+ */
+async function displayPhotographerMedia(photographer, medias) {
+  const namePhotographer = photographer.name;
   const name = namePhotographer.replace(/-/g, " ");
   const formattedName = name.split(" ");
   const firstName = formattedName[0];
   const composedFirstName = formattedName[1];
-  console.log();
-  let displayName;
-  if (formattedName.length > 2) {
-    displayName = `${firstName} ${composedFirstName}`;
-  } else {
-    displayName = `${firstName}`;
-  }
+  const photographerName =
+    formattedName.length > 2
+      ? `${firstName} ${composedFirstName}`
+      : `${firstName}`;
 
-  //section media
-  const mediaSection = document.querySelector(".photograph-media");
+  // Crée les cartes pour chaque média
   medias.forEach((media) => {
-    const imagesPath = `assets/images/${displayName}`;
+    const imagesPath = `assets/images/${photographerName}`;
     const mediaModel = new MediaFactory(media, imagesPath);
-    const mediaCardDOM = mediaModel.createMediaCard(media, imagesPath);
+    mediaModel.createMediaCard(media, imagesPath);
   });
 }
 
-//Creation Encart Like et Tarif photographer
+//Creation DOM Encart Like et Tarif photographer
 const main = document.getElementById("main");
 const divInsertLikesAndPriceIntoMain = document.createElement("div");
 divInsertLikesAndPriceIntoMain.className = "main_likes-price";
 main.appendChild(divInsertLikesAndPriceIntoMain);
 
-// PRIX ET LIKE dans l'encart Medias
+/**
+ * Affiche le bloc "Likes" et "Tarif" du photographe
+ * @param {Object} data - Les données du photographe
+ * @param {Array} medias - Les médias du photographe
+ * @param {number} totalLikes - Le nombre total de likes des médias du photographe
+ */
 function displayInsert(data, medias, totalLikes) {
-  // encart Price
+  // Bloc "Tarif"
   const photographerModel = new PhotographerFactory(data);
   const insertPrice = photographerModel.getPrice();
 
   divInsertLikesAndPriceIntoMain.appendChild(insertPrice);
 
-  //encart Likes
+  // Bloc "Likes"
   const mediaModel = new MediaFactory(medias);
   const insertLikes = mediaModel.createTotalLikesElement();
   insertLikes.innerHTML = totalLikes;
@@ -99,38 +113,56 @@ function displayInsert(data, medias, totalLikes) {
   divInsertLikesAndPriceIntoMain.appendChild(insertLikes);
 }
 
-// AJOUT LIKES UTILISATEUR DES ARTICLES MEDIAS
+/**
+ * Ajoute un objet Likes pour chaque média pour lequel l'utilisateur clique sur le bouton "j'aime"
+ * @async
+ * @function addLike
+ * @returns {Promise<void>}
+ */
 async function addLike() {
-  const likes = new Likes();
+   new Likes();
 }
 
-//TRI DES MEDIAS
+/**
+ * Trie les médias en fonction du tri sélectionné par l'utilisateur
+ * @async
+ * @function sort
+ * @param {Array<Object>} medias - Un tableau d'objets contenant des informations sur les médias
+ * @returns {Promise<void>}
+ */
 async function sort(medias) {
-  const list = new List(medias);
+  new sortMedias(medias);
 }
 
-// fenêtre de la lightbox
+/**
+ * Affiche la fenêtre modale de la lightbox pour un média spécifique
+ * @async
+ * @function displayLightbox
+ * @param {Object} media - L'objet contenant des informations sur le média sélectionné
+ * @param {Object} photographers - L'objet contenant des informations sur le photographe correspondant
+ * @returns {Promise<void>}
+ */
 async function displayLightbox(media, photographers) {
-  // récupère le nom du photographe des chemins absolus
   const namePhotographer = photographers.name;
   const name = namePhotographer.replace(/-/g, " ");
   const formattedName = name.split(" ");
   const firstName = formattedName[0];
   const composedFirstName = formattedName[1];
-  console.log();
-  let displayName;
-  if (formattedName.length > 2) {
-    displayName = `${firstName} ${composedFirstName}`;
-  } else {
-    displayName = `${firstName}`;
-  }
-
-  const pathName = `assets/images/${displayName}`;
+  const photographerName =
+    formattedName.length > 2
+      ? `${firstName} ${composedFirstName}`
+      : `${firstName}`;
+  const pathName = `assets/images/${photographerName}`;
   const lightboxModel = new Lightbox(media, pathName);
-  const lightboxDOM = lightboxModel.createLightboxDOM();
+  lightboxModel.createLightboxDOM();
 }
 
-// Appel des fonctions du script
+/**
+ * Fonction principale qui appelle toutes les autres fonctions du script pour afficher la page d'un photographe
+ * @async
+ * @function run
+ * @returns {Promise<void>}
+ */
 async function run() {
   const params = new URLSearchParams(location.search);
   const photographerId = parseInt(params.get("id"));

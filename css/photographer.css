@@ -1,35 +1,4 @@
-#contact_modal {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-
-.main_likes-price {
-    position: fixed;
-    height: 89px;
-    width: 376px;
-    bottom: -20px;
-    right: 40px;
-    border-radius: 5px;
-    background-color: #DB8876;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row-reverse;
-    font-size: 24px;
-}
-#total_likes{
-    width: 20%;
-    text-align: right;
-    margin-right: -60px;
-
-}
-
+/* style page photographer main-header */
 .photograph-header {
     display: grid;
     position: relative;
@@ -48,9 +17,6 @@
     margin-left: 12%;
     width: 100%;
 }
-.contact-box{
-    text-align: center;
-}
 
 .img-header-box{
     text-align: center;
@@ -63,7 +29,6 @@
     object-fit: cover;
     
 }
-
 .name_photograph {
     font-size: 64px;
     color: #D3573C
@@ -75,6 +40,82 @@
 
 }
 
+
+/* style main-article */
+.card_article {
+    width: fit-content;
+}
+
+.card_media {
+    background-color: #DB8876;
+    height: 300px;
+    width: 350px;
+    object-fit: cover;
+    border-radius: 5px;
+    object-position: 50% 50%;
+}
+
+figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.figcaption_text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.photograph-media {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 90px;
+    margin: 4% 7%;
+}
+
+figcaption{
+    color: #901C1C;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card_title{
+    width: 63%;
+}
+.figcaption-likes-icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 10%;
+}
+.button-like{
+    background: transparent;
+    border: none;
+    color: #901C1C;
+    display: flex;
+}
+.likes{
+    margin-right: 10%;
+}
+
+/* style modal contact/form */
+#contact_modal {
+    display: none;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+
+}
+.contact-box{
+    text-align: center;
+}
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -168,70 +209,30 @@ form input {
     border-radius: 5px;
 }
 
-.card_article {
-    width: fit-content;
-}
-
-
-
-.card_media {
-    background-color: #DB8876;
-    height: 300px;
-    width: 350px;
-    object-fit: cover;
+/* style insert likes */
+.main_likes-price {
+    position: fixed;
+    height: 89px;
+    width: 376px;
+    bottom: -20px;
+    right: 40px;
     border-radius: 5px;
-    object-position: 50% 50%;
-}
-
-figcaption {
+    background-color: #DB8876;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    width: 100%;
+    flex-direction: row-reverse;
+    font-size: 24px;
 }
+#total_likes{
+    width: 20%;
+    text-align: right;
+    margin-right: -60px;
 
-.figcaption_text {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.photograph-sort {
-    margin: 3% 7%;
 }
 
 
-.photograph-media {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 90px;
-    margin: 4% 7%;
-}
-
-figcaption{
-    color: #901C1C;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.card_title{
-    width: 63%;
-}
-.figcaption-likes-icon{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 10%;
-}
-.button-like{
-    background: transparent;
-    border: none;
-    color: #901C1C;
-    display: flex;
-}
-.likes{
-    margin-right: 10%;
-}
+/* style lightbox */
 #lightbox{
     display: none;
     position: fixed;
@@ -288,4 +289,33 @@ z-index: 10;
 .date {
     font-weight: bolder;
     font-size: 46px;
+}
+
+/* style select sort */
+.photograph-sort {
+    margin: 3% 7%;
+   
+}
+label{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#sort-select {
+    height: 69px;
+    width: 170px;
+    left: 0px;
+    top: 0px;
+    border-radius: 5px;
+    background: #911C1C;
+    font-size: 18px;
+    color: #FAFAFA;
+    font-weight: 700;
+  }
+#sort-select::after{
+    content: "↓";
+    appearance: none;
+    background: #911C1C;
+    font-size: 18px;
+    color: #FAFAFA;
 }

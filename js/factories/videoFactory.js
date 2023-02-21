@@ -20,8 +20,8 @@ export class VideoFactory {
    * @returns {HTMLVideoElement} video
    */
   createVideoElement() {
-    const video = `<id=${this.mediaId} src="${this.video.src}"
-    alt="${this.video.title}" controls="true"/>`;
+    const video = `<id=${this.mediaId} controls="true"/> <source src="${this.video.src}"
+    alt="${this.video.title}"/>`;
     return video;
   }
 }

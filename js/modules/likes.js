@@ -1,13 +1,17 @@
 /**
- * @method countLikes sélectionne les boutons likes,
- * ajoute un eventListener au clique,
- * met à jour l'état du like par l'utilisateur
- */
+* Sélectionne les boutons likes, ajoute un eventListener au clique,
+* met à jour l'état du like par l'utilisateur.
+@class Classe Likes représentant le compteur de likes.
+*/
 export default class Likes {
   constructor() {
     this.countLikes();
   }
-
+/**
+* Sélectionne les boutons likes et ajoute un eventListener.
+* Met à jour l'état du like par l'utilisateur.
+@function countLikes
+*/
   countLikes() {
     const buttonLike = document.querySelectorAll(".button-like");
 
