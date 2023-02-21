@@ -30,29 +30,31 @@
     </div>
     <div class="photograph-media"></div>
   </main>
-  <div id="contact_modal" tabindex="0">
-    <div class="modal" aria-hidden="true" role="dialog" aria-describedby="modalTitle">
+  <div id="contact_modal" tabindex="0" role="dialog">
+    <div class="modal" aria-hidden="true" aria-describedby="modalTitle">
       <header>
         <h2>Contactez-moi</h2>
-        <button class="modal-close-btn" onclick="closeModal()" tabindex="0">
+        <button class="modal-close-btn" onclick="closeModal()" tabindex="1">
           <img src="assets/icons/close.svg" alt="Close Contact form" />
         </button>
       </header>
-      <form action="http://127.0.0.1:5500/index.html">
+      <form action="#">
         <fieldset>
-          <div>
-            <label class="hidden" for="firstname">Prénom</label>
-            <input id="firstname" type="text" name="firstname" tabindex="0" aria-labelledby="3" required />
-            <label class="hidden" for="lastname">Nom</label>
-            <input id="lastname" type="text" name="lastname" tabindex="0" aria-labelledby="5" required />
-            <label class="hidden" for="email">Email</label>
-            <input id="email" type="text" name="email" tabindex="0" aria-labelledby="7" required />
-            <label class="hidden" for="message"> Votre Message</label>
-            <textarea id="message" role="text Field" type="text" name="message" rows="12" cols="75" maxlength="150" tabindex="0" aria-labelledby="9" required></textarea>
-          </div>
+
+          <label class="hidden" for="firstname">Prénom</label>
+          <input id="firstname" type="text" name="firstname" tabindex="1" aria-labelledby="3" required />
+          <label class="hidden" for="lastname">Nom</label>
+          <input id="lastname" type="text" name="lastname" tabindex="1" aria-labelledby="5" required />
+          <label class="hidden" for="email">Email</label>
+          <input id="email" type="text" name="email" tabindex="1" aria-labelledby="7" required />
+          <label class="hidden" for="message"> Votre Message</label>
+          <textarea id="message" role="text Field" type="text" name="message" rows="12" cols="75" maxlength="150"
+            tabindex="1" aria-labelledby="9" required></textarea>
+
         </fieldset>
-        <button class="contact_button" type="submit" tabindex="0" aria-labelledby="2" aria-label="send">Envoyer</button>
+        <button class="contact_button" type="submit" tabindex="2" aria-labelledby="2" aria-label="send">Envoyer</button>
       </form>
+
     </div>
   </div>
 

@@ -105,13 +105,14 @@ figcaption{
 /* style modal contact/form */
 #contact_modal {
     display: none;
-    position: absolute;
-    top: 10%;
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-
+    overflow-y: scroll;
+    z-index: 999;
 }
 .contact-box{
     text-align: center;
@@ -132,6 +133,10 @@ figcaption{
 }
 
 .modal {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;
@@ -143,6 +148,7 @@ figcaption{
     margin: auto;
     height: 900px;
     width: 669px;
+    overflow-y: scroll;
 }
 
 .modal header {
@@ -200,6 +206,7 @@ form div {
 textarea{
     border-radius: 5px;
     resize: none;
+    border: transparent;
 }
 
 form input {
