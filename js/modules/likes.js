@@ -5,6 +5,8 @@
 */
 export default class Likes {
   constructor() {
+    this.likedMedia = []; // tableau qui contient les objets média et le nombre de likes par utilisateur
+
     this.countLikes();
   }
 /**
@@ -13,7 +15,7 @@ export default class Likes {
 @function countLikes
 */
   countLikes() {
-    const buttonLike = document.querySelectorAll(".button-like");
+    const buttonLike = Array.from(document.getElementsByClassName("button-like"));
 
     for (let i = 0; i < buttonLike.length; i++) {
       let liked = false;
@@ -21,28 +23,35 @@ export default class Likes {
         e.preventDefault();
 
         const parent = e.target.closest(".figcaption-likes-icon");
-        const element = parent.querySelector(".likes");
+        const element = parent.getElementsByClassName("likes")[0];
         const likes = parseInt(element.innerHTML);
 
         let totalLikes = parseInt(
           document.getElementById("total_likes").innerHTML
         );
+        const mediaId = parseInt(parent.dataset.mediaId); // identifiant unique de l'objet média
 
+        // Vérifie si l'objet média est déjà dans le tableau likedMedia
+        const mediaIndex = this.likedMedia.findIndex((media) => media.id === mediaId);
         if (!liked) {
+          // Si l'objet média n'existe pas dans le tableau, on l'ajoute avec le nombre de likes
+          this.likedMedia.push({ likes: 1 });
+         
           const likedByUser = likes + 1;
           element.innerHTML = likedByUser;
-
+         
           document.getElementById("total_likes").innerText = `${
-            totalLikes + 1
+            totalLikes += 1
           }`;
-
+        
           return (liked = true);
         } else if (liked) {
+          this.likedMedia.splice(mediaIndex, 1);
           const dislikedByUser = likes;
           element.innerHTML = dislikedByUser - 1;
 
           document.getElementById("total_likes").innerText = `${
-            totalLikes - 1
+            totalLikes -= 1
           }`;
           return (liked = false);
         }

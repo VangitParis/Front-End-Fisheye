@@ -2,7 +2,7 @@ import { MediaFactory } from "../factories/mediaFactory.js";
 import { PhotographerFactory } from "../factories/photographerFactory.js";
 import Lightbox from "../modules/lightbox.js";
 import Likes from "../modules/likes.js";
-import sortMedias from "../modules/sort.js";
+import SortMedias from "../modules/sort.js";
 
 /**
  * Récupère les données des photographes et des médias à partir d'un fichier JSON
@@ -131,7 +131,7 @@ async function addLike() {
  * @returns {Promise<void>}
  */
 async function sort(medias) {
-  new sortMedias(medias);
+  new SortMedias(medias);
 }
 
 /**

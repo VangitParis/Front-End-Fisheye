@@ -1,38 +1,53 @@
+
+
 /**
  * Classe sortMedias - permet de trier une liste d'objets média selon différents critères.
- * 
+ *
  * @property {Array} mediasFromJson - un tableau d'objets média au format JSON
  * @property {HTMLElement} select - l'élément HTML correspondant à la liste déroulante de tri
  */
-export default class sortMedias {
+export default class SortMedias {
   /**
    *
    * @param {Array} mediasFromJson - un tableau d'objets média au format JSON
    */
   constructor(mediasFromJson) {
     this.mediasFromJson = mediasFromJson;
-    this.select = document.getElementById("sort-select");
+    this.list = document.getElementsByClassName("custom-options");
+    console.log(this.list);
     this.mediaObjectsSorted = this.setArticleProperties();
     this.render(this.mediaObjectsSorted);
-    this.sortSelectEvent();
-  }
-  /**
-   * Ajoute un événement d'écouteur d'événements de changement sur l'élément HTML de sélection
-   *
-   */
-  sortSelectEvent() {
-    this.select.addEventListener("change", () => {
-      // Mettre à jour la liste d'objets média triés en fonction du critère de tri sélectionné
-      this.updateMediaList();
+    
+    const customOptions = Array.from(
+      document.getElementsByClassName("custom-option")
+    );
+    customOptions.forEach((option) =>
+      option.addEventListener("click", () => this.updateMediaList())
+    
+    );
+    
+
+    // Ajoute l'écouteur d'événements pour gérer les appuis de touche
+    customOptions.forEach((focusedOption) => {
+      focusedOption.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          this.updateMediaList();
+        }
+      });
     });
+
+
   }
+
   /**
    * Initialise la propriété `likes` de chaque objet média à 0.
    *
    * @returns {Array} - un tableau d'objets média avec les propriétés initialisées
    */
   setArticleProperties() {
-    const domArticles = Array.from(document.querySelectorAll(".card_article"));
+    const domArticles = Array.from(
+      document.getElementsByClassName("card_article")
+    );
     const mediaObjects = domArticles.map((article, index) => {
       return {
         article: article,
@@ -58,50 +73,51 @@ export default class sortMedias {
      * Les éléments HTML avec la classe `.likes`.
      * @type {Array.<HTMLElement>}
      */
-    const userLikes = Array.from(document.querySelectorAll(".likes"));
+    const userLikes = Array.from(document.getElementsByClassName("likes"));
+    const selectTrigger = document.getElementsByClassName(
+      "custom-select-trigger"
+    )[0];
+    
+    const currentValue = selectTrigger.textContent.trim();
+    console.log(currentValue);
 
-    if (this.select.value === "Popularité") {
+    if (currentValue === "Popularité") {
       if (userLikes) {
         // Parcourir tous les éléments likés et mettre à jour la propriété "likes" de chaque objet média
         userLikes.forEach((like, index) => {
           const articleProperties = this.mediaObjectsSorted[index].properties;
-          articleProperties.likes = parseInt(like.innerHTML);
+          articleProperties.likes = parseInt(like.innerHTML, 10);
         });
       }
       // Trier les objets média en fonction du nombre de likes décroissant
       this.mediaObjectsSorted.sort(
         (a, b) => b.properties.likes - a.properties.likes
       );
-    } else if (this.select.value === "Date") {
+    } else if (currentValue === "Date") {
       // Trier les objets média en fonction de la date décroissante
       this.mediaObjectsSorted.sort(
         (a, b) =>
           new Date(b.properties.date).getTime() -
           new Date(a.properties.date).getTime()
       );
-    } else if (this.select.value === "Titre") {
+    } else if (currentValue === "Titre") {
       // Trier les objets média par ordre alphabétique(croissant)
       this.mediaObjectsSorted.sort((a, b) =>
         a.properties.title.localeCompare(b.properties.title)
       );
     }
-
-    // Mettre à jour l'interface utilisateur avec la nouvelle liste d'objets média triés
     this.render();
+   
   }
-
-  /**
-   * Met à jour la position des articles dans le DOM en fonction du tri spécifié.
-   *
-   * @param {Array} [this.mediaObjectsSorted] - un tableau d'objets média triés en fonction du critère de tri actuel.
-   */
+  // Mettre à jour l'interface utilisateur avec la nouvelle liste d'objets média triés
   render() {
-    this.mediaObjectsSorted;
-    const container = document.querySelector(".photograph-media");
-    container.innerHTML = "";
+    const articleContainer =
+      document.getElementsByClassName("photograph-media")[0];
+    articleContainer.innerHTML = "";
 
-    this.mediaObjectsSorted.forEach((media) => {
-      container.appendChild(media.article);
+    const mediaObjects = this.mediaObjectsSorted;
+    mediaObjects.forEach((media) => {
+      articleContainer.appendChild(media.article);
     });
   }
 }

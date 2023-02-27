@@ -38,6 +38,7 @@ export default class Lightbox {
         this.showMedias();
         this.id;
         this.open();
+        
       });
     });
   }
@@ -47,6 +48,7 @@ export default class Lightbox {
    */
   open() {
     this.lightbox.style.display = "flex";
+   
   }
 
   /**

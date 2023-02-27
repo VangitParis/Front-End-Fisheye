@@ -52,6 +52,7 @@ export class MediaFactory {
         </a>
         <figcaption>
           <h2 class="card_title">${this.photographerMedia.title}</h2>
+          <p> ${this.photographerMedia.date}</p>
           <div class="figcaption-likes-icon">
             <button class="button-like" aria-label="press the button to like or unlike" aria-pressed="false" tabindex="0">
               <p class="likes">${this.photographerMedia.likes}</p>
