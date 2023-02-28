@@ -120,7 +120,7 @@ function displayInsert(data, medias, totalLikes) {
  * @returns {Promise<void>}
  */
 async function addLike() {
-   new Likes();
+  new Likes();
 }
 
 /**

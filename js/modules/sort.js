@@ -1,5 +1,3 @@
-
-
 /**
  * Classe sortMedias - permet de trier une liste d'objets média selon différents critères.
  *
@@ -17,26 +15,23 @@ export default class SortMedias {
     console.log(this.list);
     this.mediaObjectsSorted = this.setArticleProperties();
     this.render(this.mediaObjectsSorted);
-    
+
     const customOptions = Array.from(
       document.getElementsByClassName("custom-option")
     );
     customOptions.forEach((option) =>
       option.addEventListener("click", () => this.updateMediaList())
-    
     );
-    
 
-    // Ajoute l'écouteur d'événements pour gérer les appuis de touche
+    // Ajoute l'écouteur d'événements pour gérer le tri des options au clavier
     customOptions.forEach((focusedOption) => {
       focusedOption.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
-          this.updateMediaList();
+          event.preventDefault();
+          focusedOption.dispatchEvent(new Event("click"));
         }
       });
     });
-
-
   }
 
   /**
@@ -77,7 +72,7 @@ export default class SortMedias {
     const selectTrigger = document.getElementsByClassName(
       "custom-select-trigger"
     )[0];
-    
+
     const currentValue = selectTrigger.textContent.trim();
     console.log(currentValue);
 
@@ -107,7 +102,6 @@ export default class SortMedias {
       );
     }
     this.render();
-   
   }
   // Mettre à jour l'interface utilisateur avec la nouvelle liste d'objets média triés
   render() {

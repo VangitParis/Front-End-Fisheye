@@ -47,7 +47,7 @@ export class MediaFactory {
     const article = `
     <article class="card_article" title="${this.photographerMedia.title}">
       <figure>
-        <a href="photographer.html?id=${this.photographerId}#lightbox&lightbox.html?id=${this.id}" aria-label="image closeup view" tabindex="0" role="link">
+        <a href="photographer.html?id=${this.photographerId}#lightbox&amp;lightbox.html?id=${this.id}" aria-label="image closeup view" tabindex="0" role="link">
         ${elementWithClass}
         </a>
         <figcaption>

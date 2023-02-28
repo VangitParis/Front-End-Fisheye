@@ -24,13 +24,14 @@ export class PhotographerFactory {
   getCardUserDOM() {
     const article = document.createElement("article");
     article.innerHTML = `
-    <a href="photographer.html?id=${this.photographerData.id}" tabindex="0">
+    <a href="photographer.html?id=${this.photographerData.id}" tabindex="0" aria-label="${this.photographerData.name}" role="link">
       <img src=${this.picture} alt="">
-      <h2>${this.photographerData.name}</h2></a >
-      <span>${this.photographerData.city}, ${this.photographerData.country}</span>
-      <p>${this.photographerData.tagline}</p>
-      <p>${this.photographerData.price} €/jour </p>
-    </article >`;
+      <h2>${this.photographerData.name}</h2>
+    </a >
+    <span>${this.photographerData.city}, ${this.photographerData.country}</span>
+    <p>${this.photographerData.tagline}</p>
+    <p>${this.photographerData.price} €/jour </p>
+    `;
 
     return article;
   }
@@ -50,7 +51,7 @@ export class PhotographerFactory {
         <button class="contact_button" onclick="displayModal()" type="button" aria-haspopup="dialog" aria-controls="dialog">Contactez-moi</button>
     </div>
     <div class="img-header-box">
-        <img class="photographer-header_img" src="${this.picture}" alt="">
+        <img class="photographer-header_img" src="${this.picture}" alt="" >
     </div>
 
     `;

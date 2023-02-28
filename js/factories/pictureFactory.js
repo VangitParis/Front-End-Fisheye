@@ -20,7 +20,7 @@ export class PictureFactory {
    * @returns {HTMLImageElement} image
    */
   createImageElement() {
-    const image = `<id=${this.mediaId} src="${this.image.src}"
+    const image = `<id=${this.mediaId} src="${this.image.src}" tabindex="0"
     alt="${this.image.title}" />`;
     return image;
   }

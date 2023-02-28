@@ -36,5 +36,3 @@ async function init() {
 }
 // Appel la fonction d'initialisation
 init();
-
-

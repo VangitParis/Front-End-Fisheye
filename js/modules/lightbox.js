@@ -38,7 +38,6 @@ export default class Lightbox {
         this.showMedias();
         this.id;
         this.open();
-        
       });
     });
   }
@@ -48,7 +47,6 @@ export default class Lightbox {
    */
   open() {
     this.lightbox.style.display = "flex";
-   
   }
 
   /**
@@ -148,6 +146,8 @@ export default class Lightbox {
       this.prev(e);
     } else if (e.key === "ArrowRight") {
       this.next(e);
+    } else if (e.key === "Space") {
+      this.play(e);
     }
   }
   /**
@@ -176,9 +176,12 @@ export default class Lightbox {
   prev(e) {
     e.preventDefault();
     const gallery = this.gallery;
-    console.log(this.currentIndex);
     this.currentIndex =
       (this.currentIndex - 1 + gallery.length) % gallery.length;
     this.showMedias(this.currentIndex);
+  }
+  play(e) {
+    e.preventDefault();
+    this.createVideoElement.play();
   }
 }

@@ -41,13 +41,13 @@ const closeModal = () => {
  * @param {KeyboardEvent}  Ferme la fenêtre modale avec la touche esc
  */
 const onKeyUp = (event) => {
-  if (event.key === "Escape" || event.key ==="Esc") {
-      closeModal();
-  } 
+  if (event.key === "Escape" || event.key === "Esc") {
+    closeModal();
+  }
 };
 // Fermer la modale si esc est pressée dans un champ
-inputs.forEach(input => {
-  input.addEventListener("keydown", event => {
+inputs.forEach((input) => {
+  input.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       // Fermer la modale
       closeModal();

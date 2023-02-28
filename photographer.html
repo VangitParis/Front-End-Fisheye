@@ -21,25 +21,29 @@
   <main id="main">
     <section class="photograph-header"></section>
     <div class="photograph-sort">
-      <label class="select-label" for="sort-select-trigger-text">Trier par</label>
-      <select name="order by" id="sort-select" class="custom-select" aria-controls="sort-select-trigger-text" aria-haspopup="listbox">
+      <label class="select-label" for="sort-select" id="sort-select-label">Trier par</label>
+      <select name="order by" id="sort-select" class="custom-select" aria-controls="sort-select-trigger-text"
+        aria-haspopup="listbox" aria-labelledby="sort-select-label">
         <option class="select-option" id="popularitySort" value="popularity">Popularité</option>
         <option class="select-option" id="dateSort" value="date">Date</option>
         <option class="select-option" id="titleSort" value="title">Titre</option>
       </select>
-      <button role="button" aria-haspopup="listbox" aria-expanded="false" class="custom-select-trigger" tabindex="0" id="sort-select-trigger-text" aria-labelledby="sort-select-trigger-text sort-select" aria-activedescendant="selected-option">
+      <button role="button" aria-haspopup="listbox" aria-expanded="false" class="custom-select-trigger" tabindex="0"
+        id="sort-select-trigger-text" aria-labelledby="sort-select-trigger-text sort-select"
+        aria-activedescendant="selected-option">
         Popularité
       </button>
       <ul class="custom-options" role="listbox" aria-labelledby="sort-select-trigger-text">
-        
-          <li class="custom-option arrow" data-value="popularity" role="option" aria-selected="true" tabindex="0" id="selected-option">Popularité</li>
-          <li class="custom-option" data-value="date" role="option" tabindex="0">Date</li>
-          <li class="custom-option" data-value="title" role="option" tabindex="0">Titre</li>
-        </ul>
-      </UL>
+
+        <li class="custom-option arrow" data-value="popularity" role="option" aria-selected="true" tabindex="0"
+          id="selected-option">Popularité</li>
+        <li class="custom-option" data-value="date" role="option" tabindex="0">Date</li>
+        <li class="custom-option" data-value="title" role="option" tabindex="0">Titre</li>
+      </ul>
+      
     </div>
-    
-    
+
+
 
     <div class="photograph-media"></div>
   </main>
@@ -47,25 +51,24 @@
     <div class="modal" aria-hidden="true" aria-describedby="modalTitle">
       <header>
         <h2>Contactez-moi</h2>
-        <button class="modal-close-btn" onclick="closeModal()" tabindex="1">
+        <button class="modal-close-btn" onclick="closeModal()" tabindex="0">
           <img src="assets/icons/close.svg" alt="Close Contact form" />
         </button>
       </header>
       <form action="#">
         <fieldset>
-
           <label class="hidden" for="firstname">Prénom</label>
-          <input id="firstname" type="text" name="firstname" tabindex="1" aria-labelledby="3" required />
+          <input id="firstname" type="text" name="firstname" tabindex="0" aria-labelledby="3" required />
           <label class="hidden" for="lastname">Nom</label>
-          <input id="lastname" type="text" name="lastname" tabindex="1" aria-labelledby="5" required />
+          <input id="lastname" type="text" name="lastname" tabindex="0" aria-labelledby="5" required />
           <label class="hidden" for="email">Email</label>
-          <input id="email" type="text" name="email" tabindex="1" aria-labelledby="7" required />
+          <input id="email" type="text" name="email" tabindex="0" aria-labelledby="7" required />
           <label class="hidden" for="message"> Votre Message</label>
           <textarea id="message" role="text Field" type="text" name="message" rows="12" cols="75" maxlength="150"
-            tabindex="1" aria-labelledby="9" required></textarea>
-
+            tabindex="0" aria-labelledby="9" required></textarea>
+          <button class="contact_button" type="submit" tabindex="0" aria-labelledby="2"
+            aria-label="send">Envoyer</button>
         </fieldset>
-        <button class="contact_button" type="submit" tabindex="2" aria-labelledby="2" aria-label="send">Envoyer</button>
       </form>
 
     </div>
