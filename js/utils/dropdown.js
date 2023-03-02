@@ -64,9 +64,8 @@ selectTrigger.addEventListener("click", toggleOptions);
 // Ajoute un événement pour chaque option pour mettre à jour la valeur du select
 // et l'affichage du texte sélectionné lorsqu'on clique dessus, puis cache les options
 optionsList.forEach((option) => {
-  option.addEventListener("click", onOptionClick(option));
+  option.addEventListener("click", onOptionClick((option)));
 });
-
 /**
  * Sélectionne l'option précédente dans la liste d'options
  */
@@ -102,6 +101,7 @@ function selectCurrentOption() {
     selectText.innerText = currentOption.innerText;
     closeOptions();
   }
+  
 }
 
 /** 
@@ -116,6 +116,7 @@ document.addEventListener("click", function (event) {
     !optionsContainer.contains(event.target)
   ) {
     closeOptions();
+   
   }
 });
 /**
@@ -133,4 +134,5 @@ document.addEventListener("keydown", function (event) {
   } else if (event.key === "Escape") {
     closeOptions();
   }
+ 
 });

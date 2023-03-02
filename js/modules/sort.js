@@ -11,8 +11,6 @@ export default class SortMedias {
    */
   constructor(mediasFromJson) {
     this.mediasFromJson = mediasFromJson;
-    this.list = document.getElementsByClassName("custom-options");
-    console.log(this.list);
     this.mediaObjectsSorted = this.setArticleProperties();
     this.render(this.mediaObjectsSorted);
 
@@ -29,6 +27,14 @@ export default class SortMedias {
         if (event.key === "Enter") {
           event.preventDefault();
           focusedOption.dispatchEvent(new Event("click"));
+
+          //focus sur le bouton qui ouvre la modal si on a choisit une option de tri
+          if (focusedOption) {
+            const focusSort = document.getElementsByClassName(
+              "custom-select-trigger"
+            )[0];
+            focusSort.focus();
+          }
         }
       });
     });
@@ -74,7 +80,6 @@ export default class SortMedias {
     )[0];
 
     const currentValue = selectTrigger.textContent.trim();
-    console.log(currentValue);
 
     if (currentValue === "Popularité") {
       if (userLikes) {
@@ -105,8 +110,7 @@ export default class SortMedias {
   }
   // Mettre à jour l'interface utilisateur avec la nouvelle liste d'objets média triés
   render() {
-    const articleContainer =
-      document.getElementsByClassName("photograph-media")[0];
+    const articleContainer = document.getElementById("photograph-media");
     articleContainer.innerHTML = "";
 
     const mediaObjects = this.mediaObjectsSorted;

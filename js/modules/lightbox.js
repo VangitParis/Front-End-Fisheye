@@ -82,7 +82,7 @@ export default class Lightbox {
    */
   showMedias() {
     const path = this.path;
-    const container = this.lightbox.querySelector(".lightbox-media-container");
+    const container = this.lightbox.getElementsByClassName("lightbox-media-container")[0];
     container.innerHTML = "";
     const video = this.createVideoElement(path);
     const image = this.createImageElement(path);
@@ -95,7 +95,7 @@ export default class Lightbox {
     } else {
       container.innerHTML = `${video}`.replace(
         "<",
-        "<video class=\"lightbox-media\""
+        "<video controls class=\"lightbox-media\""
       );
     }
   }

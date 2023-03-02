@@ -19,7 +19,9 @@ async function getPhotographers() {
  * @param {Array<Object>} photographers - Un tableau contenant les données des photographes.
  */
 async function displayData(photographers) {
-  let photographersSection = document.querySelector(".photographer_section");
+  const photographersSection = document.getElementById("photographer_section");
+  console.log(photographersSection);
+
 
   photographers.forEach((data) => {
     const photographerModel = new PhotographerFactory(data);

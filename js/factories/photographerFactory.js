@@ -41,22 +41,28 @@ export class PhotographerFactory {
    * @returns {HTMLElement} - Le DOM de la section d'en-tête.
    */
   getHeaderUserDOM() {
-    const photographerHeader = `
-    <div class="text-header-info">
-        <h1 class="name_photograph">${this.photographerData.name}</h1>
-        <h2 class="city country text-h2">${this.photographerData.city}, ${this.photographerData.country}</h2>
-        <p class="tagline">${this.photographerData.tagline}</p>
-    </div>
-    <div class="contact-box">
-        <button class="contact_button" onclick="displayModal()" type="button" aria-haspopup="dialog" aria-controls="dialog">Contactez-moi</button>
-    </div>
-    <div class="img-header-box">
-        <img class="photographer-header_img" src="${this.picture}" alt="" >
-    </div>
-
+    const photographerHeaderSection =
+    document.getElementById("photograph-header");
+  
+    const photographerHeaderInfo = `
+        <div class="header-info-container">
+            <div class="text-header-info">
+                <h1 class="name_photograph">${ this.photographerData.name }</h1>
+                <h2 class="city country text-h2">${ this.photographerData.city }, ${ this.photographerData.country }</h2>
+                <p class="tagline">${ this.photographerData.tagline }</p>
+            </div>
+        </div>
+        <div id="contact-box">
+        <button class="contact-open_button" onclick="displayModal()" type="button" aria-haspopup="dialog" aria-controls="dialog">Contactez-moi</button>
+      </div> 
+        <div class="img-header-box">
+            <img class="photographer-header_img" src="${this.picture}" alt="${this.photographerData.name}">
+        </div>
     `;
-    const photographerHeaderDiv = document.querySelector(".photograph-header");
-    photographerHeaderDiv.innerHTML = photographerHeader;
+    
+
+    photographerHeaderSection.innerHTML = photographerHeaderInfo ;
+
   }
 
   /**

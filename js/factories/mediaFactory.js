@@ -26,11 +26,11 @@ export class MediaFactory {
     const path = this.imagePath;
     if (this.photographerMedia.image) {
       return new PictureFactory(media, path).createImageElement();
-    } else {
-      return new VideoFactory(media, path).createVideoElement();
+      } else {
+        return new VideoFactory(media, path).createVideoElement();
+      }
     }
-  }
-
+  
   /**
    *
    * @param {string[]} media
@@ -41,7 +41,7 @@ export class MediaFactory {
     // Ajouter la classe "card_media" à la string "element"
     const elementWithClass = `${element}`.replace(
       "<",
-      `<${mediaElement ? "img" : "video"} class="card_media" `
+      `<${mediaElement ? "img" : "video" } class="card_media" `
     );
 
     const article = `
@@ -52,7 +52,6 @@ export class MediaFactory {
         </a>
         <figcaption>
           <h2 class="card_title">${this.photographerMedia.title}</h2>
-          <p> ${this.photographerMedia.date}</p>
           <div class="figcaption-likes-icon">
             <button class="button-like" aria-label="press the button to like or unlike" aria-pressed="false" tabindex="0">
               <p class="likes">${this.photographerMedia.likes}</p>
@@ -64,7 +63,7 @@ export class MediaFactory {
       </figure>
     </article>`;
 
-    const mediaSection = document.querySelector(".photograph-media");
+    const mediaSection = document.getElementById("photograph-media");
     mediaSection.innerHTML += article;
   }
 

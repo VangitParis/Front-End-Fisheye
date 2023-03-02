@@ -29,14 +29,13 @@ export default class Likes {
         let totalLikes = parseInt(
           document.getElementById("total_likes").innerHTML
         );
-        const mediaId = parseInt(parent.dataset.mediaId); // identifiant unique de l'objet média
+        const mediaId = parseInt(parent.dataset.mediaId);
 
         // Vérifie si l'objet média est déjà dans le tableau likedMedia
         const mediaIndex = this.likedMedia.findIndex((media) => media.id === mediaId);
         if (!liked) {
           // Si l'objet média n'existe pas dans le tableau, on l'ajoute avec le nombre de likes
-          this.likedMedia.push({ likes: 1 });
-         
+          this.likedMedia.push({ id:mediaId, likes: 1 });
           const likedByUser = likes + 1;
           element.innerHTML = likedByUser;
          
