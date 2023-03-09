@@ -18,7 +18,7 @@ export default class Lightbox {
     this.title = url[this.currentIndex].title;
     this.lightbox = this.createLightboxDOM();
     this.onKeyUp = this.onKeyUp.bind(this);
-   
+
     this.init();
     this.showMedias();
   }
@@ -47,18 +47,18 @@ export default class Lightbox {
    */
   open() {
     this.lightbox.style.display = "block";
-     // masquer les éléments du main pour rester focus sur la lightbox
-     const main = document.getElementById("main");
-     main.appendChild(this.lightbox);
-     this.lightbox.addEventListener("keyup", this.onKeyUp);
-     main.classList.add("no-scroll");
-     main.setAttribute("aria-hidden", "true");
-     
+    // masquer les éléments du main pour rester focus sur la lightbox
+    const main = document.getElementById("main");
+    main.appendChild(this.lightbox);
+    this.lightbox.addEventListener("keyup", this.onKeyUp);
+    main.classList.add("no-scroll");
+    main.setAttribute("aria-hidden", "true");
+
     // Fonction qui donne le focus au premier élément de la modal
     const lightboxContent =
       document.getElementsByClassName("lightbox-content")[0];
     lightboxContent.focus();
-    //empêcher de perdre le focus 
+    //empêcher de perdre le focus
     const focusableElements = lightboxContent.querySelectorAll(
       "button, [href], input, select, textarea, [tabindex]:not([tabindex=\"-1\"])"
     );
@@ -84,7 +84,6 @@ export default class Lightbox {
         }
       }
     });
-   
   }
   /**
    * Création de l'élément HTML pour une image
@@ -191,7 +190,7 @@ export default class Lightbox {
       .addEventListener("click", this.next.bind(this));
     return lightbox;
   }
- 
+
   /**
    *
    * @param {MouseEvent/KeyboardEvent} e Ferme la lightbox par l’événement clic ou touche du clavier
@@ -200,7 +199,7 @@ export default class Lightbox {
     e.preventDefault();
     e.stopPropagation();
     this.lightbox.style.display = "none";
-    this.lightbox.ariaHidden= "true";
+    this.lightbox.ariaHidden = "true";
     const main = document.getElementById("main");
     main.removeAttribute("aria-hidden");
     main.classList.remove("no-scroll");
@@ -248,11 +247,11 @@ export default class Lightbox {
     this.createVideoElement.play();
   }
 
-   /**
+  /**
    * Ferme la lightbox et navigue entre les medias au clavier
    * @param {KeyboardEvent} e L'événement clavier qui a été déclenché.
    */
-   onKeyUp(e) {
+  onKeyUp(e) {
     if (e.key === "Escape" || e.key === "Esc") {
       this.close(e);
     } else if (e.key === "ArrowLeft") {

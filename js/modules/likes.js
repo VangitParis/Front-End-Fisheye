@@ -27,7 +27,7 @@ export default class Likes {
         const parent = e.target.closest(".figcaption-likes-icon");
         const element = parent.getElementsByClassName("likes")[0];
         const likes = parseInt(element.innerHTML);
-        
+
         let totalLikes = parseInt(
           document.getElementById("total_likes").innerHTML
         );

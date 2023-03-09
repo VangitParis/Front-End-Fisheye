@@ -30,7 +30,7 @@ export default class SortMedias {
         if (event.key === "Enter") {
           event.preventDefault();
           focusedOption.dispatchEvent(new Event("click"));
-          
+
           //focus sur le bouton qui ouvre la modal si on a choisit une option de tri
           if (focusedOption) {
             focusSort.focus();

@@ -1,4 +1,4 @@
-@import url("./utils.css");
+@import url("../utils/_variables.css");
 
 .section-disabled {
      pointer-events: none;
@@ -496,7 +496,7 @@ border-radius: 5px;
      top: 50%;
      right: 18px;
      transform: translateY(-50%);
-     background-image: url(../assets/icons/Vector.svg);
+     background-image: url(../../assets/icons/Vector.svg);
      pointer-events: none;
      height: 9.880000114440918px;
      width: 16px;
@@ -597,7 +597,7 @@ border-radius: 5px;
      top: 48%;
      right: 8px;
      transform: translateY(-50%) rotate(180deg);
-     background-image: url(../assets/icons/Vector.svg);
+     background-image: url(../../assets/icons/Vector.svg);
      pointer-events: none;
      fill: currentColor;
      height: 9.880000114440918px;

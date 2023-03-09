@@ -4,14 +4,14 @@
 const photographDivSort = document.getElementsByClassName("photograph-sort")[0];
 const newSection = document.createElement("section");
 photographDivSort.replaceWith(newSection);
-    // Copie des attributs de l'élément existant dans le nouvel élément
-    newSection.classList = photographDivSort.classList;
-    newSection.innerHTML = photographDivSort.innerHTML;
+// Copie des attributs de l'élément existant dans le nouvel élément
+newSection.classList = photographDivSort.classList;
+newSection.innerHTML = photographDivSort.innerHTML;
 // /**
 //  * Sélectionne la première instance de la classe "custom-select"
 //  * @type {HTMLElement}
 //  */
-// const select = document.getElementsByClassName("custom-select")[0]; 
+// const select = document.getElementsByClassName("custom-select")[0];
 
 /**
  * Sélectionne l'élément avec la classe "custom-options"
@@ -37,8 +37,9 @@ const selectText = document.getElementById("sort-select-trigger-text"); //text d
  * Sélectionne l'élément avec la classe "custom-select-trigger"
  * @type {HTMLElement}
  */
-const selectTrigger = document.getElementsByClassName("custom-select-trigger")[0]; // button tabindex=0
-
+const selectTrigger = document.getElementsByClassName(
+  "custom-select-trigger"
+)[0]; // button tabindex=0
 
 /**
  * Affiche ou cache les options lorsqu'on clique sur le select
@@ -68,7 +69,7 @@ function onOptionClick(option) {
   };
 }
 
-// Ajoute un événement pour afficher ou cacher les options lorsqu'on clique sur le bouton 
+// Ajoute un événement pour afficher ou cacher les options lorsqu'on clique sur le bouton
 selectTrigger.addEventListener("click", toggleOptions);
 
 // Ajoute un événement pour chaque option pour mettre à jour la valeur du select
@@ -120,45 +121,36 @@ function selectCurrentOption() {
  * @param {MouseEvent} event - L'événement de clic
  */
 document.addEventListener("click", function (event) {
-    if (
-      !selectTrigger.contains(event.target) &&
-      !optionsContainer.contains(event.target)
-    ) {
-      closeOptions();
-      
-    }
-
+  if (
+    !selectTrigger.contains(event.target) &&
+    !optionsContainer.contains(event.target)
+  ) {
+    closeOptions();
+  }
 });
-  /**
- * Cache les options si on appuie sur la touche "Tab" ou la touche "Échap"
+/**
+ * Cache les options si on appuie sur la touche "Tab" ou la touche "Escape"
  * et ajoute le focus sur le bouton qui ouvre la dropdown après sa fermeture
  * @param {KeyboardEvent} event - L'événement de clavier
  */
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape" || event.key === "Esc") {
     closeOptions();
-    
-      
-    }
-  
+  }
 });
 /**
 Ajoute des événements pour les touches du clavier
 */
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "ArrowDown") {
-      event.preventDefault();
-      selectNextOption();
-    } else if (event.key === "ArrowUp") {
-      event.preventDefault();
-      selectPreviousOption();
-    } else if (event.key === "Enter") {
-      selectCurrentOption();
-    }
-    else if (event.key === "Escape" || event.key === "Esc") {
-      closeOptions();
-    
-    }
-  
-  });
-
+document.addEventListener("keydown", function (event) {
+  if (event.key === "ArrowDown") {
+    event.preventDefault();
+    selectNextOption();
+  } else if (event.key === "ArrowUp") {
+    event.preventDefault();
+    selectPreviousOption();
+  } else if (event.key === "Enter") {
+    selectCurrentOption();
+  } else if (event.key === "Escape" || event.key === "Esc") {
+    closeOptions();
+  }
+});

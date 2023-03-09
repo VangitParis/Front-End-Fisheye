@@ -64,7 +64,6 @@ const closeModal = () => {
     openModalButton = document.getElementsByClassName("contact-open_button")[0];
     openModalButton.focus();
   }
-  
 };
 
 /**
