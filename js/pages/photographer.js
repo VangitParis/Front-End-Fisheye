@@ -82,9 +82,9 @@ async function displayPhotographerMedia(photographer, medias) {
 
 //Creation DOM Encart Like et Tarif photographer
 const main = document.getElementById("main");
-const divInsertLikesAndPriceIntoMain = document.createElement("div");
-divInsertLikesAndPriceIntoMain.className = "main_likes-price";
-main.appendChild(divInsertLikesAndPriceIntoMain);
+const asideInsertLikesAndPriceIntoMain = document.createElement("aside");
+asideInsertLikesAndPriceIntoMain.className = "main_likes-price";
+main.appendChild(asideInsertLikesAndPriceIntoMain);
 
 /**
  * Affiche le bloc "Likes" et "Tarif" du photographe
@@ -97,7 +97,7 @@ function displayInsert(data, medias, totalLikes) {
   const photographerModel = new PhotographerFactory(data);
   const insertPrice = photographerModel.getPrice();
 
-  divInsertLikesAndPriceIntoMain.appendChild(insertPrice);
+  asideInsertLikesAndPriceIntoMain.appendChild(insertPrice);
 
   // Bloc "Likes"
   const mediaModel = new MediaFactory(medias);
@@ -109,8 +109,8 @@ function displayInsert(data, medias, totalLikes) {
   iconLike.ariaHidden = "true";
   iconLike.ariaLabel = "likes";
 
-  divInsertLikesAndPriceIntoMain.appendChild(iconLike);
-  divInsertLikesAndPriceIntoMain.appendChild(insertLikes);
+  asideInsertLikesAndPriceIntoMain.appendChild(iconLike);
+  asideInsertLikesAndPriceIntoMain.appendChild(insertLikes);
 }
 
 /**

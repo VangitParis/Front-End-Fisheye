@@ -26,11 +26,11 @@ export class MediaFactory {
     const path = this.imagePath;
     if (this.photographerMedia.image) {
       return new PictureFactory(media, path).createImageElement();
-      } else {
-        return new VideoFactory(media, path).createVideoElement();
-      }
+    } else {
+      return new VideoFactory(media, path).createVideoElement();
     }
-  
+  }
+
   /**
    *
    * @param {string[]} media
@@ -41,19 +41,19 @@ export class MediaFactory {
     // Ajouter la classe "card_media" à la string "element"
     const elementWithClass = `${element}`.replace(
       "<",
-      `<${mediaElement ? "img" : "video" } class="card_media" `
+      `<${mediaElement ? "img" : "video"} class="card_media" `
     );
 
     const article = `
     <article class="card_article" title="${this.photographerMedia.title}">
       <figure>
-        <a href="photographer.html?id=${this.photographerId}#lightbox&amp;lightbox.html?id=${this.id}" aria-label="image closeup view" tabindex="0" role="link">
+        <a href="photographer.html?id=${this.photographerId}#lightbox&amp;lightbox.html?id=${this.id}" aria-label="image closeup view" role="link" class="image-link" tabindex="0">
         ${elementWithClass}
         </a>
         <figcaption>
           <h2 class="card_title">${this.photographerMedia.title}</h2>
           <div class="figcaption-likes-icon">
-            <button class="button-like" aria-label="press the button to like or unlike" aria-pressed="false" tabindex="0">
+            <button class="button-like" aria-labelledby="press the button to like or unlike" aria-pressed="false">
               <p class="likes">${this.photographerMedia.likes}</p>
               <i class="fa fa-heart" aria-hidden="true" aria-label="likes">
               </i>
@@ -64,7 +64,15 @@ export class MediaFactory {
     </article>`;
 
     const mediaSection = document.getElementById("photograph-media");
-    mediaSection.innerHTML += article;
+    const newSection = document.createElement("section");
+
+    // Copie des attributs de l'élément existant dans le nouvel élément
+    newSection.id = mediaSection.id;
+    newSection.innerHTML = mediaSection.innerHTML;
+
+    // Remplacement de l'élément existant par le nouvel élément
+    mediaSection.replaceWith(newSection);
+    newSection.innerHTML += article;
   }
 
   /**

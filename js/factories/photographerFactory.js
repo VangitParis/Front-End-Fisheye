@@ -17,20 +17,21 @@ export class PhotographerFactory {
     this.picture = `assets/photographers/${this.photographerData.portrait}`;
     this.getCardUserDOM();
   }
+
   /**
    * Renvoie le DOM d'un article pour le photographe.
    * @returns {HTMLElement} - Le DOM de l'article.
    */
   getCardUserDOM() {
     const article = document.createElement("article");
-    article.innerHTML = `
-    <a href="photographer.html?id=${this.photographerData.id}" tabindex="0" aria-label="${this.photographerData.name}" role="link">
-      <img src=${this.picture} alt="">
+    article.innerHTML = ` 
+    <a class="image-link profil" href="photographer.html?id=${this.photographerData.id}"aria-label="${this.photographerData.name}" tabindex="0" role="link">
+      <img src=${this.picture} alt="" >
       <h2>${this.photographerData.name}</h2>
     </a >
     <span>${this.photographerData.city}, ${this.photographerData.country}</span>
-    <p>${this.photographerData.tagline}</p>
-    <p>${this.photographerData.price} €/jour </p>
+    <p class="photographer-tagline">${this.photographerData.tagline}</p>
+    <p class="photographer-price">${this.photographerData.price} €/jour </p>
     `;
 
     return article;
@@ -42,27 +43,34 @@ export class PhotographerFactory {
    */
   getHeaderUserDOM() {
     const photographerHeaderSection =
-    document.getElementById("photograph-header");
-  
+      document.getElementById("photograph-header");
+
+    const newSection = document.createElement("section");
+
+    // Copie des attributs de l'élément existant dans le nouvel élément
+    newSection.id = photographerHeaderSection.id;
+    newSection.innerHTML = photographerHeaderSection.innerHTML;
+
+    // Remplacement de l'élément existant par le nouvel élément
+    photographerHeaderSection.replaceWith(newSection);
+
     const photographerHeaderInfo = `
         <div class="header-info-container">
             <div class="text-header-info">
-                <h1 class="name_photograph">${ this.photographerData.name }</h1>
-                <h2 class="city country text-h2">${ this.photographerData.city }, ${ this.photographerData.country }</h2>
-                <p class="tagline">${ this.photographerData.tagline }</p>
+                <h1 class="name_photograph">${this.photographerData.name}</h1>
+                <h2 class="city country text-h2">${this.photographerData.city}, ${this.photographerData.country}</h2>
+                <p class="tagline">${this.photographerData.tagline}</p>
             </div>
         </div>
         <div id="contact-box">
-        <button class="contact-open_button" onclick="displayModal()" type="button" aria-haspopup="dialog" aria-controls="dialog">Contactez-moi</button>
+        <button class="contact-open_button" onclick="displayModal()" aria-describedby="Ouvrir le formulaire de contact" type="button" aria-haspopup="dialog">Contactez-moi</button>
       </div> 
         <div class="img-header-box">
             <img class="photographer-header_img" src="${this.picture}" alt="${this.photographerData.name}">
         </div>
     `;
-    
 
-    photographerHeaderSection.innerHTML = photographerHeaderInfo ;
-
+    newSection.innerHTML = photographerHeaderInfo;
   }
 
   /**

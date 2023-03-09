@@ -20,13 +20,20 @@ async function getPhotographers() {
  */
 async function displayData(photographers) {
   const photographersSection = document.getElementById("photographer_section");
-  console.log(photographersSection);
-
+  const newSection = document.createElement("section");
+  
+  // Copie des attributs de l'élément existant dans le nouvel élément
+  newSection.id = photographersSection.id;
+  newSection.className = photographersSection.className;
+  newSection.innerHTML = photographersSection.innerHTML;
+  
+  // Remplacement de l'élément existant par le nouvel élément
+  photographersSection.replaceWith(newSection);
 
   photographers.forEach((data) => {
     const photographerModel = new PhotographerFactory(data);
     let userCardDOM = photographerModel.getCardUserDOM();
-    photographersSection.appendChild(userCardDOM);
+    newSection.appendChild(userCardDOM);
   });
 }
 /**

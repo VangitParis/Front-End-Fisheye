@@ -15,11 +15,10 @@ export default class Lightbox {
     this.path = pathName;
     this.gallery = url;
     this.id = url[this.currentIndex].id;
+    this.title = url[this.currentIndex].title;
     this.lightbox = this.createLightboxDOM();
     this.onKeyUp = this.onKeyUp.bind(this);
-    const main = document.getElementById("main");
-    main.appendChild(this.lightbox);
-    main.addEventListener("keyup", this.onKeyUp);
+   
     this.init();
     this.showMedias();
   }
@@ -35,20 +34,58 @@ export default class Lightbox {
       elementLink.addEventListener("click", (e) => {
         e.preventDefault();
         this.currentIndex = index;
+        this.id = this.gallery[index].id;
+        this.title = this.gallery[index].title;
         this.showMedias();
-        this.id;
         this.open();
       });
     });
   }
 
   /**
-   * Ouvre la lightbox
+   * Ouvre la lightbox et cache le contenu principal du document pour des raisons d'accessibilité
    */
   open() {
-    this.lightbox.style.display = "flex";
-  }
+    this.lightbox.style.display = "block";
+     // masquer les éléments du main pour rester focus sur la lightbox
+     const main = document.getElementById("main");
+     main.appendChild(this.lightbox);
+     this.lightbox.addEventListener("keyup", this.onKeyUp);
+     main.classList.add("no-scroll");
+     main.setAttribute("aria-hidden", "true");
+     
+    // Fonction qui donne le focus au premier élément de la modal
+    const lightboxContent =
+      document.getElementsByClassName("lightbox-content")[0];
+    lightboxContent.focus();
+    //empêcher de perdre le focus 
+    const focusableElements = lightboxContent.querySelectorAll(
+      "button, [href], input, select, textarea, [tabindex]:not([tabindex=\"-1\"])"
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
 
+    lightboxContent.addEventListener("keydown", function (e) {
+      let isTabPressed = e.key === "Tab" || e.keyCode === 9;
+
+      if (!isTabPressed) {
+        return;
+      }
+
+      if (e.shiftKey) {
+        /* shift + tab */ if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } /* tab */ else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    });
+   
+  }
   /**
    * Création de l'élément HTML pour une image
    * @returns {HTMLImageElement}
@@ -78,11 +115,13 @@ export default class Lightbox {
   }
 
   /**
-   * Affiche les médias dans la lightbox
+   * Affiche les médias dans la lightbox en fonction de l'index courant de la galerie
    */
   showMedias() {
     const path = this.path;
-    const container = this.lightbox.getElementsByClassName("lightbox-media-container")[0];
+    const container = this.lightbox.getElementsByClassName(
+      "lightbox-media-container"
+    )[0];
     container.innerHTML = "";
     const video = this.createVideoElement(path);
     const image = this.createImageElement(path);
@@ -90,40 +129,57 @@ export default class Lightbox {
     if (this.gallery[this.currentIndex].image) {
       container.innerHTML = `${image}`.replace(
         "<",
-        "<img class=\"lightbox-media\""
+        "<img tabindex=\"0\" class=\"lightbox-media\""
       );
     } else {
       container.innerHTML = `${video}`.replace(
         "<",
-        "<video controls class=\"lightbox-media\""
+        "<video controls tabindex=\"0\" class=\"lightbox-media\""
       );
+    }
+    //Affiche le titre du média
+    if (this.gallery[this.currentIndex].title) {
+      const title = document.createElement("h1");
+      title.textContent = this.title;
+      title.className = "lightbox-title";
+      container.appendChild(title);
     }
   }
 
   /**
    * Création du squelette HTML de la lightbox
-   * @returns {HTMLElement} la lightbox
+   * @returns {HTMLElement} élément HTML représentant la lightbox
    */
   createLightboxDOM() {
     const lightbox = document.createElement("div");
     lightbox.id = "lightbox";
     lightbox.innerHTML = `
-        <div class="lightbox-content">
-            <button class="lightbox-close">
-                <img src="assets/icons/close-lightbox.svg"/>
-            </button>
-            <div>
-                <button class="lightbox-next">
-                    <img src="assets/icons/arrow-right.svg"/>
-                </button>
-                <div class="lightbox-media-container"></div>
+    <div class="lightbox-content" tabindex="0" role="dialog" aria-describedby="lightbox-title" aria-modal="true" aria-hidden="false">
+    <h2 id="lightbox-title" class="sr-only">Galerie d'images</h2>
+    <div class="lightbox-header">
+        <button class="lightbox-close" tabindex="0">
+            <img class="icon-img-close" src="assets/icons/close-lightbox.svg" alt="" aria-describedby="image-icon-title"/>
+            <span id="image-icon-title" class="sr-only">Fermer la galerie d'images</span>
+        </button>
+    </div>
+    <div class="lightbox-body">
+        <div class="lightbox-controls">
+            <button class="lightbox-prev" tabindex="0">
+                <img class="icon-img-arrow" src="assets/icons/arrow-left.svg" alt="" />
+                <span id="image-icon-title" class="sr-only">Image précédente</span>
 
-                <button class="lightbox-prev">
-                    <img src="assets/icons/arrow-left.svg"/>
-                </button>
-            </div>
-        </div>   
-        `;
+            </button>
+            <div class="lightbox-media-container"></div>
+            <button class="lightbox-next" tabindex="0" >
+                <img class="icon-img-arrow" src="assets/icons/arrow-right.svg" alt="" />
+                <span id="image-icon-title" class="sr-only">Image suivante</span>
+
+            </button>
+        </div>
+    </div>
+</div>
+`;
+
     lightbox
       .querySelector(".lightbox-close")
       .addEventListener("click", this.close.bind(this));
@@ -135,28 +191,22 @@ export default class Lightbox {
       .addEventListener("click", this.next.bind(this));
     return lightbox;
   }
+ 
   /**
    *
-   * @param {KeyboardEvent} e Ferme la lightbox et navigue entre les images au clavier
-   */
-  onKeyUp(e) {
-    if (e.key === "Escape") {
-      this.close(e);
-    } else if (e.key === "ArrowLeft") {
-      this.prev(e);
-    } else if (e.key === "ArrowRight") {
-      this.next(e);
-    } else if (e.key === "Space") {
-      this.play(e);
-    }
-  }
-  /**
-   *
-   * @param {MouseEvent/KeyboardEvent} e Ferme la lightbox
+   * @param {MouseEvent/KeyboardEvent} e Ferme la lightbox par l’événement clic ou touche du clavier
    */
   close(e) {
     e.preventDefault();
+    e.stopPropagation();
     this.lightbox.style.display = "none";
+    this.lightbox.ariaHidden= "true";
+    const main = document.getElementById("main");
+    main.removeAttribute("aria-hidden");
+    main.classList.remove("no-scroll");
+    const media = document.getElementsByClassName("image-link")[0];
+    media.tabIndex = "0";
+    media.focus();
     document.removeEventListener("keyup", this.onKeyUp);
   }
   /**
@@ -165,23 +215,52 @@ export default class Lightbox {
    */
   next(e) {
     e.preventDefault();
+    e.stopPropagation();
     const gallery = this.gallery;
     this.currentIndex = (this.currentIndex + 1) % gallery.length;
+    this.title = gallery[this.currentIndex].title;
+    this.id = gallery[this.currentIndex].id;
     this.showMedias(this.currentIndex);
   }
+
   /**
    * Reviens au média précédent
    * @param {MouseEvent}e
    */
   prev(e) {
     e.preventDefault();
+    e.stopPropagation();
     const gallery = this.gallery;
     this.currentIndex =
       (this.currentIndex - 1 + gallery.length) % gallery.length;
+    this.title = gallery[this.currentIndex].title;
+    this.id = gallery[this.currentIndex].id;
     this.showMedias(this.currentIndex);
   }
+  /**
+   * Lecture de l'élément vidéo.
+   *
+   * @param {Event} e - L'événement de clic ou de touche qui a déclenché la lecture.
+   * @returns {undefined} ne renvoi rien : met en lecture l'élément video
+   */
   play(e) {
     e.preventDefault();
     this.createVideoElement.play();
+  }
+
+   /**
+   * Ferme la lightbox et navigue entre les medias au clavier
+   * @param {KeyboardEvent} e L'événement clavier qui a été déclenché.
+   */
+   onKeyUp(e) {
+    if (e.key === "Escape" || e.key === "Esc") {
+      this.close(e);
+    } else if (e.key === "ArrowLeft") {
+      this.prev(e);
+    } else if (e.key === "ArrowRight") {
+      this.next(e);
+    } else if (e.key === "Space") {
+      this.play(e);
+    }
   }
 }

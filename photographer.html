@@ -2,36 +2,30 @@
 <html lang="fr">
 
 <head>
-  <link href="./css/style.css" rel="stylesheet" type="text/css" />
-  <link href="./css/photographer.css" rel="stylesheet" type="text/css" />
-
   <meta charset="utf-8">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/864947ab41.js" crossorigin="anonymous"></script>
+  <link href="./css/style.css" rel="stylesheet" type="text/css">
+  <link href="./css/photographer.css" rel="stylesheet" type="text/css">
+
   <title>Fisheye - photographe </title>
 </head>
 
-<body id="body">
+<body tabindex="0">
   <header>
     <a href="index.html" aria-label=" lien vers la page d'accueil" tabindex="0">
       <img src="./assets/images/logo.png" alt="Fisheye Home page" class="logo">
     </a>
   </header>
   <main id="main">
-    <section id="photograph-header"></section>
+    <div id="photograph-header"></div>
     <div class="photograph-sort">
-      <label class="select-label" for="sort-select" id="sort-select-label">Trier par</label>
-      <select name="order by" id="sort-select" class="custom-select" aria-controls="sort-select-trigger-text"
-        aria-haspopup="listbox" aria-labelledby="sort-select-label">
-        <option class="select-option" id="popularitySort" value="popularity">Popularité</option>
-        <option class="select-option" id="dateSort" value="date">Date</option>
-        <option class="select-option" id="titleSort" value="title">Titre</option>
-      </select>
-      <button role="button" aria-haspopup="listbox" aria-expanded="false" class="custom-select-trigger" tabindex="0"
-        id="sort-select-trigger-text" aria-labelledby="sort-select-trigger-text sort-select"
-        aria-activedescendant="selected-option">
+      <label class="select-label" for="sort-select-trigger-text">Trier par</label>
+      <button aria-haspopup="listbox" aria-expanded="false" class="custom-select-trigger" tabindex="0"
+        id="sort-select-trigger-text" aria-labelledby="sort-select-trigger-text">
         Popularité
       </button>
       <ul class="custom-options" role="listbox" aria-labelledby="sort-select-trigger-text">
@@ -41,33 +35,31 @@
         <li class="custom-option" data-value="title" role="option" tabindex="0">Titre</li>
       </ul>
     </div>
-    <section id="photograph-media"></section>
+    <div id="photograph-media"></div>
   </main>
-  
-  <div id="contact_modal" tabindex="0" role="dialog">
-    <div class="modal" aria-hidden="true" aria-describedby="modalTitle">
+  <div id="contact_modal" tabindex="0" role="dialog"  aria-hidden="true" aria-describedby="contact_modal" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
       <header>
-        <h2>Contactez-moi</h2>
+        <h2 id="modal-title">Contactez-moi</h2>
         <button id="modal-close-btn" onclick="closeModal()" tabindex="0">
-          <img src="assets/icons/close.svg" alt="Close Contact form" />
+          <img src="assets/icons/close.svg" alt="Fermer le formulaire de contact">
         </button>
       </header>
-      <form action="#">
+      <form action="#" method="post">
         <fieldset>
-          <label class="hidden" for="firstname">Prénom</label>
-          <input id="firstname" type="text" name="firstname" tabindex="0" aria-labelledby="3" required />
-          <label class="hidden" for="lastname">Nom</label>
-          <input id="lastname" type="text" name="lastname" tabindex="0" aria-labelledby="5" required />
-          <label class="hidden" for="email">Email</label>
-          <input id="email" type="text" name="email" tabindex="0" aria-labelledby="7" required />
-          <label class="hidden" for="message"> Votre Message</label>
-          <textarea id="message" role="text Field" type="text" name="message" rows="12" cols="75" maxlength="150"
-            tabindex="0" aria-labelledby="9" required></textarea>
-          <button id="contact-submit_button" type="submit" tabindex="0" aria-labelledby="2"
-            aria-label="send">Envoyer</button>
+          <label for="firstname">Prénom </label>
+          <input id="firstname" type="text" name="firstname" tabindex="0" aria-describedby="firstname" required>
+          <label for="lastname">Nom </label>
+          <input id="lastname" type="text" name="lastname" tabindex="0" aria-describedby="lastname" required>
+          <label for="email">E-mail </label>
+          <input id="email" type="text" name="email" tabindex="0" aria-describedby="email" required>
+          <label for="message">Votre message </label>
+          <textarea id="message" name="message" rows="12" cols="75" maxlength="150" tabindex="0"
+            aria-describedby="message" required></textarea>
+          <button id="contact-submit_button" type="submit" tabindex="0" aria-labelledby="contact-submit_button"
+            aria-label="Envoyer">Envoyer</button>
         </fieldset>
       </form>
-
     </div>
   </div>
 
@@ -76,7 +68,7 @@
 
   <!-- Factories -->
   <script type="module" src="./js/factories/mediaFactory.js"></script>
-  <script type="module " src="./js/factories/photographerFactory.js"></script>
+  <script type="module" src="./js/factories/photographerFactory.js"></script>
 
   <!--Utils-->
   <script src="./js/utils/contactForm.js"></script>
