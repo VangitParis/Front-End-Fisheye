@@ -8,13 +8,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/864947ab41.js" crossorigin="anonymous"></script>
-  <link href="./css/pages/style.css" rel="stylesheet" type="text/css">
+  <link href="./css/app.css" rel="stylesheet" type="text/css">
   <link href="./css/pages/photographer.css" rel="stylesheet" type="text/css">
 
   <title>Fisheye - photographe </title>
 </head>
 
-<body tabindex="0">
+<body>
   <header>
     <a href="index.html" aria-label=" lien vers la page d'accueil" tabindex="0">
       <img src="./assets/images/logo.png" alt="Fisheye Home page" class="logo">
@@ -23,11 +23,16 @@
   <main id="main">
     <div id="photograph-header"></div>
     <div class="photograph-sort">
-      <label class="select-label" for="sort-select-trigger-text">Trier par</label>
-      <button aria-haspopup="listbox" aria-expanded="false" class="custom-select-trigger" tabindex="0"
+      <label class="select-label" for="sort-select">Trier par</label>
+      <select id="sort-select" class="custom-select" aria-label="Trier par">
+        <option value="popularity">Popularité</option>
+        <option value="date">Date</option>
+        <option value="title">Titre</option>
+      </select>
+      <span role="button" aria-haspopup="listbox" aria-expanded="false" class="custom-select-trigger" tabindex="0"
         id="sort-select-trigger-text" aria-labelledby="sort-select-trigger-text">
         Popularité
-      </button>
+      </span>
       <ul class="custom-options" role="listbox" aria-labelledby="sort-select-trigger-text">
         <li class="custom-option arrow" data-value="popularity" role="option" aria-selected="true" tabindex="0"
           id="selected-option">Popularité</li>
@@ -41,7 +46,7 @@
     aria-modal="true" aria-labelledby="modal-title">
     <div class="modal">
       <header>
-        <h2 id="modal-title">Contactez-moi</h2>
+        <h1 id="modal-title">Contactez-moi</h1>
         <button id="modal-close-btn" onclick="closeModal()" tabindex="0">
           <img src="assets/icons/close.svg" alt="Fermer le formulaire de contact">
         </button>

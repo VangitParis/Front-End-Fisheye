@@ -25,7 +25,7 @@ export class PhotographerFactory {
   getCardUserDOM() {
     const article = document.createElement("article");
     article.innerHTML = ` 
-    <a class="image-link profil" href="photographer.html?id=${this.photographerData.id}"aria-label="${this.photographerData.name}" tabindex="0" role="link">
+    <a class="image-link profil" href="photographer.html?id=${this.photographerData.id}"aria-label="${this.photographerData.name}" role="link" tabindex="0">
       <img src=${this.picture} alt="" >
       <h2>${this.photographerData.name}</h2>
     </a >

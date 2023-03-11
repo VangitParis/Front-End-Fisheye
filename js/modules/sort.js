@@ -14,41 +14,14 @@ export default class SortMedias {
     // this.createListboxesSort();
     this.mediaObjectsSorted = this.setArticleProperties();
     this.render(this.mediaObjectsSorted);
-
     const customOptions = Array.from(
       document.getElementsByClassName("custom-option")
     );
     customOptions.forEach((option) =>
       option.addEventListener("click", () => this.updateMediaList())
     );
-    const focusSort = document.getElementsByClassName(
-      "custom-select-trigger"
-    )[0];
-    // Ajoute l'écouteur d'événements pour gérer le tri des options au clavier
-    customOptions.forEach((focusedOption) => {
-      focusedOption.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          focusedOption.dispatchEvent(new Event("click"));
-
-          //focus sur le bouton qui ouvre la modal si on a choisit une option de tri
-          if (focusedOption) {
-            focusSort.focus();
-          }
-        }
-      });
-    });
-    // Ajoute l'event au clavier si une option n'est pas choisi et que esc est touchée
-    customOptions.forEach((noFocusedOption) => {
-      noFocusedOption.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" || event.key === "Esc") {
-          event.preventDefault();
-          console.log("no option focus");
-          focusSort.focus();
-        }
-      });
-    });
   }
+
   /**
    * Initialise la propriété `likes` de chaque objet média à 0.
    *

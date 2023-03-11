@@ -1,0 +1,60 @@
+@import url("../css/utils/_variables.css");
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+}
+
+
+header a {
+    position: relative;
+    left: 7%;
+
+}
+a .logo {
+    height: 50px;
+    margin-left: 0%;
+}
+
+
+a .logo:hover, a .logo:focus {
+    outline: 2px solid var(--background-color-hover-focus);
+    border-radius: 5px;
+}
+
+h1 {
+    color: #901C1C;
+    margin-right: 95px;
+    font-weight: 500;
+}
+
+button {
+    font-family: var(--font-family);
+}
+/* Petits écrans pc  */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    a .logo {
+        height: 45px;
+    }
+}
+
+/* Grands écrans pc */
+@media (min-width:2560px) and (max-width: 3200px) {
+    header {
+        height: 150px;
+    }
+
+    a .logo {
+        height: 80px;
+    }
+
+    h1 {
+        font-size: 3.5em;
+    }
+}

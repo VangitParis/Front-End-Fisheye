@@ -7,11 +7,6 @@ photographDivSort.replaceWith(newSection);
 // Copie des attributs de l'élément existant dans le nouvel élément
 newSection.classList = photographDivSort.classList;
 newSection.innerHTML = photographDivSort.innerHTML;
-// /**
-//  * Sélectionne la première instance de la classe "custom-select"
-//  * @type {HTMLElement}
-//  */
-// const select = document.getElementsByClassName("custom-select")[0];
 
 /**
  * Sélectionne l'élément avec la classe "custom-options"
@@ -39,13 +34,14 @@ const selectText = document.getElementById("sort-select-trigger-text"); //text d
  */
 const selectTrigger = document.getElementsByClassName(
   "custom-select-trigger"
-)[0]; // button tabindex=0
+)[0]; // span tabindex=0
 
 /**
  * Affiche ou cache les options lorsqu'on clique sur le select
  */
 function toggleOptions() {
   optionsContainer.classList.toggle("opened"); // ul
+  
 }
 
 /**
@@ -71,7 +67,12 @@ function onOptionClick(option) {
 
 // Ajoute un événement pour afficher ou cacher les options lorsqu'on clique sur le bouton
 selectTrigger.addEventListener("click", toggleOptions);
-
+//Ajoute un événement au clavier pour ouvrir la dropdown 
+selectTrigger.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      toggleOptions();
+    }
+  });
 // Ajoute un événement pour chaque option pour mettre à jour la valeur du select
 // et l'affichage du texte sélectionné lorsqu'on clique dessus, puis cache les options
 optionsList.forEach((option) => {
@@ -82,6 +83,7 @@ optionsList.forEach((option) => {
  */
 function selectPreviousOption() {
   const currentOption = optionsContainer.querySelector(":focus");
+ 
   const currentOptionIndex = optionsList.indexOf(currentOption);
   const previousOption = optionsList[currentOptionIndex - 1];
   if (previousOption) {
@@ -101,20 +103,25 @@ function selectNextOption() {
   }
 }
 
-/**
-Cache les options et met à jour la valeur du select et l'affichage
-du texte sélectionné avec l'option actuellement sélectionnée
-*/
-function selectCurrentOption() {
-  const currentOption = optionsContainer.querySelector(":focus");
-  if (currentOption) {
-    selectText.value = currentOption.dataset.value;
-    selectText.innerText = currentOption.innerText;
-    closeOptions();
-  }
-}
-
 /** 
+* Ajoute l'écouteur d'événements pour gérer le tri des options au clavier et mettre 
+* le focus sur l'option sélectionnée à la place du texte initial
+*/
+optionsList.forEach((focusedOption) => {
+  focusedOption.addEventListener("keydown", (event) => {
+    //focus sur le bouton qui ouvre la modal si on a choisit une option de tri
+    if (event.key === "Enter") {
+      event.preventDefault();
+      focusedOption.dispatchEvent(new Event("click"));
+      selectTrigger.focus();
+    }
+    // Ajoute l'event au clavier si une option n'est pas choisie et que esc est touchée
+    else if (event.key === "Escape" || event.key === "Esc") {
+      event.preventDefault();
+      selectTrigger.focus();
+    }
+  });
+});
 
 /**
  * Cache les options si on clique en dehors du select et de ses options
@@ -134,12 +141,14 @@ document.addEventListener("click", function (event) {
  * @param {KeyboardEvent} event - L'événement de clavier
  */
 document.addEventListener("keydown", function (event) {
+
   if (event.key === "Escape" || event.key === "Esc") {
     closeOptions();
   }
 });
+
 /**
-Ajoute des événements pour les touches du clavier
+Ajoute des événements pour les touches du clavier au sein de la dropdown ouverte
 */
 document.addEventListener("keydown", function (event) {
   if (event.key === "ArrowDown") {
@@ -148,8 +157,6 @@ document.addEventListener("keydown", function (event) {
   } else if (event.key === "ArrowUp") {
     event.preventDefault();
     selectPreviousOption();
-  } else if (event.key === "Enter") {
-    selectCurrentOption();
   } else if (event.key === "Escape" || event.key === "Esc") {
     closeOptions();
   }

@@ -18,6 +18,7 @@ const displayModal = () => {
   modalId.style.background = "rgba(0,0,0,0.4)";
   modalId.style.backgroundSize = "cover";
   body.classList.add("no-scroll");
+  body.style.position = "relative";
   modal.style.display = "flex";
   const focusableElements = modal.querySelectorAll(
     "button, [href], input, select, textarea, [tabindex]:not([tabindex=\"-1\"])"
@@ -55,6 +56,7 @@ const closeModal = () => {
   modalId.style.display = "none";
   main.removeAttribute("aria-hidden");
   body.classList.remove("no-scroll");
+  body.style.position = "static";
   modal.setAttribute("aria-hidden", "true");
   modal.style.display = "none";
   document.removeEventListener("keyup", onKeyUp);
@@ -67,8 +69,8 @@ const closeModal = () => {
 };
 
 /**
- *
- * @param {KeyboardEvent}  Ferme la fenêtre modale avec la touche esc
+ * Ferme la fenêtre modale si la touche "esc" est enfoncée.
+ * @param {KeyboardEvent} event
  */
 const onKeyUp = (event) => {
   if (event.key === "Escape" || event.key === "Esc") {

@@ -4,7 +4,9 @@
      pointer-events: none;
      opacity: 0.5;
  }
-
+select{
+    display: none;
+}
  /* style page photographer main-header */
  #photograph-header {
 
@@ -69,7 +71,7 @@
  }
 
  .card_article:focus {
-     outline: none;
+     /* outline: none; */
      border: 2px solid var(--background-color-hover-focus);
  }
 
@@ -88,9 +90,8 @@
  }
 
 
- .card_media:focus {
-     outline: none;
-     border: 2px solid var(--background-color-secondary);
+ .image-link:focus {
+      outline:  2px solid var(--background-color-secondary);
  }
 
  figcaption {
@@ -223,7 +224,7 @@ border-radius: 5px;
 
  .modal {
      position: absolute;
-     top: 10%;
+     top: 5%;
      left: 0;
      right: 0;
      border-radius: 5px;
@@ -236,28 +237,29 @@ border-radius: 5px;
      padding: 35px;
      margin: auto;
      height: 900px;
-     width: 669px;
+     width: 630px;
      overflow-y: scroll;
  }
 
  .modal header {
      justify-content: space-between;
      width: 100%;
+     position: relative;
+     top: -2%;
  }
 
- .modal header h1 {
+ #modal-title {
      color: var(--color-text-modal);
+     font-size: 4em;
+     font-weight: normal;
+     text-align: left;
+     margin: 0;
  }
 
  .modal header img {
      cursor: pointer;
  }
 
- .modal header h2 {
-     font-size: 64px;
-     font-weight: normal;
-     text-align: center;
- }
 
  #modal-close-btn {
      border: none;
@@ -278,15 +280,15 @@ border-radius: 5px;
 
  form legend {
      color: #000000;
-     font-size: 64px;
+     font-size: 4em;
      position: relative;
-     top: 0;
+     top: -5%;
      bottom: 0;
  }
 
  form label {
      color: var(--color-text-modal);
-     font-size: 36px;
+     font-size: 2em;
  }
 
  form input {
@@ -304,6 +306,7 @@ border-radius: 5px;
  }
 
  textarea {
+    margin-bottom: 5%;
      border-radius: 5px;
      resize: none;
      border: transparent;
@@ -312,7 +315,7 @@ border-radius: 5px;
 
  form input {
      width: 100%;
-     height: 68px;
+     height: 58px;
      border: none;
      border-radius: 5px;
  }
@@ -337,6 +340,7 @@ border-radius: 5px;
      width: 20%;
      text-align: right;
      margin-right: -60px;
+     line-height: 1.5;
 
  }
 
@@ -612,8 +616,50 @@ border-radius: 5px;
 
 
  /*MEDIA QUERIES*/
+
+  /* Grands écrans pc */
+ @media screen and (min-width:2560px) and (max-width: 3200px) {
+
+    /* photographer header */
+    #photograph-header {
+        margin: 0 180px;
+        height: 590px;
+    }
+    .photographer-header_img{
+       width: 350px;
+       height: 350px;
+    }
+    /* Sort */
+      .photograph-sort label{
+       font-size: 1.5em;
+       }
+    /* Section Medias */
+    #photograph-media{
+       gap: 160px;
+    }
+    .card_media {
+        height: 580px;
+        width: 630px;
+    }
+
+    /* lightbox */
+    .lightbox-media {
+        height: 1450px;
+    }
+
+    .lightbox-title {
+        font-size: 3em;
+    }
+
+    .image-link {
+        width: 50px;
+    }
+
+
+}
+
  /* Petits écrans pc  */
- @media (min-width: 1024px) and (max-width: 1439px) {
+ @media screen and (min-width: 1024px) and (max-width: 1439px) {
 
      /* Section header photograph*/
      #photograph-header {
@@ -764,8 +810,8 @@ border-radius: 5px;
          top: -1%;
      }
 
-     .modal header h2 {
-         font-size: 40px;
+     #modal-title {
+        font-size: 2em;
 
      }
 
@@ -775,7 +821,7 @@ border-radius: 5px;
      }
 
      .modal header img {
-         width: 30px;
+         width: 23px;
      }
 
      .name-photograph-form {
@@ -849,158 +895,117 @@ border-radius: 5px;
      }
  }
 
- /* Grands écrans pc */
- @media (min-width:2560px) and (max-width: 3200px) {
+/* Mobiles écrans */
+@media screen and (min-width:320px) and (max-width:720px) {
+    #photograph-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 3% 7%;
+    }
 
-     /* photographer header */
-     #photograph-header {
-         margin: 0 180px;
-         height: 590px;
-     }
-     .photographer-header_img{
-        width: 350px;
-        height: 350px;
-     }
-     /* Sort */
-       .photograph-sort label{
+    #photographer-header_img {
+        height: 150px;
+        width: 150px;
+    }
+
+    .text-header-info {
+        margin-left: 0;
+        margin-top: 30px;
+    }
+
+    #photograph-media {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        margin: 30px;
+    }
+}
+ /* Tablette */
+ @media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    /* Section header */
+    #photograph-header {
+        grid-template-columns: 1fr 1fr 1fr;
+        height: auto;
+        padding: 30px;
+        margin: 0 60px;
+    }
+
+    #photographer-header_img {
+        height: 250px;
+        width: 250px;
+    }
+
+    .text-header-info {
+        margin-left: 0;
+        margin-top: 30px;
+    }
+
+    .name_photograph {
+        font-size: 3em;
+    }
+
+    .tagline {
+        font-size: 0.8em;
+    }
+
+    /* Section sort */
+    .custom-select-trigger {
+        left: 10%;
+    }
+
+    .custom-options.opened {
+        left: 10%;
+    }
+
+    /* Section Médias */
+    #photograph-media {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        margin: 10px 70px;
+        width: 90%;
+    }
+
+    .card_media {
+        height: 290px;
+        width: 340px;
+    }
+
+    /* Modal & Form */
+    .modal {
+        width: 45%;
+        height: 690px;
+        overflow: hidden;
+    }
+
+    #modal title,
+    form legend {
+        font-size: 2.3em;
+        top: 0;
+    }
+
+    .modal header img {
+        width: 24px;
+    }
+
+    form label {
         font-size: 1.5em;
-        }
-     /* Section Medias */
-     #photograph-media{
-        gap: 160px;
-     }
-     .card_media {
-         height: 580px;
-         width: 630px;
-     }
+        margin-top: 3%;
+    }
 
-     /* lightbox */
-     .lightbox-media {
-         height: 1450px;
-     }
+    form input {
+        height: 50px;
+    }
 
-     .lightbox-title {
-         font-size: 3em;
-     }
+    textarea {
+        margin-bottom: 7%;
+        height: 100px;
+    }
 
-     .image-link {
-         width: 50px;
-     }
-
-
- }
-
- /* Mobiles écrans */
- @media (min-width: 250px) and (max-width: 767px) {
-     #photograph-header {
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-         margin: 3% 7%;
-     }
-
-     #photographer-header_img {
-         height: 150px;
-         width: 150px;
-     }
-
-     .text-header-info {
-         margin-left: 0;
-         margin-top: 30px;
-     }
-
-     #photograph-media {
-         grid-template-columns: 1fr;
-         gap: 60px;
-         margin: 30px;
-     }
- }
-
- /* Tablette  */
- @media (min-width: 768px) and (max-width: 1023px) {
-
-     /* Section header */
-     #photograph-header {
-         grid-template-columns: 1fr 1fr 1fr;
-         height: auto;
-         padding: 30px;
-         margin: 0 60px;
-     }
-
-     #photographer-header_img {
-         height: 250px;
-         width: 250px;
-     }
-
-     .text-header-info {
-         margin-left: 0;
-         margin-top: 30px;
-     }
-
-     .name_photograph {
-         font-size: 3em;
-     }
-
-     .tagline {
-         font-size: 0.8em;
-     }
-
-     /* Section sort */
-     .custom-select-trigger {
-         left: 10%;
-     }
-
-     .custom-options.opened {
-         left: 10%;
-     }
-
-     /* Section Médias */
-     #photograph-media {
-         grid-template-columns: 1fr 1fr;
-         gap: 50px;
-         margin: 10px 70px;
-         width: 90%;
-     }
-
-     .card_media {
-         height: 290px;
-         width: 340px;
-     }
-
-     /* Modal & Form */
-     .modal {
-         width: 45%;
-         height: 690px;
-         overflow: hidden;
-     }
-
-     .modal header h2,
-     form legend {
-         font-size: 2.3em;
-         top: 0;
-     }
-
-     .modal header img {
-         width: 24px;
-     }
-
-     form label {
-         font-size: 1.5em;
-         margin-top: 3%;
-     }
-
-     form input {
-         height: 50px;
-     }
-
-     textarea {
-         margin-bottom: 7%;
-         height: 100px;
-     }
-
-     #contact-submit_button {
-         width: 145px;
-         height: 55px;
-     }
- }
+    #contact-submit_button {
+        width: 145px;
+        height: 55px;
+    }
+}
+ 
