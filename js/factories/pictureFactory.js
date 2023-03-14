@@ -20,7 +20,7 @@ export class PictureFactory {
    * @returns {HTMLImageElement} image
    */
   createImageElement() {
-    const image = `<src="${this.image.src}" aria-label="${this.image.title}"
+    const image = `<img src="${this.image.src}" aria-label="${this.image.title}"
     alt="${this.image.title}">`;
     return image;
   }

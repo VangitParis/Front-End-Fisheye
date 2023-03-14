@@ -85,6 +85,13 @@ const onKeyUp = (event) => {
       }
     });
   });
+  //Fermer la modal si on est sur envoyer 
+  submitForm.addEventListener("keyup", (event) => {
+    if (event.key === "Escape" || event.key === "Esc") {
+      // Fermer la modale
+      closeModal();
+    }
+  });
 };
 // Écoute les événements pour ouvrir et fermer la fenêtre modale de contact.
 submitForm.addEventListener("click", displayModal);
@@ -92,7 +99,8 @@ modalCloseBtn.addEventListener("click", closeModal);
 modalCloseBtn.addEventListener("keyup", onKeyUp);
 
 // Afficher le contenu des trois champs dans les logs de la console
-const form = document.querySelector("form");
+const form = document.getElementsByTagName("form")[0];
+form.setAttribute("autocomplete", "off");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -104,6 +112,25 @@ form.addEventListener("submit", (event) => {
   console.log(`Nom : ${lastname}`);
   console.log(`Email : ${email}`);
 
-  form.reset();
-  closeModal();
+  // Vérifie champ email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailError = document.getElementById("email-error");
+  emailError.style.display = "none";
+ 
+  function isValidEmail(emailInput) {
+    if (emailInput) {
+      return emailRegex.test(emailInput);
+    }
+  }
+
+  if (isValidEmail(email)) {
+    console.log("Email valide : " + email);
+    form.reset();
+    closeModal();
+  } else {
+    console.error("Email invalide : " + email);
+    emailError.style.display = "block";
+    emailError.textContent = "Veuillez saisir une adresse email valide.";
+  }
+ 
 });

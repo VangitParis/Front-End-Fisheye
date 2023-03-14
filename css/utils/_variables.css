@@ -9,11 +9,12 @@
     --background-color-hover-focus: #DB8876;
     --background-color-secondary: #DB8876;
     --color-text-hover-focus: #000000;
-    --color-text: #FFFFFF;
+    --color-text-white: #FFFFFF;
+    --color-text-black-form: #000000;
     --background-color-light: #FAFAFA;
     --color-primary: #901C1C;
     --color-secondary: #D3573C;
-    --color-text-modal: #312E2E;
+    --color-text-modal-label: #312E2E;
     --color-tagline: #525252;
     --color-price: #757575;
     --font-family: "DM Sans", sans-serif;

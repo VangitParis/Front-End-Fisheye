@@ -1,4 +1,5 @@
 @import url("../css/utils/_variables.css");
+
 header {
     display: flex;
     flex-direction: row;
@@ -13,15 +14,16 @@ header a {
     left: 7%;
 
 }
-a .logo {
-    height: 50px;
-    margin-left: 0%;
-}
 
-
-a .logo:hover, a .logo:focus {
+a:focus {
     outline: 2px solid var(--background-color-hover-focus);
     border-radius: 5px;
+}
+
+a img.logo {
+    height: 50px;
+    width: 100%;
+    margin-left: 0%;
 }
 
 h1 {
@@ -33,13 +35,44 @@ h1 {
 button {
     font-family: var(--font-family);
 }
+
+.error {
+    color: var(--color-text-white);
+    font-size: 0.8em;
+    margin-top: 0.2em;
+}
+/* Mobiles */
+@media screen and (min-width: 320px) and (max-width : 767px) {
+    a img.logo{
+        height: 30px;
+    }
+    h1{
+        font-size: 1.1em;
+        margin-right: 6%;
+    }
+}
+/* Tablette */
+@media screen and (min-width:768px) and (max-width:1023px) {
+    header a {
+        left: 8%;
+    }
+
+    a img.logo {
+        height: 40px;
+    }
+
+    .error {
+        font-size: 0.6em;
+    }
+}
+
 /* Petits écrans pc  */
 @media (min-width: 1024px) and (max-width: 1439px) {
     h1 {
         font-size: 1.5em;
     }
 
-    a .logo {
+    a img.logo {
         height: 45px;
     }
 }
@@ -50,7 +83,11 @@ button {
         height: 150px;
     }
 
-    a .logo {
+    a:focus {
+        outline: 3px solid var(--background-color-hover-focus);
+    }
+
+    a img.logo {
         height: 80px;
     }
 

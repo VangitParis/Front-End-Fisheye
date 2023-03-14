@@ -41,7 +41,6 @@ const selectTrigger = document.getElementsByClassName(
  */
 function toggleOptions() {
   optionsContainer.classList.toggle("opened"); // ul
-  
 }
 
 /**
@@ -67,12 +66,12 @@ function onOptionClick(option) {
 
 // Ajoute un événement pour afficher ou cacher les options lorsqu'on clique sur le bouton
 selectTrigger.addEventListener("click", toggleOptions);
-//Ajoute un événement au clavier pour ouvrir la dropdown 
+//Ajoute un événement au clavier pour ouvrir la dropdown
 selectTrigger.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      toggleOptions();
-    }
-  });
+  if (e.key === "Enter") {
+    toggleOptions();
+  }
+});
 // Ajoute un événement pour chaque option pour mettre à jour la valeur du select
 // et l'affichage du texte sélectionné lorsqu'on clique dessus, puis cache les options
 optionsList.forEach((option) => {
@@ -83,7 +82,6 @@ optionsList.forEach((option) => {
  */
 function selectPreviousOption() {
   const currentOption = optionsContainer.querySelector(":focus");
- 
   const currentOptionIndex = optionsList.indexOf(currentOption);
   const previousOption = optionsList[currentOptionIndex - 1];
   if (previousOption) {
@@ -103,10 +101,10 @@ function selectNextOption() {
   }
 }
 
-/** 
-* Ajoute l'écouteur d'événements pour gérer le tri des options au clavier et mettre 
-* le focus sur l'option sélectionnée à la place du texte initial
-*/
+/**
+ * Ajoute l'écouteur d'événements pour gérer le tri des options au clavier et mettre
+ * le focus sur l'option sélectionnée à la place du texte initial
+ */
 optionsList.forEach((focusedOption) => {
   focusedOption.addEventListener("keydown", (event) => {
     //focus sur le bouton qui ouvre la modal si on a choisit une option de tri
@@ -141,7 +139,6 @@ document.addEventListener("click", function (event) {
  * @param {KeyboardEvent} event - L'événement de clavier
  */
 document.addEventListener("keydown", function (event) {
-
   if (event.key === "Escape" || event.key === "Esc") {
     closeOptions();
   }

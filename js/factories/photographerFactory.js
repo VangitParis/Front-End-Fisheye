@@ -63,7 +63,8 @@ export class PhotographerFactory {
             </div>
         </div>
         <div id="contact-box">
-        <button class="contact-open_button" onclick="displayModal()" aria-describedby="Ouvrir le formulaire de contact" type="button" aria-haspopup="dialog">Contactez-moi</button>
+        <button class="contact-open_button" onclick="displayModal()" aria-labelledby="contact-title" type="button" aria-haspopup="dialog" tabindex="0">Contactez-moi</button>
+        <span id="contact-title" class="sr-only">Ouvrir le formulaire de contact</span>
       </div> 
         <div class="img-header-box">
             <img class="photographer-header_img" src="${this.picture}" alt="${this.photographerData.name}">

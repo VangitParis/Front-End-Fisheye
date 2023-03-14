@@ -24,6 +24,7 @@ export class MediaFactory {
    */
   createImage(media) {
     const path = this.imagePath;
+
     if (this.photographerMedia.image) {
       return new PictureFactory(media, path).createImageElement();
     } else {
@@ -47,13 +48,13 @@ export class MediaFactory {
     const article = `
     <article class="card_article" title="${this.photographerMedia.title}">
       <figure>
-        <a href="photographer.html?id=${this.photographerId}#lightbox&amp;lightbox.html?id=${this.id}" aria-label="image closeup view" role="link" class="image-link" tabindex="0" >
+        <a href="photographer.html?id=${this.photographerId}&amp;lightbox.html?id=${this.id}" aria-label="image closeup view" role="link" class="image-link" tabindex="0" >
         ${elementWithClass}
         </a>
         <figcaption>
           <h2 class="card_title">${this.photographerMedia.title}</h2>
           <div class="figcaption-likes-icon">
-            <button class="button-like" aria-labelledby="press the button to like or unlike" aria-pressed="false">
+            <button class="button-like" aria-label="Likez cette image ou video" aria-pressed="false">
               <p class="likes">${this.photographerMedia.likes}</p>
               <i class="fa fa-heart" aria-hidden="true" aria-label="likes">
               </i>
@@ -80,7 +81,7 @@ export class MediaFactory {
    * @returns {HTMLParagraphElement} le total des likes dans l'encart en bas de page
    */
   createTotalLikesElement() {
-    const insertTotalLikes = document.createElement("p");
+    const insertTotalLikes = document.createElement("h3");
     insertTotalLikes.id = "total_likes";
 
     return insertTotalLikes;

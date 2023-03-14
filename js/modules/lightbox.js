@@ -15,12 +15,12 @@ export default class Lightbox {
     this.path = pathName;
     this.gallery = url;
     this.id = url[this.currentIndex].id;
+    this.photographerId = url[this.currentIndex].photographerId;
     this.title = url[this.currentIndex].title;
+    this.currentLink = null;
     this.lightbox = this.createLightboxDOM();
     this.onKeyUp = this.onKeyUp.bind(this);
-
     this.init();
-    this.showMedias();
   }
 
   /**
@@ -30,12 +30,24 @@ export default class Lightbox {
     const linksOfGallery = Array.from(
       document.querySelectorAll("figure > a[href]")
     );
+    // récupérer l'identifiant du media de la lightbox à partir de l'URL actuelle
+    const urlParams = new URLSearchParams(window.location.search);
+    const lightboxImageId = urlParams.get("lightbox.html?id");
+    // si un identifiant d'image est présent dans l'URL, supprimer les paramètres de requête pour la lightbox quand on rafraîchit la page
+    if (lightboxImageId !== null) {
+      const originalUrl = "photographer.html?id=" + this.photographerId;
+      window.history.replaceState(null, null, originalUrl);
+    }
+
     linksOfGallery.forEach((elementLink, index) => {
       elementLink.addEventListener("click", (e) => {
         e.preventDefault();
         this.currentIndex = index;
         this.id = this.gallery[index].id;
         this.title = this.gallery[index].title;
+        this.photographerId = this.gallery[index].photographerId;
+        this.currentLink = elementLink;
+        window.history.replaceState(null, null, this.currentLink);
         this.showMedias();
         this.open();
       });
@@ -52,15 +64,14 @@ export default class Lightbox {
     main.appendChild(this.lightbox);
     this.lightbox.addEventListener("keyup", this.onKeyUp);
     main.classList.add("no-scroll");
-    main.setAttribute("aria-hidden", "true");
-
+    main.setAttribute("aria-hidden", "false");
     // Fonction qui donne le focus au premier élément de la modal
     const lightboxContent =
       document.getElementsByClassName("lightbox-content")[0];
     lightboxContent.focus();
     //empêcher de perdre le focus
     const focusableElements = lightboxContent.querySelectorAll(
-      "button, [href], input, select, textarea, [tabindex]:not([tabindex=\"-1\"])"
+      "button, a[href], input, select, textarea [tabindex]:not([tabindex=\"-1\"])"
     );
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
@@ -153,26 +164,24 @@ export default class Lightbox {
     const lightbox = document.createElement("div");
     lightbox.id = "lightbox";
     lightbox.innerHTML = `
-    <div class="lightbox-content" tabindex="0" role="dialog" aria-describedby="lightbox-title" aria-modal="true" aria-hidden="false">
+    <div class="lightbox-content" tabindex="0" role="dialog" aria-labelledby="lightbox-title" aria-modal="true" aria-hidden="false">
     <h2 id="lightbox-title" class="sr-only">Galerie d'images</h2>
     <div class="lightbox-header">
-        <button class="lightbox-close" tabindex="0">
-            <img class="icon-img-close" src="assets/icons/close-lightbox.svg" alt="" aria-describedby="image-icon-title"/>
+        <button class="lightbox-close" tabindex="0" aria-labelledby="image-icon-title">
+            <img class="icon-img-close" src="../../assets/icons/close-lightbox.svg" alt="">
             <span id="image-icon-title" class="sr-only">Fermer la galerie d'images</span>
         </button>
     </div>
     <div class="lightbox-body">
         <div class="lightbox-controls">
-            <button class="lightbox-prev" tabindex="0">
-                <img class="icon-img-arrow" src="assets/icons/arrow-left.svg" alt="" />
-                <span id="image-icon-title" class="sr-only">Image précédente</span>
-
+            <button class="lightbox-prev" tabindex="0" aria-labelledby="image-icon-prev">
+                <img class="icon-img-arrow" src="../../assets/icons/arrow-left.svg" alt="">
+                <span id="image-icon-prev" class="sr-only">Image précédente</span>
             </button>
             <div class="lightbox-media-container"></div>
-            <button class="lightbox-next" tabindex="0" >
-                <img class="icon-img-arrow" src="assets/icons/arrow-right.svg" alt="" />
-                <span id="image-icon-title" class="sr-only">Image suivante</span>
-
+            <button class="lightbox-next" tabindex="0" aria-labelledby="image-icon-next">
+                <img class="icon-img-arrow" src="../../assets/icons/arrow-right.svg" alt="">
+                <span id="image-icon-next" class="sr-only">Image suivante</span>
             </button>
         </div>
     </div>
@@ -199,13 +208,16 @@ export default class Lightbox {
     e.preventDefault();
     e.stopPropagation();
     this.lightbox.style.display = "none";
+    const originalUrl = "photographer.html?id=" + this.photographerId;
+    window.history.replaceState(null, null, originalUrl);
     this.lightbox.ariaHidden = "true";
     const main = document.getElementById("main");
     main.removeAttribute("aria-hidden");
     main.classList.remove("no-scroll");
-    const media = document.getElementsByClassName("image-link")[0];
-    media.tabIndex = "0";
-    media.focus();
+    // ajouter le focus au dernier media consulté avant ouverture de la lightbox
+    if (this.currentLink) {
+      this.currentLink.focus();
+    }
     document.removeEventListener("keyup", this.onKeyUp);
   }
   /**
@@ -218,7 +230,13 @@ export default class Lightbox {
     const gallery = this.gallery;
     this.currentIndex = (this.currentIndex + 1) % gallery.length;
     this.title = gallery[this.currentIndex].title;
-    this.id = gallery[this.currentIndex].id;
+    // met a jour l'url du media
+    this.newUrl =
+      "photographer.html?id=" +
+      this.photographerId +
+      "&lightbox.html?id=" +
+      gallery[this.currentIndex].id;
+    window.history.replaceState(null, null, this.newUrl);
     this.showMedias(this.currentIndex);
   }
 
@@ -233,7 +251,12 @@ export default class Lightbox {
     this.currentIndex =
       (this.currentIndex - 1 + gallery.length) % gallery.length;
     this.title = gallery[this.currentIndex].title;
-    this.id = gallery[this.currentIndex].id;
+    this.newUrl =
+      "photographer.html?id=" +
+      this.photographerId +
+      "&lightbox.html?id=" +
+      gallery[this.currentIndex].id;
+    window.history.replaceState(null, null, this.newUrl);
     this.showMedias(this.currentIndex);
   }
   /**
