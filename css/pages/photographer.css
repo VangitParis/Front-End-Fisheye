@@ -1,4 +1,4 @@
-@import url("../utils/variables.css");
+@import url("../variables.css");
 
 .section-disabled {
     pointer-events: none;
@@ -675,7 +675,7 @@ label {
     line-height: 1.5;
     font-weight: 400;
     font-size: 0.7em;
-    margin-right: -22%;
+    margin-right: -18%;
 
 }
 
