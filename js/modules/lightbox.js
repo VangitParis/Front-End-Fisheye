@@ -168,19 +168,19 @@ export default class Lightbox {
     <h2 id="lightbox-title" class="sr-only">Galerie d'images</h2>
     <div class="lightbox-header">
         <button class="lightbox-close" tabindex="0" aria-labelledby="image-icon-title">
-            <img class="icon-img-close" src="../../assets/icons/close-lightbox.svg" alt="">
+            <img class="icon-img-close" src="assets/icons/close-lightbox.svg" alt="">
             <span id="image-icon-title" class="sr-only">Fermer la galerie d'images</span>
         </button>
     </div>
     <div class="lightbox-body">
         <div class="lightbox-controls">
             <button class="lightbox-prev" tabindex="0" aria-labelledby="image-icon-prev">
-                <img class="icon-img-arrow" src="../../assets/icons/arrow-left.svg" alt="">
+                <img class="icon-img-arrow" src="assets/icons/arrow-left.svg" alt="">
                 <span id="image-icon-prev" class="sr-only">Image précédente</span>
             </button>
             <div class="lightbox-media-container"></div>
             <button class="lightbox-next" tabindex="0" aria-labelledby="image-icon-next">
-                <img class="icon-img-arrow" src="../../assets/icons/arrow-right.svg" alt="">
+                <img class="icon-img-arrow" src="assets/icons/arrow-right.svg" alt="">
                 <span id="image-icon-next" class="sr-only">Image suivante</span>
             </button>
         </div>
