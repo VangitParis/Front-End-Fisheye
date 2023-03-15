@@ -358,6 +358,17 @@ textarea:focus {
     border-radius: 5px;
 }
 
+#thanks{
+    font-size: 0.9em;
+    text-align: center;
+    border-radius: 5px;
+    top: -102%;
+    position: relative;
+    left: 0;
+    color: white;
+    font-weight: 600;
+}
+
 /* style lightbox */
 #lightbox {
     display: none;
@@ -663,15 +674,16 @@ label {
     border-radius: 5px;
     background-color: var(--background-color-secondary);
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    flex-direction: row-reverse;
     font-size: 2em;
 }
 
 #total_likes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 20%;
-
     line-height: 1.5;
     font-weight: 400;
     font-size: 0.7em;
@@ -680,7 +692,7 @@ label {
 }
 
 aside .svg-inline--fa {
-    height: 0.7em;
+    height: 0.9em;
 }
 
 .insert-price {
@@ -779,7 +791,10 @@ aside .svg-inline--fa {
         height: 55px;
         font-size: 15px;
     }
-
+    #thanks{
+        font-size: 0.7em;
+        top: -102%;
+    }
     /* Sort  Mobile */
     .photograph-sort {
         justify-content: center;
@@ -1038,6 +1053,13 @@ aside .svg-inline--fa {
         height: 40px;
         font-size: 14px;
     }
+    #thanks {
+        font-size: 0.7em;
+        left: 0%;
+        top: -100%;
+    }
+     
+    
 
     /* Lightbox */
     .lightbox-media-container {
@@ -1294,7 +1316,10 @@ aside .svg-inline--fa {
         height: 55px;
         font-size: 16px;
     }
-
+    #thanks{
+        top: -98%;
+        font-size: 0.8em;
+    }
     /* Lightbox */
     .lightbox-close {
         top: 7%;
@@ -1408,6 +1433,7 @@ aside .svg-inline--fa {
 
     textarea {
         height: 270px;
+        font-size: 2em;
     }
 
     #contact-submit_button {
@@ -1415,7 +1441,10 @@ aside .svg-inline--fa {
         height: 110px;
         font-size: 30px;
     }
-
+    #thanks{
+        top: -105%;
+        font-size: 1.5em;
+    }
     /* Sort Grand Écran*/
     .photograph-sort label {
         font-size: 2.5em;

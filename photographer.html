@@ -33,14 +33,15 @@
         <option value="title">Titre</option>
       </select>
       <span role="button" aria-haspopup="listbox" aria-expanded="false" class="custom-select-trigger" tabindex="0"
-        id="sort-select-trigger-text" aria-labelledby="sort-select-trigger-text"
-        aria-label="Trier par">Popularité</span>
+        id="sort-select-trigger-text" aria-labelledby="sort-select-trigger-text" aria-label="Trier par">Popularité</span>
       <ul class="custom-options" aria-hidden="false" role="listbox" aria-labelledby="sort-select-trigger-text"
-        tabindex="-1" aria-label="Trier par">
+        aria-activedescendant aria-owns tabindex="-1" aria-label="Trier par">
         <li class="custom-option arrow" data-value="popularity" role="option" aria-hidden="false" aria-selected="true"
           tabindex="0" id="selected-option">Popularité</li>
-        <li class="custom-option" data-value="date" role="option" aria-hidden="false" tabindex="0">Date</li>
-        <li class="custom-option" data-value="title" role="option" aria-hidden="false" tabindex="0">Titre</li>
+        <li class="custom-option" data-value="date" role="option" aria-hidden="false" aria-selected="true" tabindex="0">
+          Date</li>
+        <li class="custom-option" data-value="title" role="option" aria-hidden="false" aria-selected="true"
+          tabindex="0">Titre</li>
       </ul>
     </div>
     <div id="photograph-media"></div>

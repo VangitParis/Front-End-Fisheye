@@ -14,7 +14,8 @@ export class MediaFactory {
     this.photographerMedia = media;
     this.id = media.id;
     this.photographerId = media.photographerId;
-    this.totalLikes = `${this.photographerMedia.likes}`;
+   
+    
   }
 
   /**
@@ -80,9 +81,13 @@ export class MediaFactory {
    *
    * @returns {HTMLParagraphElement} le total des likes dans l'encart en bas de page
    */
-  createTotalLikesElement() {
-    const insertTotalLikes = document.createElement("h3");
-    insertTotalLikes.id = "total_likes";
+  createTotalLikesElement(totalLikes) {
+    // const insertTotalLikes = document.createElement("h3");
+    // insertTotalLikes.id = "total_likes";
+    const insertTotalLikes = `
+    <h3 id="total_likes">${totalLikes}
+    <i class="fa-solid fa-heart" aria-label="likes" aria-hidden="true"></i>
+    </h3>`;
 
     return insertTotalLikes;
   }

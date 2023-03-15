@@ -94,4 +94,7 @@ button {
     h1 {
         font-size: 3.5em;
     }
+    .error{
+        font-size: 1.4em;
+    }
 }

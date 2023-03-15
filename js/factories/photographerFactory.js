@@ -79,7 +79,7 @@ export class PhotographerFactory {
    * @returns {HTMLElement} - Le DOM de l'encart de prix.
    */
   getPrice() {
-    const insertPrice = document.createElement("div");
+    const insertPrice = document.createElement("p");
     insertPrice.textContent = `${this.photographerData.price} €/jour`;
     insertPrice.className = "insert-price";
     return insertPrice;

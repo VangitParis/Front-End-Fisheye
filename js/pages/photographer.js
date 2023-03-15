@@ -93,24 +93,14 @@ main.appendChild(asideInsertLikesAndPriceIntoMain);
  * @param {number} totalLikes - Le nombre total de likes des médias du photographe
  */
 function displayInsert(data, medias, totalLikes) {
-  // Bloc "Tarif"
-  const photographerModel = new PhotographerFactory(data);
-  const insertPrice = photographerModel.getPrice();
-
-  asideInsertLikesAndPriceIntoMain.appendChild(insertPrice);
-
   // Bloc "Likes"
-  const mediaModel = new MediaFactory(medias);
-  const insertLikes = mediaModel.createTotalLikesElement();
-  insertLikes.innerHTML = totalLikes;
-
-  const iconLike = document.createElement("i");
-  iconLike.className = "fa-solid fa-heart";
-  iconLike.ariaHidden = "true";
-  iconLike.ariaLabel = "likes";
-
-  asideInsertLikesAndPriceIntoMain.appendChild(iconLike);
-  asideInsertLikesAndPriceIntoMain.appendChild(insertLikes);
+  const mediaModel = new MediaFactory(medias, totalLikes);
+  const insertLikes = mediaModel.createTotalLikesElement(totalLikes);
+  asideInsertLikesAndPriceIntoMain.innerHTML += insertLikes;
+   // Bloc "Tarif"
+   const photographerModel = new PhotographerFactory(data);
+   const insertPrice = photographerModel.getPrice();
+   asideInsertLikesAndPriceIntoMain.appendChild(insertPrice);
 }
 
 /**
@@ -166,7 +156,7 @@ async function displayLightbox(media, photographers) {
 async function run() {
   const params = new URLSearchParams(location.search);
   const photographerId = parseInt(params.get("id"));
-  const [photographerFindProfil, photographerMedias, totalLikes] =
+  const [photographerFindProfil, photographerMedias,totalLikes] =
     await getPhotographersId(photographerId);
   displayPhotographerHeader(photographerFindProfil);
   displayPhotographerMedia(photographerFindProfil, photographerMedias);

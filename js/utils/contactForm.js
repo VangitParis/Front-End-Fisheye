@@ -7,6 +7,7 @@ const main = document.getElementById("main");
 const modal = document.querySelector(".modal");
 const modalCloseBtn = document.getElementById("modal-close-btn");
 const inputs = modal.querySelectorAll("input, textarea");
+
 /**
  * Affiche la fenêtre modale de contact.
  * @function
@@ -48,6 +49,52 @@ const displayModal = () => {
   modalCloseBtn.focus();
 };
 
+
+// Afficher le contenu des trois champs dans les logs de la console
+const form = document.getElementsByTagName("form")[0];
+const fieldset = document.getElementsByTagName("fieldset")[0];
+const thanksText = document.createElement("p");
+form.setAttribute("autocomplete", "off");
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const firstname = document.getElementById("firstname").value;
+  const lastname = document.getElementById("lastname").value;
+  const email = document.getElementById("email").value;
+
+  console.log(`Prénom : ${firstname}`);
+  console.log(`Nom : ${lastname}`);
+  console.log(`Email : ${email}`);
+
+  // Vérifie champ email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailError = document.getElementById("email-error");
+  emailError.style.display = "none";
+
+  function isValidEmail(emailInput) {
+    if (emailInput) {
+      return emailRegex.test(emailInput);
+    }
+  }
+  if (isValidEmail(email)) {
+    console.log("Email valide : " + email);
+    // Ajoute le texte de remerciement
+    thanksText.style.display = "block";
+   
+    thanksText.textContent = "Votre message a bien été envoyé";
+    thanksText.ariaLabelledby = "thanks";
+    thanksText.id = "thanks";
+    fieldset.appendChild(thanksText);
+    // Réinitialise le formulaire
+    form.reset();
+  } else {
+    console.error("Email invalide : " + email);
+    emailError.style.display = "block";
+    emailError.textContent = "Veuillez saisir une adresse email valide.";
+  }
+});
+
 /**
  * Ferme la fenêtre modale de contact.
  * @function
@@ -59,6 +106,7 @@ const closeModal = () => {
   body.style.position = "static";
   modal.setAttribute("aria-hidden", "true");
   modal.style.display = "none";
+  thanksText.style.display = "none";
   document.removeEventListener("keyup", onKeyUp);
   let openModalButton;
   //focus sur le bouton qui ouvre la modal si on la ferme
@@ -85,7 +133,7 @@ const onKeyUp = (event) => {
       }
     });
   });
-  //Fermer la modal si on est sur envoyer 
+  //Fermer la modal si on est sur envoyer
   submitForm.addEventListener("keyup", (event) => {
     if (event.key === "Escape" || event.key === "Esc") {
       // Fermer la modale
@@ -97,40 +145,3 @@ const onKeyUp = (event) => {
 submitForm.addEventListener("click", displayModal);
 modalCloseBtn.addEventListener("click", closeModal);
 modalCloseBtn.addEventListener("keyup", onKeyUp);
-
-// Afficher le contenu des trois champs dans les logs de la console
-const form = document.getElementsByTagName("form")[0];
-form.setAttribute("autocomplete", "off");
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const firstname = document.getElementById("firstname").value;
-  const lastname = document.getElementById("lastname").value;
-  const email = document.getElementById("email").value;
-
-  console.log(`Prénom : ${firstname}`);
-  console.log(`Nom : ${lastname}`);
-  console.log(`Email : ${email}`);
-
-  // Vérifie champ email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const emailError = document.getElementById("email-error");
-  emailError.style.display = "none";
- 
-  function isValidEmail(emailInput) {
-    if (emailInput) {
-      return emailRegex.test(emailInput);
-    }
-  }
-
-  if (isValidEmail(email)) {
-    console.log("Email valide : " + email);
-    form.reset();
-    closeModal();
-  } else {
-    console.error("Email invalide : " + email);
-    emailError.style.display = "block";
-    emailError.textContent = "Veuillez saisir une adresse email valide.";
-  }
- 
-});
