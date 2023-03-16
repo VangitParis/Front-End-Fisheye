@@ -11,7 +11,7 @@ import SortMedias from "../modules/sort.js";
 async function getPhotographers() {
   try {
     const response = await fetch(
-      "../../data/photographers.json"
+      "data/photographers.json" 
     );
     const data = await response.json();
 
