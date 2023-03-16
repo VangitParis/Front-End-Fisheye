@@ -49,15 +49,15 @@ export class MediaFactory {
     const article = `
     <article class="card_article" title="${this.photographerMedia.title}">
       <figure>
-        <a href="photographer.html?id=${this.photographerId}&amp;lightbox.html?id=${this.id}" aria-label="Cliquez pour voir l'image en grand" role="link" class="image-link" tabindex="0" >
+        <a href="photographer.html?id=${this.photographerId}&amp;lightbox.html?id=${this.id}" aria-label="Cliquez pour voir l'image en grand" role="link" class="image-link" tabindex="0">
         ${elementWithClass}
         </a>
         <figcaption>
           <h2 class="card_title">${this.photographerMedia.title}</h2>
           <div class="figcaption-likes-icon">
-            <button class="button-like" aria-label="Votez pour cette image ou video" aria-pressed="false">
+            <button class="button-like" aria-label="Votez pour cette image ou video" aria-pressed="false" aria-live="polite" tabindex="0">
               <p class="likes">${this.photographerMedia.likes}</p>
-              <i class="fa fa-heart" aria-hidden="true" aria-label="likes">
+              <i class="fa fa-heart" aria-hidden="false" aria-label="likes">
               </i>
             </button>
           </div>

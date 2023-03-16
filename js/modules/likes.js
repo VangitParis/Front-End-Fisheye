@@ -21,6 +21,10 @@ export default class Likes {
 
     for (let i = 0; i < buttonLike.length; i++) {
       let liked = false;
+      const likesElement = buttonLike[i].querySelector(".likes");
+      likesElement.addEventListener("focus", () => {
+        likesElement.setAttribute("aria-live", "polite");
+      });
       buttonLike[i].addEventListener("click", (e) => {
         e.preventDefault();
 
@@ -42,7 +46,8 @@ export default class Likes {
           this.likedMedia.push({ id: mediaId, likes: 1 });
           const likedByUser = likes + 1;
           element.innerHTML = likedByUser;
-
+          element.tabIndex = "0";
+          element.setAttribute("aria-label", `Vous avez voté. ${likes} votes`);
           document.getElementById(
             "total_likes"
           ).innerText = `${(totalLikes += 1)}`;
@@ -52,7 +57,11 @@ export default class Likes {
           this.likedMedia.splice(mediaIndex, 1);
           const dislikedByUser = likes;
           element.innerHTML = dislikedByUser - 1;
-
+          element.tabIndex = "0";
+          element.setAttribute(
+            "aria-label",
+            `Vous avez retiré votre vote. ${likes} votes`
+          );
           document.getElementById(
             "total_likes"
           ).innerText = `${(totalLikes -= 1)}`;
