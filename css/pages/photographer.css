@@ -151,6 +151,7 @@ figcaption {
     color: var(--color-primary);
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .button-like:focus {
@@ -362,11 +363,16 @@ textarea:focus {
     font-size: 0.9em;
     text-align: center;
     border-radius: 5px;
-    top: -102%;
+    top: -101%;
     position: relative;
-    left: 0;
+    left: 25%;
     color: white;
-    font-weight: 600;
+    font-weight: 400;
+    background-color: var(--background-color-primary);
+    background-repeat: no-repeat;
+    line-height: 25px;
+    width: 45%;
+    height: auto;
 }
 
 /* style lightbox */
@@ -794,6 +800,9 @@ aside .svg-inline--fa {
     #thanks{
         font-size: 0.7em;
         top: -102%;
+        width: 75%;
+        left: 15%;
+        line-height: 15px;
     }
     /* Sort  Mobile */
     .photograph-sort {
@@ -1055,8 +1064,10 @@ aside .svg-inline--fa {
     }
     #thanks {
         font-size: 0.7em;
-        left: 0%;
+        left: 17%;
         top: -100%;
+        width: 70%;
+        line-height: 15px;
     }
      
     
@@ -1318,7 +1329,10 @@ aside .svg-inline--fa {
     }
     #thanks{
         top: -98%;
-        font-size: 0.8em;
+        font-size: 0.7em;
+        left: 15%;
+        width: 70%;
+        line-height: 15px;
     }
     /* Lightbox */
     .lightbox-close {
@@ -1443,7 +1457,8 @@ aside .svg-inline--fa {
     }
     #thanks{
         top: -105%;
-        font-size: 1.5em;
+        font-size: 1.4em;
+        line-height: 30px;
     }
     /* Sort Grand Écran*/
     .photograph-sort label {

@@ -26,7 +26,6 @@ const displayModal = () => {
   );
   const firstElement = focusableElements[0];
   const lastElement = focusableElements[focusableElements.length - 1];
-
   modal.addEventListener("keydown", function (e) {
     let isTabPressed = e.key === "Tab" || e.keyCode === 9;
 
@@ -46,6 +45,7 @@ const displayModal = () => {
       }
     }
   });
+ 
   modalCloseBtn.focus();
 };
 
@@ -81,13 +81,13 @@ form.addEventListener("submit", (event) => {
     console.log("Email valide : " + email);
     // Ajoute le texte de remerciement
     thanksText.style.display = "block";
-   
     thanksText.textContent = "Votre message a bien été envoyé";
-    thanksText.ariaLabelledby = "thanks";
+    thanksText.setAttribute("aria-label", "Message de confirmation");
     thanksText.id = "thanks";
     fieldset.appendChild(thanksText);
     // Réinitialise le formulaire
     form.reset();
+    thanksText.focus();
   } else {
     console.error("Email invalide : " + email);
     emailError.style.display = "block";
