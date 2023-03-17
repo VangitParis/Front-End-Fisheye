@@ -18,6 +18,7 @@
     --color-tagline: #525252;
     --color-price: #757575;
     --font-family: "DM Sans", sans-serif;
+    --done-speed: 3.1s;
 }
 body {
     font-family: var(--font-family);

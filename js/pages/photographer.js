@@ -164,6 +164,16 @@ async function run() {
   addLike();
   sort(photographerMedias);
   displayLightbox(photographerMedias, photographerFindProfil);
+  // fonction loader spinner
+  const loaderContainer = document.querySelector(".loader-container");
+  
+  setTimeout(function () {
+    loaderContainer.classList.add("done");
+    setTimeout(function() {
+      loaderContainer.classList.add("hidden");
+      document.body.classList.remove("loading"); // restaure le contenu de la page
+    }, 300); // laissez un petit délai pour que la transition CSS s'effectue avant de cacher complètement le loader
+  }, 1500);
 }
 
 run();
