@@ -41,6 +41,12 @@ export default class Likes {
         const mediaIndex = this.likedMedia.findIndex(
           (media) => media.id === mediaId
         );
+        const button = e.currentTarget;
+        // Obtenir le cœur SVG dans le bouton "j'aime"
+        const heartSvg = button.querySelector(
+          ".button-like svg.svg-inline--fa"
+        );
+
         if (!liked) {
           // Si l'objet média n'existe pas dans le tableau, on l'ajoute avec le nombre de likes
           this.likedMedia.push({ id: mediaId, likes: 1 });
@@ -52,6 +58,14 @@ export default class Likes {
             "total_likes"
           ).innerText = `${(totalLikes += 1)}`;
 
+          if (likedByUser) {
+            // Ajouter ou supprimer la classe "animate" pour déclencher l'animation
+            heartSvg.classList.remove("unlike");
+            heartSvg.classList.add("animate");
+          } else {
+            heartSvg.classList.remove("animate");
+          }
+
           return (liked = true);
         } else if (liked) {
           this.likedMedia.splice(mediaIndex, 1);
@@ -62,9 +76,19 @@ export default class Likes {
             "aria-label",
             `Vous avez retiré votre vote. ${likes} votes`
           );
+
           document.getElementById(
             "total_likes"
           ).innerText = `${(totalLikes -= 1)}`;
+
+          if (dislikedByUser - 1) {
+            heartSvg.classList.remove("animate");
+            heartSvg.classList.add("unlike");
+          } else {
+            heartSvg.classList.remove("unlike");
+            heartSvg.classList.remove("animate");
+          }
+
           return (liked = false);
         }
       });

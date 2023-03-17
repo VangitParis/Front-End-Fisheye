@@ -172,7 +172,7 @@ async function run() {
     setTimeout(function() {
       loaderContainer.classList.add("hidden");
       document.body.classList.remove("loading"); // restaure le contenu de la page
-    }, 300); // laissez un petit délai pour que la transition CSS s'effectue avant de cacher complètement le loader
+    }, 300); // laisser un petit délai pour que la transition CSS s'effectue avant de cacher complètement le loader
   }, 1500);
 }
 

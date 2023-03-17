@@ -55,7 +55,7 @@ export class MediaFactory {
         <figcaption>
           <h2 class="card_title">${this.photographerMedia.title}</h2>
           <div class="figcaption-likes-icon">
-            <button class="button-like" aria-label="Votez pour cette image ou video" aria-pressed="false" aria-live="polite" tabindex="0">
+            <button id="heart-btn" class="button-like" aria-label="Votez pour cette image ou video" aria-pressed="false" aria-live="polite" tabindex="0">
               <p class="likes">${this.photographerMedia.likes}</p>
               <i class="fa fa-heart" aria-hidden="false" aria-label="likes">
               </i>
@@ -85,9 +85,9 @@ export class MediaFactory {
     // const insertTotalLikes = document.createElement("h3");
     // insertTotalLikes.id = "total_likes";
     const insertTotalLikes = `
-    <h3 id="total_likes">${totalLikes}
+    <h3 id="total_likes">${totalLikes}</h3>
     <i class="fa-solid fa-heart" aria-label="likes" aria-hidden="true"></i>
-    </h3>`;
+    `;
 
     return insertTotalLikes;
   }
