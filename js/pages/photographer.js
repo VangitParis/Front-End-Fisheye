@@ -164,9 +164,9 @@ async function run() {
   addLike();
   sort(photographerMedias);
   displayLightbox(photographerMedias, photographerFindProfil);
+
   // fonction loader spinner
   const loaderContainer = document.querySelector(".loader-container");
-  
   setTimeout(function () {
     loaderContainer.classList.add("done");
     setTimeout(function() {

@@ -107,15 +107,11 @@ button {
     ANIMATION LOADER
 ------------------------*/
 
-body{
-    overflow: hidden;
-   
-}
 .hidden{
     display: none;
 }
 .loader-container {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
