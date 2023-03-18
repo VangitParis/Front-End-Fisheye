@@ -82,7 +82,7 @@ form.addEventListener("submit", (event) => {
     // Ajoute le texte de remerciement
     thanksText.style.display = "block";
     thanksText.textContent = "Votre message a bien été envoyé";
-    thanksText.setAttribute("aria-label", "Message de confirmation");
+    thanksText.setAttribute("aria-label", "Votre message a bien été envoyé");
     thanksText.id = "thanks";
     modal.appendChild(thanksText);
     thanksText.tabIndex = "0";
@@ -139,8 +139,16 @@ const onKeyUp = (event) => {
       closeModal();
     }
   });
+  //Fermer la modal si message de confirmation
+  thanksText.addEventListener("keyup", (event) => {
+    if (event.key === "Escape" || event.key === "Esc") {
+      // Fermer la modale
+      closeModal();
+    }
+  });
 };
 // Écoute les événements pour ouvrir et fermer la fenêtre modale de contact.
 submitForm.addEventListener("click", displayModal);
 modalCloseBtn.addEventListener("click", closeModal);
 modalCloseBtn.addEventListener("keyup", onKeyUp);
+ 

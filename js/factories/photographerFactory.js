@@ -55,19 +55,19 @@ export class PhotographerFactory {
     photographerHeaderSection.replaceWith(newSection);
 
     const photographerHeaderInfo = `
-        <div class="header-info-container">
-            <div class="text-header-info">
-                <h1 class="name_photograph">${this.photographerData.name}</h1>
-                <h2 class="city country text-h2">${this.photographerData.city}, ${this.photographerData.country}</h2>
-                <p class="tagline">${this.photographerData.tagline}</p>
-            </div>
+        <div class="header-info-container" aria-label="Présentation du photographe ${this.photographerData.name}">
+            <section class="text-header-info" tabindex="0">
+                <h1 class="name_photograph" tabindex="0">${this.photographerData.name}</h1>
+                <h2 class="city country text-h2" tabindex="0">${this.photographerData.city}, ${this.photographerData.country}</h2>
+                <p class="tagline" tabindex="0">${this.photographerData.tagline}</p>
+            </section>
         </div>
         <div id="contact-box">
         <button class="contact-open_button" onclick="displayModal()" aria-labelledby="contact-title" type="button" aria-haspopup="dialog" tabindex="0">Contactez-moi</button>
         <span id="contact-title" class="sr-only">Ouvrir le formulaire de contact</span>
       </div> 
-        <div class="img-header-box">
-            <img class="photographer-header_img" src="${this.picture}" alt="photo de profil de ${this.photographerData.name}">
+        <div class="img-header-box" aria-label="photo de profil de ${this.photographerData.name}" tabindex="0">
+            <img class="photographer-header_img" src="${this.picture}" alt="${this.photographerData.name}">
         </div>
     `;
 

@@ -41,10 +41,10 @@ export class MediaFactory {
     // Ajouter la classe "card_media" à la string "element"
     const elementWithClass = `${element}`.replace(
       "<",
-      `<${mediaElement ? "img" : "video"} class="card_media" alt="${
-        this.photographerMedia.alt
-      }"`
+      `<${mediaElement ? "img" : "video"} class="card_media" tabindex="0"`
+     
     );
+    
 
     const article = `
     <article class="card_article" title="${this.photographerMedia.title}">

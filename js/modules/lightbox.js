@@ -144,7 +144,7 @@ export default class Lightbox {
     } else {
       container.innerHTML = `${video}`.replace(
         "<",
-        "<video controls tabindex=\"0\" class=\"lightbox-media\" aria-label=\"Vous pouvez lire cette video\"" 
+        `<video controls tabindex="0" class="lightbox-media" aria-label="Vous pouvez lire cette video intitulée${this.title}"` 
       );
     }
     //Affiche le titre du média
@@ -164,8 +164,7 @@ export default class Lightbox {
     const lightbox = document.createElement("div");
     lightbox.id = "lightbox";
     lightbox.innerHTML = `
-    <div class="lightbox-content" tabindex="0" role="dialog" aria-labelledby="lightbox-title" aria-modal="true" aria-hidden="false">
-    <h2 id="lightbox-title" class="sr-only">Galerie d'images</h2>
+    <div class="lightbox-content" tabindex="0" role="dialog" aria-label="Galerie d'images" aria-modal="true" aria-hidden="false">
     <div class="lightbox-header">
         <button class="lightbox-close" tabindex="0" aria-labelledby="image-icon-title">
             <img class="icon-img-close" src="assets/icons/close-lightbox.svg" alt="">
