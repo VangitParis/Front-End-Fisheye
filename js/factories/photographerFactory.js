@@ -50,7 +50,8 @@ export class PhotographerFactory {
     // Copie des attributs de l'élément existant dans le nouvel élément
     newSection.id = photographerHeaderSection.id;
     newSection.innerHTML = photographerHeaderSection.innerHTML;
-
+    newSection.ariaLabel = "Cette page représente nos photographes";
+    newSection.tabIndex = "0";
     // Remplacement de l'élément existant par le nouvel élément
     photographerHeaderSection.replaceWith(newSection);
 

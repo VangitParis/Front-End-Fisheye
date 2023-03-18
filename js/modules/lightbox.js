@@ -144,7 +144,7 @@ export default class Lightbox {
     } else {
       container.innerHTML = `${video}`.replace(
         "<",
-        `<video controls tabindex="0" class="lightbox-media" aria-label="Vous pouvez lire cette video intitulée${this.title}"` 
+        `<video controls tabindex="0" class="lightbox-media" aria-label="Vous pouvez lire cette video intitulée${this.title}"`
       );
     }
     //Affiche le titre du média

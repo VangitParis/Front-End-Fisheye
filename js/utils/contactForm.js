@@ -151,4 +151,3 @@ const onKeyUp = (event) => {
 submitForm.addEventListener("click", displayModal);
 modalCloseBtn.addEventListener("click", closeModal);
 modalCloseBtn.addEventListener("keyup", onKeyUp);
- 

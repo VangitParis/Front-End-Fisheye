@@ -59,12 +59,25 @@ select {
     font-weight: 400;
 }
 
+.name_photograph:focus {
+    outline: 2px solid var(--background-color-hover-focus);
+}
+
 .text-h2 {
     color: var(--color-primary);
     font-size: 24px;
 
 }
 
+.text-h2:focus {
+    outline: 2px solid var(--background-color-hover-focus);
+
+}
+
+.tagline:focus {
+    outline: 2px solid var(--background-color-hover-focus);
+
+}
 
 /* style main-article */
 .card_article {
@@ -256,13 +269,15 @@ button.button-like svg.svg-inline--fa {
     width: 630px;
     overflow-y: scroll;
 }
+
 nav#modal-nav {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    
+
 }
+
 .modal div {
     display: flex;
     justify-content: space-between;
@@ -296,10 +311,12 @@ nav#modal-nav {
     outline: 2px solid var(--background-color-primary);
     border-radius: 5px;
 }
-#modal-close-btn img{
+
+#modal-close-btn img {
     width: 100%;
     height: 100%;
 }
+
 form {
     display: flex;
     width: 100%;
@@ -382,9 +399,11 @@ textarea:focus {
     width: 60%;
     height: auto;
 }
-#thanks:hover, #thanks:focus{
+
+#thanks:hover,
+#thanks:focus {
     outline: 2px solid var(--background-color-primary);
-    border-radius: 5px;  
+    border-radius: 5px;
 }
 
 /* style lightbox */
@@ -708,8 +727,10 @@ label {
     margin-right: -30%;
     cursor: default;
 }
-#total_likes:hover, #total_likes:focus{
-    outline: 2px solid var(--color-primary) ;
+
+#total_likes:hover,
+#total_likes:focus {
+    outline: 2px solid var(--color-primary);
     border-radius: 5px;
 }
 
@@ -721,9 +742,11 @@ aside .svg-inline--fa {
     font-size: 0.7em;
     cursor: default;
 }
-.insert-price:hover, .insert-price:focus{
-   outline: 2px solid var(--color-primary) ;
-    
+
+.insert-price:hover,
+.insert-price:focus {
+    outline: 2px solid var(--color-primary);
+
     border-radius: 5px;
 
 }
@@ -823,7 +846,7 @@ aside .svg-inline--fa {
 
     #thanks {
         font-size: 0.7em;
-        
+
     }
 
     /* Sort  Mobile */
@@ -1089,7 +1112,7 @@ aside .svg-inline--fa {
 
     #thanks {
         font-size: 0.8em;
-      
+
     }
 
 
@@ -1351,9 +1374,9 @@ aside .svg-inline--fa {
 
     #thanks {
         font-size: 0.9em;
-        
+
     }
-    
+
 
     /* Lightbox */
     .lightbox-close {
@@ -1480,7 +1503,9 @@ aside .svg-inline--fa {
     #thanks {
         font-size: 2.4em;
     }
-    #thanks:hover, #thanks:focus {
+
+    #thanks:hover,
+    #thanks:focus {
         outline: 4px solid var(--background-color-primary);
     }
 

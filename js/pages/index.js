@@ -38,17 +38,16 @@ async function displayData(photographers) {
  * Initialise l'application.
  */
 async function init() {
- 
   const { photographers } = await getPhotographers();
   displayData(photographers);
-  
- // fonction loader spinner
- const loaderContainer = document.querySelector(".loader-container");
- setTimeout(function () {
-   loaderContainer.classList.remove("done");
-   loaderContainer.classList.add("hidden");
-   // restaure le contenu de la page
- }, 1500);
+
+  // fonction loader spinner
+  const loaderContainer = document.querySelector(".loader-container");
+  setTimeout(function () {
+    loaderContainer.classList.remove("done");
+    loaderContainer.classList.add("hidden");
+    // restaure le contenu de la page
+  }, 1500);
 }
 // Appel la fonction d'initialisation
 init();

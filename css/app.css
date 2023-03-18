@@ -41,7 +41,9 @@ button {
     font-size: 0.8em;
     margin-top: 0.2em;
 }
-
+:focus{
+outline: 2px solid var(--background-color-hover-focus);
+}
 /* Mobiles */
 @media screen and (min-width: 320px) and (max-width : 767px) {
     a img.logo {

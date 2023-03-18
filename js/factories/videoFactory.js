@@ -14,8 +14,8 @@ export class VideoFactory {
    * @returns {HTMLVideoElement} video
    */
   createVideoElement() {
-   const video =` <video aria-label="Le titre de la video est ${this.video.title}">
-    <source src="${this.video.src }" alt="${this.video.title}" type="video/mp4">
+    const video = ` <video aria-label="Le titre de la video est ${this.video.title}">
+    <source src="${this.video.src}" alt="${this.video.title}" type="video/mp4">
     <track kind="description" srclang="fr">
   </video>
   

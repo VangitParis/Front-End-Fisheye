@@ -56,7 +56,7 @@ export default class Likes {
           document.getElementById(
             "total_likes"
           ).innerText = `${(totalLikes += 1)}`;
-  
+
           if (likedByUser) {
             // Ajouter ou supprimer la classe "animate" pour déclencher l'animation
             heartSvg.classList.remove("unlike");
@@ -86,13 +86,15 @@ export default class Likes {
           return (liked = false);
         }
       });
-      
     }
   }
   updateTotalLikes(totalLikes) {
-    // Mettre à jour la valeur de aria-label 
+    // Mettre à jour la valeur de aria-label
     const totalLikesElement = document.getElementById("total_likes");
     console.log(totalLikesElement);
-    totalLikesElement.setAttribute("aria-label", `Le nombre de likes de ce photographe est de ${totalLikes}`);
+    totalLikesElement.setAttribute(
+      "aria-label",
+      `Le nombre de likes de ce photographe est de ${totalLikes}`
+    );
   }
 }

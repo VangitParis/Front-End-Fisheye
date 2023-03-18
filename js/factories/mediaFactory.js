@@ -42,9 +42,7 @@ export class MediaFactory {
     const elementWithClass = `${element}`.replace(
       "<",
       `<${mediaElement ? "img" : "video"} class="card_media" tabindex="0"`
-     
     );
-    
 
     const article = `
     <article class="card_article" title="${this.photographerMedia.title}">
@@ -71,7 +69,8 @@ export class MediaFactory {
     // Copie des attributs de l'élément existant dans le nouvel élément
     newSection.id = mediaSection.id;
     newSection.innerHTML = mediaSection.innerHTML;
-
+    newSection.ariaLabel = "Cette page contient les travaux des photographes";
+    newSection.tabIndex = "0";
     // Remplacement de l'élément existant par le nouvel élément
     mediaSection.replaceWith(newSection);
     newSection.innerHTML += article;

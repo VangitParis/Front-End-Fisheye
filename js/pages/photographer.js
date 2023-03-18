@@ -170,7 +170,6 @@ async function run() {
     loaderContainer.classList.add("hidden");
     // restaure le contenu de la page
   }, 1500);
-  
 }
 
 run();
