@@ -8,6 +8,7 @@ export default class Likes {
     this.likedMedia = []; // tableau qui contient les objets média et le nombre de likes par utilisateur
 
     this.countLikes();
+    this.updateTotalLikes();
   }
   /**
 * Sélectionne les boutons likes et ajoute un eventListener.
@@ -52,12 +53,10 @@ export default class Likes {
           this.likedMedia.push({ id: mediaId, likes: 1 });
           const likedByUser = likes + 1;
           element.innerHTML = likedByUser;
-          element.tabIndex = "0";
-          element.setAttribute("aria-label", `Vous avez voté. ${likes} votes`);
           document.getElementById(
             "total_likes"
           ).innerText = `${(totalLikes += 1)}`;
-
+  
           if (likedByUser) {
             // Ajouter ou supprimer la classe "animate" pour déclencher l'animation
             heartSvg.classList.remove("unlike");
@@ -65,17 +64,12 @@ export default class Likes {
           } else {
             heartSvg.classList.remove("animate");
           }
-
+          this.updateTotalLikes(totalLikes);
           return (liked = true);
         } else if (liked) {
           this.likedMedia.splice(mediaIndex, 1);
           const dislikedByUser = likes;
           element.innerHTML = dislikedByUser - 1;
-          element.tabIndex = "0";
-          element.setAttribute(
-            "aria-label",
-            `Vous avez retiré votre vote. ${likes} votes`
-          );
 
           document.getElementById(
             "total_likes"
@@ -88,10 +82,17 @@ export default class Likes {
             heartSvg.classList.remove("unlike");
             heartSvg.classList.remove("animate");
           }
-
+          this.updateTotalLikes(totalLikes);
           return (liked = false);
         }
       });
+      
     }
+  }
+  updateTotalLikes(totalLikes) {
+    // Mettre à jour la valeur de aria-label 
+    const totalLikesElement = document.getElementById("total_likes");
+    console.log(totalLikesElement);
+    totalLikesElement.setAttribute("aria-label", `Le nombre de likes de ce photographe est de ${totalLikes}`);
   }
 }

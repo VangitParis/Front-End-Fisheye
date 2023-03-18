@@ -25,8 +25,8 @@ export class PhotographerFactory {
   getCardUserDOM() {
     const article = document.createElement("article");
     article.innerHTML = ` 
-    <a class="image-link profil" href="photographer.html?id=${this.photographerData.id}"aria-label="${this.photographerData.name}" role="link" tabindex="0">
-      <img src=${this.picture} alt="" >
+    <a class="image-link profil" href="photographer.html?id=${this.photographerData.id}" aria-label="Visiter le profil du photographe ${this.photographerData.name}" role="link" tabindex="0">
+      <img src=${this.picture} alt="image du photographe ${this.photographerData.name} " >
       <h2>${this.photographerData.name}</h2>
     </a >
     <span>${this.photographerData.city}, ${this.photographerData.country}</span>
@@ -67,7 +67,7 @@ export class PhotographerFactory {
         <span id="contact-title" class="sr-only">Ouvrir le formulaire de contact</span>
       </div> 
         <div class="img-header-box">
-            <img class="photographer-header_img" src="${this.picture}" alt="${this.photographerData.name}">
+            <img class="photographer-header_img" src="${this.picture}" alt="photo de profil de ${this.photographerData.name}">
         </div>
     `;
 
@@ -81,6 +81,8 @@ export class PhotographerFactory {
   getPrice() {
     const insertPrice = document.createElement("span");
     insertPrice.textContent = `${this.photographerData.price} €/jour`;
+    insertPrice.ariaLabel = `Le tarif de ce photographe est de ${this.photographerData.price} €/jour`;
+    insertPrice.tabIndex = "0";
     insertPrice.className = "insert-price";
     return insertPrice;
   }
@@ -90,13 +92,10 @@ export class PhotographerFactory {
    * @returns {string} - Le nom du photographe pour la fenêtre modale de contact.
    */
   getNameInContactModal() {
-    const formModal = document.querySelector("form");
-    const fieldsetForm = document.querySelector("fieldset");
+    const modalTitle = document.getElementById("modal-title");
     const titleFormModal = document.createElement("legend");
     titleFormModal.textContent = this.photographerData.name;
     titleFormModal.className = "name-photograph-form";
-
-    formModal.appendChild(fieldsetForm);
-    fieldsetForm.appendChild(titleFormModal);
+    modalTitle.appendChild(titleFormModal);
   }
 }

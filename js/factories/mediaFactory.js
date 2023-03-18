@@ -14,8 +14,6 @@ export class MediaFactory {
     this.photographerMedia = media;
     this.id = media.id;
     this.photographerId = media.photographerId;
-   
-    
   }
 
   /**
@@ -43,19 +41,21 @@ export class MediaFactory {
     // Ajouter la classe "card_media" à la string "element"
     const elementWithClass = `${element}`.replace(
       "<",
-      `<${mediaElement ? "img" : "video"} class="card_media"`
+      `<${mediaElement ? "img" : "video"} class="card_media" alt="${
+        this.photographerMedia.alt
+      }"`
     );
 
     const article = `
     <article class="card_article" title="${this.photographerMedia.title}">
       <figure>
-        <a href="photographer.html?id=${this.photographerId}&amp;lightbox.html?id=${this.id}" aria-label="Cliquez pour voir l'image en grand" role="link" class="image-link" tabindex="0">
+        <a href="photographer.html?id=${this.photographerId}&amp;lightbox.html?id=${this.id}" aria-label="Cliquez pour voir l'image en grand dans la galerie d'images" role="link" class="image-link" tabindex="0">
         ${elementWithClass}
         </a>
         <figcaption>
           <h2 class="card_title">${this.photographerMedia.title}</h2>
           <div class="figcaption-likes-icon">
-            <button id="heart-btn" class="button-like" aria-label="Votez pour cette image ou video" aria-pressed="false" aria-live="polite" tabindex="0">
+            <button class="button-like" aria-label="Votez pour cette image ou video" aria-pressed="false" aria-live="polite" tabindex="0">
               <p class="likes">${this.photographerMedia.likes}</p>
               <i class="fa fa-heart" aria-hidden="false" aria-label="likes">
               </i>
@@ -82,13 +82,10 @@ export class MediaFactory {
    * @returns {HTMLParagraphElement} le total des likes dans l'encart en bas de page
    */
   createTotalLikesElement(totalLikes) {
-    // const insertTotalLikes = document.createElement("h3");
-    // insertTotalLikes.id = "total_likes";
     const insertTotalLikes = `
-    <h3 id="total_likes">${totalLikes}</h3>
+    <h3 id="total_likes" tabindex="0">${totalLikes}</h3>
     <i class="fa-solid fa-heart" aria-label="likes" aria-hidden="true"></i>
     `;
-
     return insertTotalLikes;
   }
 }

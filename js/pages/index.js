@@ -41,16 +41,14 @@ async function init() {
  
   const { photographers } = await getPhotographers();
   displayData(photographers);
-  // fonction loader spinner
-  const loaderContainer = document.querySelector(".loader-container");
-  setTimeout(function () {
-    loaderContainer.classList.add("done");
-    setTimeout(function() {
-      loaderContainer.classList.add("hidden");
-      document.body.classList.remove("loading"); // restaure le contenu de la page
-    }, 300); // laissez un petit délai pour que la transition CSS s'effectue avant de cacher complètement le loader
-  }, 1500);
   
+ // fonction loader spinner
+ const loaderContainer = document.querySelector(".loader-container");
+ setTimeout(function () {
+   loaderContainer.classList.remove("done");
+   loaderContainer.classList.add("hidden");
+   // restaure le contenu de la page
+ }, 1500);
 }
 // Appel la fonction d'initialisation
 init();

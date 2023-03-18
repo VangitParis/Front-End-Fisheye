@@ -256,7 +256,13 @@ button.button-like svg.svg-inline--fa {
     width: 630px;
     overflow-y: scroll;
 }
-
+nav#modal-nav {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+    width: 100%;
+    
+}
 .modal div {
     display: flex;
     justify-content: space-between;
@@ -282,14 +288,18 @@ button.button-like svg.svg-inline--fa {
 #modal-close-btn {
     border: none;
     background: transparent;
-
+    top: -20%;
+    position: relative;
 }
 
 #modal-close-btn:focus {
     outline: 2px solid var(--background-color-primary);
     border-radius: 5px;
 }
-
+#modal-close-btn img{
+    width: 100%;
+    height: 100%;
+}
 form {
     display: flex;
     width: 100%;
@@ -361,19 +371,20 @@ textarea:focus {
 }
 
 #thanks {
-    font-size: 0.9em;
+    font-size: 1.5em;
     text-align: center;
     border-radius: 5px;
-    top: -101%;
-    position: relative;
-    left: 25%;
-    color: white;
+    top: 50%;
+    position: absolute;
+    left: 20%;
+    color: BLACK;
     font-weight: 400;
-    background-color: var(--background-color-primary);
-    background-repeat: no-repeat;
-    line-height: 25px;
-    width: 45%;
+    width: 60%;
     height: auto;
+}
+#thanks:hover, #thanks:focus{
+    outline: 2px solid var(--background-color-primary);
+    border-radius: 5px;  
 }
 
 /* style lightbox */
@@ -690,12 +701,16 @@ label {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 20%;
+    width: 25%;
     line-height: 1.5;
     font-weight: 400;
     font-size: 0.7em;
     margin-right: -30%;
-
+    cursor: default;
+}
+#total_likes:hover, #total_likes:focus{
+    outline: 2px solid var(--color-primary) ;
+    border-radius: 5px;
 }
 
 aside .svg-inline--fa {
@@ -704,6 +719,13 @@ aside .svg-inline--fa {
 
 .insert-price {
     font-size: 0.7em;
+    cursor: default;
+}
+.insert-price:hover, .insert-price:focus{
+   outline: 2px solid var(--color-primary) ;
+    
+    border-radius: 5px;
+
 }
 
 /*MEDIA QUERIES*/
@@ -801,10 +823,7 @@ aside .svg-inline--fa {
 
     #thanks {
         font-size: 0.7em;
-        top: -102%;
-        width: 75%;
-        left: 15%;
-        line-height: 15px;
+        
     }
 
     /* Sort  Mobile */
@@ -1035,9 +1054,11 @@ aside .svg-inline--fa {
         font-size: 16px;
     }
 
-    .modal div img {
-        width: 24px;
+    #modal-close-button {
+        width: 25px;
+        height: 25px;
     }
+
 
     form label {
         font-size: 1.1em;
@@ -1067,11 +1088,8 @@ aside .svg-inline--fa {
     }
 
     #thanks {
-        font-size: 0.7em;
-        left: 17%;
-        top: -100%;
-        width: 70%;
-        line-height: 15px;
+        font-size: 0.8em;
+      
     }
 
 
@@ -1293,7 +1311,6 @@ aside .svg-inline--fa {
     }
 
     #modal-close-btn {
-        top: 6%;
         position: relative;
     }
 
@@ -1302,7 +1319,7 @@ aside .svg-inline--fa {
     }
 
     .name-photograph-form {
-        font-size: 2em;
+        font-size: 1em;
         top: -1%;
     }
 
@@ -1333,12 +1350,10 @@ aside .svg-inline--fa {
     }
 
     #thanks {
-        top: -98%;
-        font-size: 0.7em;
-        left: 15%;
-        width: 70%;
-        line-height: 15px;
+        font-size: 0.9em;
+        
     }
+    
 
     /* Lightbox */
     .lightbox-close {
@@ -1463,9 +1478,10 @@ aside .svg-inline--fa {
     }
 
     #thanks {
-        top: -105%;
-        font-size: 1.4em;
-        line-height: 30px;
+        font-size: 2.4em;
+    }
+    #thanks:hover, #thanks:focus {
+        outline: 4px solid var(--background-color-primary);
     }
 
     /* Sort Grand Écran*/
@@ -1591,7 +1607,7 @@ aside .svg-inline--fa {
     }
 
     #total_likes {
-        margin-right: -23%;
+        margin-right: -33%;
     }
 
 }

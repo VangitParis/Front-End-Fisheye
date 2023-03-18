@@ -10,9 +10,7 @@ import SortMedias from "../modules/sort.js";
  */
 async function getPhotographers() {
   try {
-    const response = await fetch(
-      "data/photographers.json" 
-    );
+    const response = await fetch("data/photographers.json");
     const data = await response.json();
 
     return { photographers: data.photographers, medias: data.media };
@@ -97,10 +95,10 @@ function displayInsert(data, medias, totalLikes) {
   const mediaModel = new MediaFactory(medias, totalLikes);
   const insertLikes = mediaModel.createTotalLikesElement(totalLikes);
   asideInsertLikesAndPriceIntoMain.innerHTML += insertLikes;
-   // Bloc "Tarif"
-   const photographerModel = new PhotographerFactory(data);
-   const insertPrice = photographerModel.getPrice();
-   asideInsertLikesAndPriceIntoMain.appendChild(insertPrice);
+  // Bloc "Tarif"
+  const photographerModel = new PhotographerFactory(data);
+  const insertPrice = photographerModel.getPrice();
+  asideInsertLikesAndPriceIntoMain.appendChild(insertPrice);
 }
 
 /**
@@ -156,7 +154,7 @@ async function displayLightbox(media, photographers) {
 async function run() {
   const params = new URLSearchParams(location.search);
   const photographerId = parseInt(params.get("id"));
-  const [photographerFindProfil, photographerMedias,totalLikes] =
+  const [photographerFindProfil, photographerMedias, totalLikes] =
     await getPhotographersId(photographerId);
   displayPhotographerHeader(photographerFindProfil);
   displayPhotographerMedia(photographerFindProfil, photographerMedias);
@@ -168,12 +166,11 @@ async function run() {
   // fonction loader spinner
   const loaderContainer = document.querySelector(".loader-container");
   setTimeout(function () {
-    loaderContainer.classList.add("done");
-    setTimeout(function() {
-      loaderContainer.classList.add("hidden");
-      document.body.classList.remove("loading"); // restaure le contenu de la page
-    }, 300); // laisser un petit délai pour que la transition CSS s'effectue avant de cacher complètement le loader
+    loaderContainer.classList.remove("done");
+    loaderContainer.classList.add("hidden");
+    // restaure le contenu de la page
   }, 1500);
+  
 }
 
 run();

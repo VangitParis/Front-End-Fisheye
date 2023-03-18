@@ -14,6 +14,7 @@ const inputs = modal.querySelectorAll("input, textarea");
  */
 const displayModal = () => {
   modalId.style.display = "block";
+  thanksText.style.display = "block";
   main.setAttribute("aria-hidden", "true");
   modal.setAttribute("aria-hidden", "false");
   modalId.style.background = "rgba(0,0,0,0.4)";
@@ -45,14 +46,12 @@ const displayModal = () => {
       }
     }
   });
- 
+
   modalCloseBtn.focus();
 };
 
-
 // Afficher le contenu des trois champs dans les logs de la console
 const form = document.getElementsByTagName("form")[0];
-const fieldset = document.getElementsByTagName("fieldset")[0];
 const thanksText = document.createElement("p");
 form.setAttribute("autocomplete", "off");
 
@@ -79,14 +78,14 @@ form.addEventListener("submit", (event) => {
   }
   if (isValidEmail(email)) {
     console.log("Email valide : " + email);
+    form.style.display = "none";
     // Ajoute le texte de remerciement
     thanksText.style.display = "block";
     thanksText.textContent = "Votre message a bien été envoyé";
     thanksText.setAttribute("aria-label", "Message de confirmation");
     thanksText.id = "thanks";
-    fieldset.appendChild(thanksText);
-    // Réinitialise le formulaire
-    form.reset();
+    modal.appendChild(thanksText);
+    thanksText.tabIndex = "0";
     thanksText.focus();
   } else {
     console.error("Email invalide : " + email);

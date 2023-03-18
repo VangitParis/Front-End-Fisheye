@@ -106,10 +106,20 @@ button {
 /*------------------------
     ANIMATION LOADER
 ------------------------*/
+.sr-only {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
 
-.hidden{
+.hidden {
     display: none;
 }
+
 .loader-container {
     position: fixed;
     top: 0;
@@ -117,6 +127,10 @@ button {
     width: 100%;
     height: 100%;
     z-index: 1;
+}
+
+.loader-container span {
+    z-index: 10;
 }
 
 .loader-container:before {
@@ -128,7 +142,7 @@ button {
     height: 50%;
     background: var(--background-color-secondary);
     z-index: -1;
-    transition: top 1.2s linear 3s;
+    transition: top 5s linear 3s;
 }
 
 .loader-container:after {
@@ -140,7 +154,7 @@ button {
     height: 50%;
     background: var(--background-color-secondary);
     z-index: -1;
-    transition: bottom 1.2s linear 3s;
+    transition: bottom 5s linear 3s;
 }
 
 .loader-container.done:before {
@@ -173,17 +187,16 @@ button {
     position: absolute;
     top: 39.6%;
     left: 49.6%;
-  
     width: 43px;
     height: 44px;
     border-top: solid 6px #fff;
     border-right: solid 12px #fff;
     border-top-right-radius: 100%;
     transform-origin: left bottom;
-    -webkit-animation: spin 3s linear infinite;
-    -moz-animation: spin 3s linear infinite;
-    -o-animation: spin 3s linear infinite;
-    animation: spin 3s linear infinite;
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    -o-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
 
 }
 
@@ -212,10 +225,10 @@ button {
     border-top-right-radius: 100%;
     z-index: -1;
     transform-origin: left bottom;
-    -webkit-animation: spin 3s linear infinite;
-    -moz-animation: spin 3s linear infinite;
-    -o-animation: spin 3s linear infinite;
-    animation: spin 3s linear infinite;
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    -o-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
 }
 
 .progress.shadow:after {
@@ -243,7 +256,7 @@ button {
     -o-animation: done var(--done-speed);
     animation: done var(--done-speed);
     animation: done var(--done-speed);
-    transition: opacity .15s linear var(--done-speed);
+    transition: opacity 2s linear var(--done-speed);
 }
 
 .done .progress__item:before {
@@ -262,7 +275,7 @@ button {
     -o-animation: done var(--done-speed);
     animation: done var(--done-speed);
     animation: done var(--done-speed);
-    transition: opacity .15s linear var(--done-speed);
+    transition: opacity 2s linear var(--done-speed);
 }
 
 @keyframes done {

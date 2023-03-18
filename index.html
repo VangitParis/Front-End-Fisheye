@@ -16,19 +16,24 @@
 </head>
 
 <body>
-  <div class="loader-container">
-    <div class="progress float shadow">
-      <div class="progress__item"></div>
+  <div class="loader-parent" aria-live="assertive">
+    <div class="loader-container" role="status" aria-labelledby="loader-title">
+      <span id="loader-title" class="sr-only" tabindex="-1">Page en cours de chargement</span>
+      <div class="progress float shadow">
+        <div class="progress__item"></div>
+      </div>
     </div>
   </div>
-  <header>
-    <a href="index.html" aria-label="Page d'accueil" tabindex="0">
-      <img class="logo" src="./assets/images/logo.png" alt="logo de fisheye">
-    </a>
-    <span aria-describedby="home-title"></span>
-    <h1 id="home-title">Nos photographes</h1>
+  <header aria-label="En-tête de la phage d’accueil" tabindex="0">
+    <nav>
+      <a href="index.html" aria-label="Page d'accueil">
+        <img class="logo" src="./assets/images/logo.png" alt="logo de fisheye">
+      </a>
+      <span aria-describedby="home-title"></span>
+      <h1 id="home-title" tabindex="0">Nos photographes</h1>
+    </nav>
   </header>
-  <main id="main">
+  <main id="main" aria-label="Cette page représente nos photographes" tabindex="0">
     <div id="photographer_section"></div>
   </main>
 

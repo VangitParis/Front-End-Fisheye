@@ -18,17 +18,20 @@
 </head>
 
 <body>
-  <div class="loader-container">
-    <div class="progress float shadow">
-      <div class="progress__item"></div>
+  <div class="loader-parent" aria-live="assertive">
+    <div class="loader-container" role="status" aria-labelledby="loader-title">
+      <span id="loader-title" class="sr-only" tabindex="-1">Page en cours de chargement</span>
+      <div class="progress float shadow">
+        <div class="progress__item"></div>
+      </div>
     </div>
   </div>
-  <header>
+  <header aria-label="En-tête de la phage d’accueil">
     <a href="index.html" aria-label="Retour vers la page d'accueil" tabindex="0">
-      <img class="logo" src="./assets/images/logo.png" alt="logo de fisheye">
+      <img class="logo" src="./assets/images/logo.png" alt="logo de fisheye" tabindex="-1">
     </a>
   </header>
-  <main id="main">
+  <main id="main" aria-label="Cette page contient les travaux des photographes" tabindex="0">
     <div id="photograph-header"></div>
     <div class="photograph-sort">
       <label class="select-label" for="sort-select">Trier par</label>
@@ -39,35 +42,38 @@
       </select>
       <span role="button" aria-haspopup="listbox" aria-expanded="false" class="custom-select-trigger" tabindex="0"
         id="sort-select-trigger-text" aria-label="Afficher la liste de tri">Popularité</span>
-      <ul class="custom-options" aria-hidden="false" role="listbox"
-        aria-activedescendant aria-owns tabindex="-1">
+      <ul class="custom-options" aria-hidden="false" role="listbox" aria-activedescendant aria-owns tabindex="-1">
         <li class="custom-option arrow" data-value="popularity" role="option" aria-hidden="false" aria-selected="true"
           tabindex="0" id="selected-option" aria-label="Trier par Popularité">Popularité</li>
-        <li class="custom-option" data-value="date" role="option" aria-hidden="false" aria-selected="true" tabindex="0" aria-label="Trier par date">
+        <li class="custom-option" data-value="date" role="option" aria-hidden="false" aria-selected="true" tabindex="0"
+          aria-label="Trier par date">
           Date</li>
-        <li class="custom-option" data-value="title" role="option" aria-hidden="false" aria-selected="true"
-          tabindex="0" aria-label="Trier par titre">Titre</li>
+        <li class="custom-option" data-value="title" role="option" aria-hidden="false" aria-selected="true" tabindex="0"
+          aria-label="Trier par titre">Titre</li>
       </ul>
     </div>
     <div id="photograph-media"></div>
   </main>
-  <div id="contact_modal" role="dialog" aria-hidden="false" aria-describedby="contact_modal" aria-modal="true"
+  <div id="contact_modal" role="dialog" aria-hidden="false"  aria-modal="true"
     aria-labelledby="modal-title">
     <div class="modal">
-      <div>
+      <nav id="modal-nav">
         <h1 id="modal-title">Contactez-moi</h1>
         <button id="modal-close-btn" onclick="closeModal()" tabindex="0" aria-label="Fermer le formulaire de contact">
           <img src="assets/icons/close.svg" alt="">
         </button>
-      </div>
+      </nav>
       <form action="#" method="post">
         <fieldset>
           <label for="firstname">Prénom </label>
-          <input id="firstname" type="text" name="firstname" tabindex="0" aria-describedby="firstname" aria-label="Entrez votre prénom" required>
+          <input id="firstname" type="text" name="firstname" tabindex="0" aria-describedby="firstname"
+            aria-label="Entrez votre prénom" required>
           <label for="lastname">Nom </label>
-          <input id="lastname" type="text" name="lastname" tabindex="0" aria-describedby="lastname" aria-label="Entrez votre nom" required>
+          <input id="lastname" type="text" name="lastname" tabindex="0" aria-describedby="lastname"
+            aria-label="Entrez votre nom" required>
           <label for="email">E-mail </label>
-          <input id="email" type="text" name="email" tabindex="0" aria-describedby="email" aria-label="Entre votre email" required>
+          <input id="email" type="text" name="email" tabindex="0" aria-describedby="email"
+            aria-label="Entre votre email" required>
           <p id="email-error" class="error" aria-live="assertive"></p>
           <label for="message">Votre message </label>
           <textarea id="message" name="message" rows="12" cols="75" maxlength="150" tabindex="0"
