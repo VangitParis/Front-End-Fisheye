@@ -24,6 +24,8 @@ async function displayData(photographers) {
   newSection.id = photographersSection.id;
   newSection.className = photographersSection.className;
   newSection.innerHTML = photographersSection.innerHTML;
+  newSection.ariaLabel = "Cette page représente nos photographes";
+  newSection.tabIndex = "0";
 
   // Remplacement de l'élément existant par le nouvel élément
   photographersSection.replaceWith(newSection);

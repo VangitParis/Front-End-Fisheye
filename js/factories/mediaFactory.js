@@ -45,9 +45,9 @@ export class MediaFactory {
     );
 
     const article = `
-    <article class="card_article" title="${this.photographerMedia.title}">
+    <article class="card_article">
       <figure>
-        <a href="photographer.html?id=${this.photographerId}&amp;lightbox.html?id=${this.id}" aria-label="Cliquez pour voir l'image en grand dans la galerie d'images" role="link" class="image-link" tabindex="0">
+        <a href="photographer.html?id=${this.photographerId}&amp;lightbox.html?id=${this.id}" aria-label="Cliquez pour voir l'image ${this.photographerMedia.title} en grand dans la galerie d'images" role="link" class="image-link" tabindex="0">
         ${elementWithClass}
         </a>
         <figcaption>
@@ -70,7 +70,7 @@ export class MediaFactory {
     newSection.id = mediaSection.id;
     newSection.innerHTML = mediaSection.innerHTML;
     newSection.ariaLabel = "Cette page contient les travaux des photographes";
-    newSection.tabIndex = "0";
+    newSection.tabIndex="0";
     // Remplacement de l'élément existant par le nouvel élément
     mediaSection.replaceWith(newSection);
     newSection.innerHTML += article;
