@@ -267,7 +267,7 @@ button.button-like svg.svg-inline--fa {
     margin: auto;
     height: 825px;
     width: 630px;
-    overflow-y: scroll;
+    
 }
 
 nav#modal-nav {
@@ -429,6 +429,9 @@ textarea:focus {
 #lightbox button:focus {
     outline: 2px solid var(--background-color-hover-focus);
     border-radius: 5px;
+}
+#lightbox button{
+    cursor: pointer;
 }
 
 #lightbox>nav {

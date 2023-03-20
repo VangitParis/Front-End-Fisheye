@@ -91,10 +91,9 @@ export default class Likes {
   updateTotalLikes(totalLikes) {
     // Mettre à jour la valeur de aria-label
     const totalLikesElement = document.getElementById("total_likes");
-    console.log(totalLikesElement);
     totalLikesElement.setAttribute(
       "aria-label",
-      `Le nombre de likes de ce photographe est de ${totalLikes}`
+      `Le nombre de j'aime de ce photographe est de ${totalLikes}`
     );
   }
 }

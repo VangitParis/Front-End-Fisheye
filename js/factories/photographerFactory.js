@@ -50,7 +50,7 @@ export class PhotographerFactory {
     // Copie des attributs de l'élément existant dans le nouvel élément
     newSection.id = photographerHeaderSection.id;
     newSection.innerHTML = photographerHeaderSection.innerHTML;
-    
+
     // Remplacement de l'élément existant par le nouvel élément
     photographerHeaderSection.replaceWith(newSection);
 
@@ -63,9 +63,9 @@ export class PhotographerFactory {
             </section>
         </div>
         <div id="contact-box">
-        <button class="contact-open_button" onclick="displayModal()" aria-labelledby="contact-title" type="button" aria-haspopup="dialog" tabindex="0">Contactez-moi</button>
-        <span id="contact-title" class="sr-only">Ouvrir le formulaire de contact</span>
-      </div> 
+          <button class="contact-open_button" onclick="displayModal()" aria-labelledby="contact-title" type="button" aria-haspopup="dialog" tabindex="0">Contactez-moi</button>
+          <span id="contact-title" class="sr-only">Ouvrir le formulaire de contact</span>
+        </div> 
         <div class="img-header-box" aria-label="photo de profil de ${this.photographerData.name}" tabindex="0">
             <img class="photographer-header_img" src="${this.picture}" alt="${this.photographerData.name}">
         </div>

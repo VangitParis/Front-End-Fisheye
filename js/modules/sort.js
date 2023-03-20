@@ -11,7 +11,6 @@ export default class SortMedias {
    */
   constructor(mediasFromJson) {
     this.mediasFromJson = mediasFromJson;
-    // this.createListboxesSort();
     this.mediaObjectsSorted = this.setArticleProperties();
     this.render(this.mediaObjectsSorted);
     const customOptions = Array.from(
